@@ -37,6 +37,7 @@ namespace VolleyRain.Controllers
         }
 
         // GET: /News/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -45,9 +46,10 @@ namespace VolleyRain.Controllers
         // POST: /News/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Title,Content,PublishDate")] NewsArticle newsarticle)
+        public ActionResult Create([Bind(Include = "ID,Title,Content,PublishDate")] NewsArticle newsarticle)
         {
             if (ModelState.IsValid)
             {
@@ -60,6 +62,7 @@ namespace VolleyRain.Controllers
         }
 
         // GET: /News/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,9 +80,10 @@ namespace VolleyRain.Controllers
         // POST: /News/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Title,Content,PublishDate")] NewsArticle newsarticle)
+        public ActionResult Edit([Bind(Include = "ID,Title,Content,PublishDate")] NewsArticle newsarticle)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +95,7 @@ namespace VolleyRain.Controllers
         }
 
         // GET: /News/Delete/5
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +111,7 @@ namespace VolleyRain.Controllers
         }
 
         // POST: /News/Delete/5
+        [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
