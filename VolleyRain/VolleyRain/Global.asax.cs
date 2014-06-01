@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using VolleyRain.DataAccess;
+using VolleyRain.Security;
 
 namespace VolleyRain
 {
@@ -20,24 +21,11 @@ namespace VolleyRain
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs args)
         {
-            if (!FormsAuthentication.CookiesSupported || Request.Cookies[FormsAuthentication.FormsCookieName] == null) return;
-
-            try
+            if (Request.IsAuthenticated)
             {
-                var username = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).Name;
-                var roles = new string[] { };
-
-                using (var db = new DatabaseContext())
-                {
-                    var user = db.Users.SingleOrDefault(u => u.Username == username);
-                    roles = user.Roles.Select(r => r.Name).ToArray();
-                }
-
-                HttpContext.Current.User = new GenericPrincipal(new GenericIdentity(username, "Forms"), roles);
-            }
-            catch
-            {
-
+                var identity = new CustomIdentity(HttpContext.Current.User.Identity);
+                var principal = new CustomPrincipal(identity);
+                HttpContext.Current.User = principal;
             }
         }
     }

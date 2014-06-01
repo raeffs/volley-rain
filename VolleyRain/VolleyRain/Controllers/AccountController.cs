@@ -13,44 +13,35 @@ namespace VolleyRain.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Login()
         {
+            if (User.Identity.IsAuthenticated) return Logout();
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(User model, string returnUrl)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            var username = model.Username;
-            var password = model.Password;
-
-            var isValid = db.Users.Any(u => u.Username == username && u.Password == password);
-
-            if (isValid)
+            if (ModelState.IsValid)
             {
-                FormsAuthentication.SetAuthCookie(username, false);
-                if (Url.IsLocalUrl(returnUrl))
+                if (Membership.ValidateUser(model.Username, model.Password))
                 {
-                    return Redirect(returnUrl);
+                    FormsAuthentication.RedirectFromLoginPage(model.Username, false);
                 }
-                else
-                {
-                    return RedirectToAction("Index", "News");
-                }
+
+                ModelState.AddModelError("", "Incorrect username and/or password");
             }
-            else
-            {
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                return View(model);
-            }
+
+            return View(model);
         }
 
-        public ActionResult LogOff()
+        public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "News");
+            return RedirectToAction("Login", "Account");
         }
 
         protected override void Dispose(bool disposing)
