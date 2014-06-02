@@ -32,6 +32,7 @@ namespace VolleyRain.Security
             Identity = identity;
 
             var customMembershipUser = (CustomMembershipUser)Membership.GetUser(identity.Name);
+            // TODO: store values if needed
         }
     }
 }
