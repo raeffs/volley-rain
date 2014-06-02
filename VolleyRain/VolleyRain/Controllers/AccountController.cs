@@ -24,13 +24,13 @@ namespace VolleyRain.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(User model, string returnUrl)
+        public ActionResult Login(Login model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 if (Membership.ValidateUser(model.Username, model.Password))
                 {
-                    FormsAuthentication.RedirectFromLoginPage(model.Username, false);
+                    FormsAuthentication.RedirectFromLoginPage(model.Username, model.RememberMe);
                 }
 
                 ModelState.AddModelError("", "Incorrect username and/or password");
