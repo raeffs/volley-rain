@@ -17,6 +17,8 @@ namespace VolleyRain.DataAccess
 
         public DbSet<NewsArticle> NewsArticles { get; set; }
 
+        public DbSet<Ranking> Rankings { get; set; }
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<Role> Roles { get; set; }

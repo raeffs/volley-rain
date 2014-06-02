@@ -1,0 +1,41 @@
+﻿@model IEnumerable<VolleyRain.Models.Ranking>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <span class="hidden-xs">@Html.DisplayNameFor(model => model.Rank)</span>
+                <span class="visible-xs">@Html.DisplayNameFor(model => model.Rank).ToHtmlString().Substring(0, 1).</span>
+            </th>
+            <th>@Html.DisplayNameFor(model => model.Team)</th>
+            <th>
+                <span class="hidden-xs">@Html.DisplayNameFor(model => model.NumberOfGames)</span>
+                <span class="visible-xs">@Html.DisplayNameFor(model => model.NumberOfGames).ToHtmlString().Substring(0, 1).</span>
+            </th>
+            <th class="hidden-xs">@Html.DisplayNameFor(model => model.Sets)</th>
+            <th>@Html.DisplayNameFor(model => model.SetQuotient)</th>
+            <th class="hidden-xs">@Html.DisplayNameFor(model => model.Balls)</th>
+            <th>@Html.DisplayNameFor(model => model.BallQuotient)</th>
+            <th>
+                <span class="hidden-xs">@Html.DisplayNameFor(model => model.Points)</span>
+                <span class="visible-xs">@Html.DisplayNameFor(model => model.Points).ToHtmlString().Substring(0, 1).</span>
+            </th>
+        </tr>
+    </thead>
+    @foreach (var item in Model) { 
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Rank)</td>
+            <td>@Html.DisplayFor(modelItem => item.Team)</td>
+            <td>@Html.DisplayFor(modelItem => item.NumberOfGames)</td>
+            <td class="hidden-xs">@Html.DisplayFor(modelItem => item.Sets)</td>
+            <td>@Html.DisplayFor(modelItem => item.SetQuotient)</td>
+            <td class="hidden-xs">@Html.DisplayFor(modelItem => item.Balls)</td>
+            <td>@Html.DisplayFor(modelItem => item.BallQuotient)</td>
+            <td>@Html.DisplayFor(modelItem => item.Points)</td>
+        </tr>
+    }
+</table>
