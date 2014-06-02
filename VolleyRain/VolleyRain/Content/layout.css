@@ -2,6 +2,7 @@
 
 .container-fluid {
     max-width: 1200px;
+    min-width: 290px;
 }
 
 .form-horizontal {
@@ -13,9 +14,17 @@
 /* Bootstrap customization */
 
 .logo { 
-    height: 150px; 
+    width: 258px;
     margin-top: 10px; 
     margin-bottom: 10px; 
+}
+
+@media (min-width: 768px) {
+
+    .logo {
+        width: 500px;
+    }
+    
 }
 
 /* styles for validation helpers */
