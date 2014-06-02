@@ -11,6 +11,20 @@ namespace VolleyRain.DataAccess
     {
         protected override void Seed(DatabaseContext context)
         {
+            // built-in data
+            var adminRole = new Role { IsBuiltIn = true, Name = "Administrator", Description = "Built-in administrator role" };
+            var userRole = new Role { IsBuiltIn = true, Name = "User", Description = "Built-in user role" };
+            context.Roles.Add(adminRole);
+            context.Roles.Add(userRole);
+            context.SaveChanges();
+
+            var adminUser = new User { Username = "Admin", Password = "12345", Email = "admin@volleyrain.ch" };
+            adminUser.Roles.Add(adminRole);
+            adminUser.Roles.Add(userRole);
+            context.Users.Add(adminUser);
+            context.SaveChanges();
+
+            // test data
             var newsArticles = new List<NewsArticle>
             {
                 new NewsArticle { Title = "Kein Training heute!", Content = "Weil Vanessa krank...", PublishDate = DateTime.Now },
@@ -18,22 +32,9 @@ namespace VolleyRain.DataAccess
             newsArticles.ForEach(a => context.NewsArticles.Add(a));
             context.SaveChanges();
 
-            var roles = new List<Role>
-            {
-                new Role { Name = "User" },
-                new Role { Name = "Administrator" },
-            };
-            roles.ForEach(r => context.Roles.Add(r));
-            context.SaveChanges();
-
-            var users = new List<User>
-            {
-                new User { Username = "Admin", Password = "12345" },
-                new User { Username = "Susi", Password = "12345" },
-            };
-            users.Single(u => u.Username == "Admin").Roles.Add(roles.Single(r => r.Name == "Administrator"));
-            users.Single(u => u.Username == "Susi").Roles.Add(roles.Single(r => r.Name == "User"));
-            users.ForEach(u => context.Users.Add(u));
+            var susi = new User { Username = "Susi", Password = "12345", Email = "susi@volleyrain.ch" };
+            susi.Roles.Add(userRole);
+            context.Users.Add(susi);
             context.SaveChanges();
         }
     }

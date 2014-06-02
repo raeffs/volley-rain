@@ -8,7 +8,9 @@ namespace VolleyRain.Models
     public class Role
     {
         public int ID { get; set; }
+        public bool IsBuiltIn { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
 
