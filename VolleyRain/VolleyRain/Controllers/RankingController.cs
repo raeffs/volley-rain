@@ -11,6 +11,8 @@ namespace VolleyRain.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Rankings.ToList());
