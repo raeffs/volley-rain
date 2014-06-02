@@ -41,6 +41,7 @@ namespace VolleyRain.Security
 
             using (var db = new DatabaseContext())
             {
+                // TODO: add is approved and is locked out checks
                 var user = db.Users.SingleOrDefault(u => u.Username == username);
                 if (user == null) return null;
 

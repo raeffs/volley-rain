@@ -18,7 +18,7 @@ namespace VolleyRain.DataAccess
             context.Roles.Add(userRole);
             context.SaveChanges();
 
-            var adminUser = new User { Username = "Admin", Password = "12345", Email = "admin@volleyrain.ch" };
+            var adminUser = new User { Username = "Admin", Password = "12345", Email = "admin@volleyrain.ch", IsApproved = true };
             adminUser.Roles.Add(adminRole);
             adminUser.Roles.Add(userRole);
             context.Users.Add(adminUser);
@@ -32,7 +32,7 @@ namespace VolleyRain.DataAccess
             newsArticles.ForEach(a => context.NewsArticles.Add(a));
             context.SaveChanges();
 
-            var susi = new User { Username = "Susi", Password = "12345", Email = "susi@volleyrain.ch" };
+            var susi = new User { Username = "Susi", Password = "12345", Email = "susi@volleyrain.ch", IsApproved = true };
             susi.Roles.Add(userRole);
             context.Users.Add(susi);
             context.SaveChanges();
