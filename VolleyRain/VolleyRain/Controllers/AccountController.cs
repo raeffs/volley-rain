@@ -23,6 +23,7 @@ namespace VolleyRain.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(User model, string returnUrl)
         {
             if (ModelState.IsValid)
