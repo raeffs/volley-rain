@@ -135,6 +135,7 @@
     <Compile Include="Security\CustomMembershipUser.cs" />
     <Compile Include="Security\CustomPrincipal.cs" />
     <Compile Include="Security\CustomRoleProvider.cs" />
+    <Compile Include="Security\PrincipalExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
