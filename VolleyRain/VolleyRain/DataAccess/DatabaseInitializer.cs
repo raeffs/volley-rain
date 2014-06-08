@@ -32,6 +32,14 @@ namespace VolleyRain.DataAccess
             newsArticles.ForEach(a => context.NewsArticles.Add(a));
             context.SaveChanges();
 
+            var events = new List<Event>
+            {
+                new Event { Name = "Training 1", Date = new DateTime(2014, 6, 12) },
+                new Event { Name = "Training 2", Date = new DateTime(2014, 6, 19) },
+            };
+            events.ForEach(e => context.Events.Add(e));
+            context.SaveChanges();
+
             var rankings = new List<Ranking>
             {
                 new Ranking { Rank = 1, Team = "VBC Willisau 2", NumberOfGames = 14, SetsWon = 35, SetsLost = 21, SetQuotient = 1.7M, BallsWon = 1213, BallsLost = 1113, BallQuotient = 1.1M, Points = 28 },
