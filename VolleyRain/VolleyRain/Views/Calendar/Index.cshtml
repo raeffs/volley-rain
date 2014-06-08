@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VolleyRain.Models.DaySummary>
+﻿@model VolleyRain.Models.Month
 
 @{
     ViewBag.Title = "Index";
@@ -11,13 +11,13 @@
       <a class="pull-right" data-go="next"><div class="btn"><i class="icon-chevron-right">Next</i></div></a>
   </div><hr/>
   <div class="day-headers">
-    <div class="day header">Mon</div>
-    <div class="day header">Tue</div>
-    <div class="day header">Wed</div>
-    <div class="day header">Thu</div>
-    <div class="day header">Fri</div>
-    <div class="day header">Sat</div>
-    <div class="day header">Sun</div>
+    <div class="day header">Mo</div>
+    <div class="day header">Di</div>
+    <div class="day header">Mi</div>
+    <div class="day header">Do</div>
+    <div class="day header">Fr</div>
+    <div class="day header">Sa</div>
+    <div class="day header">So</div>
   </div>
   <div class="days" data-group="days">
     <!-- the place where days will be generated -->
@@ -28,11 +28,15 @@
     $( document ).ready( function() {
         $('.responsive-calendar').responsiveCalendar({
             monthChangeAnimation: false,
+            time: @Html.Raw(string.Format("\"{0:yyyy-MM}\"", Model.Date)),
             events: {
-                @foreach (var item in Model) 
+                @foreach (var item in Model.Days) 
                 {
-                    @Html.Raw(string.Format("\"{0:yyyy-MM-dd}\": {{ \"number\": {1}, \"url\": \"{2}\" }},", item.Date, item.NumberOfEvents, Url.Action("Index", "Calendar", new { Month = "12", Day = "3" })))
+                    @Html.Raw(string.Format("\"{0:yyyy-MM-dd}\": {{ \"number\": {1} }},", item.Date, item.NumberOfEvents))
                 }
+            },
+            onDayClick: function(events) {
+                window.location.href = "/Calendar/" + $(this).data("year") + "/" + $(this).data("month") + "/" + $(this).data("day");
             }
         });
     });

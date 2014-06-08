@@ -128,9 +128,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DaySummary.cs" />
+    <Compile Include="Models\Day.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\Month.cs" />
     <Compile Include="Models\NewsArticle.cs" />
     <Compile Include="Models\Ranking.cs" />
     <Compile Include="Models\Role.cs" />
@@ -157,6 +158,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Ranking\Index.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
+    <Content Include="Views\Calendar\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

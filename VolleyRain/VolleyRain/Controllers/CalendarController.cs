@@ -12,19 +12,37 @@ namespace VolleyRain.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        public ActionResult Index()
+        public ActionResult Index(int? year, int? month)
         {
-            var startOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            var startOfInterval = startOfMonth.AddDays(-6);
-            var endOfInterval = startOfMonth.AddMonths(1).AddDays(6);
+            if (!year.HasValue || year < DateTime.MinValue.Year || year > DateTime.MaxValue.Year)
+            {
+                year = DateTime.Today.Year;
+            }
+            if (!month.HasValue || month < DateTime.MinValue.Month || month > DateTime.MaxValue.Month)
+            {
+                month = DateTime.Today.Month;
+            }
 
-            var days = db.Events
+            return View(GetMonth(year.Value, month.Value));
+        }
+
+        public ActionResult Details(int year, int month, int day)
+        {
+            return View();
+        }
+
+        private Month GetMonth(int year, int month)
+        {
+            var model = new Month { Date = new DateTime(year, month, 1) };
+            var startOfInterval = model.Date.AddDays(-6);
+            var endOfInterval = model.Date.AddMonths(1).AddDays(6);
+
+            model.Days = db.Events
                 .Where(e => e.Date >= startOfInterval && e.Date <= endOfInterval)
                 .GroupBy(e => e.Date)
-                .Select(g => new DaySummary { Date = g.Key, NumberOfEvents = g.Count() })
+                .Select(g => new Day { Date = g.Key, NumberOfEvents = g.Count() })
                 .ToList();
-
-            return View(days);
+            return model;
         }
 
         protected override void Dispose(bool disposing)
