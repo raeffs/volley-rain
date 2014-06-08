@@ -13,6 +13,14 @@
 
 /* Bootstrap customization */
 
+/* Responsive Calendar customization */
+
+.responsive-calendar {
+    max-width: 500px;
+}
+
+/* Responsive Calendar customization */
+
 .logo { 
     width: 258px;
     margin-top: 10px; 

@@ -92,6 +92,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\layout.css" />
+    <Content Include="Content\responsive-calendar.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -109,6 +110,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\responsive-calendar.js" />
+    <Content Include="Scripts\responsive-calendar.min.js" />
     <Content Include="usefull.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -117,6 +120,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RankingController.cs" />
     <Compile Include="DataAccess\DatabaseContext.cs" />
@@ -124,6 +128,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DaySummary.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\NewsArticle.cs" />
     <Compile Include="Models\Ranking.cs" />
@@ -150,6 +156,7 @@
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Ranking\Index.cshtml" />
+    <Content Include="Views\Calendar\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
