@@ -11,6 +11,14 @@
     margin-right: auto;
 }
 
+.navbar {
+    border-radius: 0;
+}
+
+.jumbotron {
+    padding: 30px;
+}
+
 /* Bootstrap customization */
 
 /* Responsive Calendar customization */

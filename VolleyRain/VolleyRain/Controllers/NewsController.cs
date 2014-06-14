@@ -15,13 +15,11 @@ namespace VolleyRain.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        // GET: /News/
         public ActionResult Index()
         {
             return View(db.NewsArticles.ToList());
         }
 
-        // GET: /News/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,17 +34,15 @@ namespace VolleyRain.Controllers
             return View(newsarticle);
         }
 
-        // GET: /News/Create
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /News/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Title,Content,PublishDate")] NewsArticle newsarticle)
@@ -61,8 +57,7 @@ namespace VolleyRain.Controllers
             return View(newsarticle);
         }
 
-        // GET: /News/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,10 +72,9 @@ namespace VolleyRain.Controllers
             return View(newsarticle);
         }
 
-        // POST: /News/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Title,Content,PublishDate")] NewsArticle newsarticle)
@@ -94,7 +88,6 @@ namespace VolleyRain.Controllers
             return View(newsarticle);
         }
 
-        // GET: /News/Delete/5
         [Authorize(Roles = "Administrator")]
         public ActionResult Delete(int? id)
         {
@@ -110,7 +103,6 @@ namespace VolleyRain.Controllers
             return View(newsarticle);
         }
 
-        // POST: /News/Delete/5
         [Authorize(Roles = "Administrator")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
