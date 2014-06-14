@@ -25,11 +25,15 @@ namespace VolleyRain.DataAccess
             context.SaveChanges();
 
             // test data
-            var newsArticles = new List<NewsArticle>
+            for (var index = 0; index <= 100; index++)
             {
-                new NewsArticle { Title = "Kein Training heute!", Content = "Weil Vanessa krank...", PublishDate = DateTime.Now },
-            };
-            newsArticles.ForEach(a => context.NewsArticles.Add(a));
+                context.NewsArticles.Add(new NewsArticle
+                {
+                    Title = string.Format("News Item {0}", index),
+                    Content = "Lorem ipsum dolor sit amet...",
+                    PublishDate = DateTime.Now.AddDays(index * -1)
+                });
+            }
             context.SaveChanges();
 
             var events = new List<Event>

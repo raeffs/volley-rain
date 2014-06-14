@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MvcPaging;
 using VolleyRain.Models;
 using VolleyRain.DataAccess;
 
@@ -13,11 +14,14 @@ namespace VolleyRain.Controllers
 {
     public class NewsController : Controller
     {
+        private const int DefaultPageSize = 2;
+
         private DatabaseContext db = new DatabaseContext();
 
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.NewsArticles.ToList());
+            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
+            return View(db.NewsArticles.OrderByDescending(i => i.PublishDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         public ActionResult Details(int? id)

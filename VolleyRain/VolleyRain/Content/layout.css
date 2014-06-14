@@ -15,6 +15,14 @@
     border-radius: 0;
 }
 
+@media (min-width: 768px) {
+
+    .navbar-nav.navbar-right:last-child {
+        margin-right: 0;
+    }
+    
+}
+
 .jumbotron {
     padding: 30px;
 }

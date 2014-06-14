@@ -1,10 +1,14 @@
-﻿@model IEnumerable<VolleyRain.Models.NewsArticle>
+﻿@model IPagedList<VolleyRain.Models.NewsArticle>
 
 @{
     ViewBag.Title = "Index";
 }
 
-@foreach (var item in Model.OrderByDescending(i => i.PublishDate)) { 
+<!--
+<a href="@Url.Action("Create", "News")" class="btn btn-success btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span></a>
+-->
+
+@foreach (var item in Model) { 
     <div class="jumbotron">
         @if (HttpContext.Current.User.IsAdministrator()) { 
             <div class="btn-group-vertical pull-right">
@@ -16,3 +20,11 @@
         <p>@Html.DisplayFor(modelItem => item.Content)</p>
     </div>
 }
+
+<div class="text-center">
+    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
+        .DisplayTemplate("Bootstrap3Pagination")
+        .MaxNrOfPages(2)
+        .AlwaysAddFirstPageNumber()
+    )
+</div>
