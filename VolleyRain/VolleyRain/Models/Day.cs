@@ -7,7 +7,17 @@ namespace VolleyRain.Models
 {
     public class Day
     {
-        public DateTime Date { get; set; }
+        public DateTime Date { get; private set; }
+
         public int NumberOfEvents { get; set; }
+
+        public Itenso.TimePeriod.ITimePeriod CalendarViewPeriod { get; private set; }
+
+        public Day(int year, int month, int day)
+        {
+            var dayBase = new Itenso.TimePeriod.Day(year, month, day);
+            Date = dayBase.FirstDayStart;
+            CalendarViewPeriod = dayBase;
+        }
     }
 }

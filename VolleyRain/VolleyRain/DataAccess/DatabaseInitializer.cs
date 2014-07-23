@@ -38,8 +38,15 @@ namespace VolleyRain.DataAccess
 
             var events = new List<Event>
             {
-                new Event { Name = "Training 1", Date = new DateTime(2014, 6, 12) },
-                new Event { Name = "Training 2", Date = new DateTime(2014, 6, 19) },
+                new Event { Name = "Before month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 21, 59, 59) },
+                new Event { Name = "End touching month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 23, 59, 59) },
+                new Event { Name = "End inside month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59) },
+                new Event { Name = "Inside start touching month", Start = new DateTime(2014, 7, 1, 0, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59) },
+                new Event { Name = "Inside month", Start = new DateTime(2014, 7, 4, 10, 0, 0), End = new DateTime(2014, 7, 4, 21, 59, 59) },
+                new Event { Name = "Inside end touching month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 7, 31, 23, 59, 59) },
+                new Event { Name = "Start inside month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
+                new Event { Name = "Start touching month", Start = new DateTime(2014, 8, 1, 0, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
+                new Event { Name = "After month", Start = new DateTime(2014, 8, 1, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
             };
             events.ForEach(e => context.Events.Add(e));
             context.SaveChanges();

@@ -7,12 +7,26 @@ using System.Web;
 
 namespace VolleyRain.Models
 {
+    public enum EventType
+    {
+        Match,
+        Training
+    }
+
     public class Event
     {
         public int ID { get; set; }
+
         public string Name { get; set; }
 
-        [Column(TypeName = "Date")]
-        public DateTime Date { get; set; }
+        public string Description { get; set; }
+
+        public string Location { get; set; }
+
+        public EventType Type { get; set; }
+
+        public DateTime Start { get; set; }
+
+        public DateTime End { get; set; }
     }
 }

@@ -28,23 +28,26 @@ namespace VolleyRain.Controllers
 
         public ActionResult Details(int year, int month, int day)
         {
-            var date = new DateTime(year, month, day);
-            if (db.Events.None(e => e.Date == date)) return RedirectToAction("Create", "Event");
+            //var date = new DateTime(year, month, day);
+            //if (db.Events.None(e => e.Date == date)) return RedirectToAction("Create", "Event");
 
             return View();
         }
 
         private Month GetMonth(int year, int month)
         {
-            var model = new Month { Date = new DateTime(year, month, 1) };
-            var startOfInterval = model.Date.AddDays(-6);
-            var endOfInterval = model.Date.AddMonths(1).AddDays(6);
+            var model = new Month(year, month);
 
-            model.Days = db.Events
-                .Where(e => e.Date >= startOfInterval && e.Date <= endOfInterval)
-                .GroupBy(e => e.Date)
-                .Select(g => new Day { Date = g.Key, NumberOfEvents = g.Count() })
-                .ToList();
+            var events = db.Events
+                .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End)
+                .ToList()
+                .Select(e => new Itenso.TimePeriod.TimeRange(e.Start, e.End, true));
+
+            foreach (var day in model.Days)
+            {
+                day.NumberOfEvents = events.Count(e => day.CalendarViewPeriod.OverlapsWith(e));
+            }
+
             return model;
         }
 

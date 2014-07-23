@@ -32,9 +32,10 @@
     $( document ).ready( function() {
         $('.responsive-calendar').responsiveCalendar({
             monthChangeAnimation: false,
+            allRows: false,
             time: @Html.Raw(string.Format("\"{0:yyyy-MM}\"", Model.Date)),
             events: {
-                @foreach (var item in Model.Days) 
+                @foreach (var item in Model.Days.Where(d => d.NumberOfEvents > 0)) 
                 {
                     @Html.Raw(string.Format("\"{0:yyyy-MM-dd}\": {{ \"number\": {1} }},", item.Date, item.NumberOfEvents))
                 }

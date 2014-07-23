@@ -8,20 +8,35 @@ namespace VolleyRain.Models
 {
     public class Month
     {
-        [DisplayFormat(DataFormatString = "{0:MMMM yyyy}")]
-        public DateTime Date { get; set; }
-
-        public IEnumerable<Day> Days { get; set; }
+        public IList<Day> Days { get; private set; }
 
         [DisplayFormat(DataFormatString = "{0:MMMM yyyy}")]
-        public DateTime NextMonth { get { return Date.AddMonths(1); } }
+        public DateTime Date { get; private set; }
 
         [DisplayFormat(DataFormatString = "{0:MMMM yyyy}")]
-        public DateTime PreviousMonth { get { return Date.AddMonths(-1); } }
+        public DateTime NextMonth { get; private set; }
 
-        public Month()
+        [DisplayFormat(DataFormatString = "{0:MMMM yyyy}")]
+        public DateTime PreviousMonth { get; private set; }
+
+        public Itenso.TimePeriod.ITimePeriod CalendarViewPeriod { get; private set; }
+
+        public Month(int year, int month)
         {
-            Days = new Day[] { };
+            var monthBase = new Itenso.TimePeriod.Month(new DateTime(year, month, 1));
+
+            Days = new List<Day>();
+            Date = monthBase.FirstDayStart;
+            NextMonth = monthBase.GetNextMonth().FirstDayStart;
+            PreviousMonth = monthBase.GetPreviousMonth().FirstDayStart;
+            CalendarViewPeriod = monthBase;
+
+            var day = Date;
+            while (CalendarViewPeriod.HasInside(day))
+            {
+                Days.Add(new Day(day.Year, day.Month, day.Day));
+                day = day.AddDays(1);
+            }
         }
     }
 }
