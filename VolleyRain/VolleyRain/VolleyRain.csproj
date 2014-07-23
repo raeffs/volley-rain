@@ -129,6 +129,7 @@
     <Compile Include="Controllers\RankingController.cs" />
     <Compile Include="DataAccess\DatabaseContext.cs" />
     <Compile Include="DataAccess\DatabaseInitializer.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

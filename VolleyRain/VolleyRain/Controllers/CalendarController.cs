@@ -28,6 +28,9 @@ namespace VolleyRain.Controllers
 
         public ActionResult Details(int year, int month, int day)
         {
+            var date = new DateTime(year, month, day);
+            if (db.Events.None(e => e.Date == date)) return RedirectToAction("Create", "Event");
+
             return View();
         }
 
