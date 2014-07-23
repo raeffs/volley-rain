@@ -4,12 +4,16 @@
     ViewBag.Title = "Index";
 }
 
+<h1>@Html.DisplayFor(model => model.Date)</h1>
+
+<a href="@Url.Action("Index", new { year = Model.PreviousMonth.Year, month = Model.PreviousMonth.Month })" class="btn btn-primary">
+    <span class="glyphicon glyphicon-chevron-left"></span> @Html.DisplayFor(model => model.PreviousMonth)
+</a>
+<a href="@Url.Action("Index", new { year = Model.NextMonth.Year, month = Model.NextMonth.Month })" class="btn btn-primary">
+    @Html.DisplayFor(model => model.NextMonth) <span class="glyphicon glyphicon-chevron-right"></span>
+</a>
+
 <div class="responsive-calendar center-block">
-  <div class="controls">
-      <a class="pull-left" data-go="prev"><div class="btn"><i class="icon-chevron-left">Prev</i></div></a>
-      <h4><span data-head-month=""></span> <span data-head-year=""></span></h4>
-      <a class="pull-right" data-go="next"><div class="btn"><i class="icon-chevron-right">Next</i></div></a>
-  </div><hr/>
   <div class="day-headers">
     <div class="day header">Mo</div>
     <div class="day header">Di</div>
