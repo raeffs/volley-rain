@@ -1,0 +1,7 @@
+﻿@model DateTime?
+
+@{
+    var metadata = ModelMetadata.FromLambdaExpression(model => model, ViewData);
+}
+
+@Html.TextBoxFor(model => model, new { @class = ViewData["class"] })
