@@ -4,4 +4,4 @@
     var metadata = ModelMetadata.FromLambdaExpression(model => model, ViewData);
 }
 
-@Html.TextBoxFor(model => model, new { @class = "datepicker" })
+@Html.TextBoxFor(model => model, metadata.EditFormatString, new { @class = ViewData["class"] })
