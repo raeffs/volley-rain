@@ -7,12 +7,6 @@ using System.Web;
 
 namespace VolleyRain.Models
 {
-    public enum EventType
-    {
-        Match,
-        Training
-    }
-
     public class Event
     {
         public int ID { get; set; }

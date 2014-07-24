@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using VolleyRain.DataAccess;
+using VolleyRain.Models;
 using VolleyRain.Security;
 
 namespace VolleyRain
@@ -17,6 +18,8 @@ namespace VolleyRain
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            // ModelBinders.Binders.Add(typeof(DateTime), new DateTimeModelBinder());
         }
 
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs args)

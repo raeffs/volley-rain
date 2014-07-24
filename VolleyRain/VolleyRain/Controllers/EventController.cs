@@ -15,105 +15,33 @@ namespace VolleyRain.Controllers
     {
         private DatabaseContext db = new DatabaseContext();
 
-        // GET: /Event/
-        public ActionResult Index()
-        {
-            return View(db.Events.ToList());
-        }
-
-        // GET: /Event/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
-
-        // GET: /Event/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: /Event/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ID,Name,Date")] Event @event)
+        public ActionResult Create([Bind] EventCreation eventCreation)
         {
             if (ModelState.IsValid)
             {
-                db.Events.Add(@event);
+                var entity = new Event
+                {
+                    Name = eventCreation.Name,
+                    Description = eventCreation.Description,
+                    Location = eventCreation.Location,
+                    Type = eventCreation.Type,
+                    Start = eventCreation.StartDate,
+                    End = eventCreation.EndDate
+                };
+
+                db.Events.Add(entity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Calendar");
             }
 
-            return View(@event);
-        }
-
-        // GET: /Event/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
-
-        // POST: /Event/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ID,Name,Date")] Event @event)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(@event).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(@event);
-        }
-
-        // GET: /Event/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Event @event = db.Events.Find(id);
-            if (@event == null)
-            {
-                return HttpNotFound();
-            }
-            return View(@event);
-        }
-
-        // POST: /Event/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Event @event = db.Events.Find(id);
-            db.Events.Remove(@event);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return View(eventCreation);
         }
 
         protected override void Dispose(bool disposing)
