@@ -36,6 +36,14 @@ namespace VolleyRain.DataAccess
             }
             context.SaveChanges();
 
+            var training = new Event
+            {
+                Name = "Training",
+                Start = new DateTime(2014, 7, 8, 10, 0, 0),
+                End = new DateTime(2014, 7, 9, 10, 0, 0),
+                Type = EventType.Training
+            };
+
             var events = new List<Event>
             {
                 new Event { Name = "Before month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 21, 59, 59) },
@@ -47,6 +55,7 @@ namespace VolleyRain.DataAccess
                 new Event { Name = "Start inside month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
                 new Event { Name = "Start touching month", Start = new DateTime(2014, 8, 1, 0, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
                 new Event { Name = "After month", Start = new DateTime(2014, 8, 1, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
+                training,
             };
             events.ForEach(e => context.Events.Add(e));
             context.SaveChanges();
@@ -68,6 +77,14 @@ namespace VolleyRain.DataAccess
             var susi = new User { Username = "Susi", Password = "12345", Email = "susi@volleyrain.ch", IsApproved = true };
             susi.Roles.Add(userRole);
             context.Users.Add(susi);
+            context.SaveChanges();
+
+            var attendances = new List<Attendance>
+            {
+                new Attendance { Event = training, User = adminUser, Type = AttendanceType.Attending },
+                new Attendance { Event = training, User = susi, Type = AttendanceType.Sickness },
+            };
+            attendances.ForEach(a => context.Attendances.Add(a));
             context.SaveChanges();
         }
     }

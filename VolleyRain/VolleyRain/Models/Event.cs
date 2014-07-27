@@ -22,5 +22,12 @@ namespace VolleyRain.Models
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }
+
+        public virtual List<Attendance> Attendances { get; set; }
+
+        public Event()
+        {
+            Attendances = new List<Attendance>();
+        }
     }
 }
