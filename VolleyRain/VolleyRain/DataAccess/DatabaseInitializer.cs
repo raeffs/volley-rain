@@ -150,11 +150,11 @@ namespace VolleyRain.DataAccess
 
         private void SeedAttendacneTypes(DatabaseContext context)
         {
-            AttendanceType_Attending = new AttendanceType { Name = "Zusage", ShortName = "Zu", RepresentsAttendance = true, ColorCode = "" };
-            AttendanceType_Absent = new AttendanceType { Name = "Absage", ShortName = "Ab", RepresentsAttendance = false, ColorCode = "" };
+            AttendanceType_Attending = new AttendanceType { Name = "Zusage", ShortName = "Zu", RepresentsAttendance = true, ColorCode = "#DFF0D8" };
+            AttendanceType_Absent = new AttendanceType { Name = "Absage", ShortName = "Ab", RepresentsAttendance = false, ColorCode = "#F2DEDE" };
             var attendanceTypes = new List<AttendanceType>
             {
-                new AttendanceType { Name = "Verletzt", ShortName = "V", RepresentsAttendance = false, ColorCode = "" }
+                new AttendanceType { Name = "Verletzt", ShortName = "V", RepresentsAttendance = false, ColorCode = "#D9EDF7" }
             };
             attendanceTypes.ForEach(a => context.AttendanceTypes.Add(a));
             context.SaveChanges();

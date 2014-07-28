@@ -17,5 +17,10 @@ namespace VolleyRain.Models
         public bool RepresentsAttendance { get; set; }
 
         public string ColorCode { get; set; }
+
+        public string GetCssClass()
+        {
+            return string.Format("attendance-type-{0}", ID);
+        }
     }
 }

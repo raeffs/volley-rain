@@ -1,0 +1,11 @@
+﻿@model IEnumerable<VolleyRain.Models.AttendanceType>
+
+<style>
+
+    @foreach (var type in Model) {
+    
+        @:.@type.GetCssClass() { background-color: @type.ColorCode; }
+        
+    }
+
+</style>

@@ -4,10 +4,12 @@
     ViewBag.Title = "Index";
 }
 
+<h2>Anwesenheitskontrolle</h2>
+
 <table class="table table-condensed">
     <thead>
         <tr>
-            <th>User</th>
+            <th></th>
 
             @foreach (var item in Model.Events) { 
             
@@ -27,8 +29,9 @@
             @foreach (var item in Model.Events) {
 
                 var attendanceType = Model.GetAttendanceFor(user, item);
+                var cssClass = attendanceType != null ? attendanceType.GetCssClass() : string.Empty;
               
-                <td>@Html.DisplayFor(modelItem => attendanceType.Name)</td>
+                <td class="@cssClass">@Html.DisplayFor(modelItem => attendanceType.Name)</td>
                 
             }
 
@@ -38,7 +41,7 @@
 
     <tfoot>
         <tr>
-            <th>Total</th>
+            <th></th>
 
             @foreach (var item in Model.Events) { 
             
