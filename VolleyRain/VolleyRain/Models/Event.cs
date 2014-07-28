@@ -17,7 +17,7 @@ namespace VolleyRain.Models
 
         public string Location { get; set; }
 
-        public EventType Type { get; set; }
+        public virtual EventType Type { get; set; }
 
         public DateTime Start { get; set; }
 

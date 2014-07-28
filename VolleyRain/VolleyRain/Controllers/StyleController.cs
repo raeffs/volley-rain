@@ -10,7 +10,10 @@ namespace VolleyRain.Controllers
     {
         public ActionResult Index()
         {
-            return PartialView(Context.AttendanceTypes.ToList());
+            ViewBag.AttendanceTypes = Context.AttendanceTypes.ToList();
+            ViewBag.EventTypes = Context.EventTypes.ToList();
+
+            return PartialView();
         }
     }
 }

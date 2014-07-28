@@ -15,5 +15,10 @@ namespace VolleyRain.Models
         public string ShortName { get; set; }
 
         public string ColorCode { get; set; }
+
+        public string GetCssClass()
+        {
+            return string.Format("event-type-{0}", ID);
+        }
     }
 }

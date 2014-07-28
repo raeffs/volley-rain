@@ -13,7 +13,7 @@
 
             @foreach (var item in Model.Events) { 
             
-                <th>@Html.DisplayFor(modelItem => item.Name)</th>
+                <th class="@item.Type.GetCssClass()">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</th>
                 
             }
 

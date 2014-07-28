@@ -76,15 +76,15 @@ namespace VolleyRain.DataAccess
 
         private void SeedEventTypes(DatabaseContext context)
         {
-            EventType_Training = new EventType { Name = "Training", ShortName = "TR", ColorCode = "" };
-            EventType_Match = new EventType { Name = "Heimmatch", ShortName = "MH", ColorCode = "" };
+            EventType_Training = new EventType { Name = "Training", ShortName = "TR", ColorCode = "#33B5E5" };
+            EventType_Match = new EventType { Name = "Heimmatch", ShortName = "MH", ColorCode = "#9933CC" };
             var eventTypes = new List<EventType>
             {
                 EventType_Training,
                 EventType_Match,
-                new EventType { Name = "Auswärtsmatch", ShortName = "MA", ColorCode = "" },
-                new EventType { Name = "Turnier", ShortName = "TU", ColorCode = "" },
-                new EventType { Name = "Ferien", ShortName = "F", ColorCode = "" },
+                new EventType { Name = "Auswärtsmatch", ShortName = "MA", ColorCode = "#AA66CC" },
+                new EventType { Name = "Turnier", ShortName = "TU", ColorCode = "#FFBB33" },
+                new EventType { Name = "Ferien", ShortName = "F", ColorCode = "#FFFFFF" },
             };
             eventTypes.ForEach(e => context.EventTypes.Add(e));
             context.SaveChanges();
@@ -94,15 +94,15 @@ namespace VolleyRain.DataAccess
         {
             var events = new List<Event>
             {
-                new Event { Name = "Before month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 21, 59, 59) },
-                new Event { Name = "End touching month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 23, 59, 59) },
-                new Event { Name = "End inside month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59) },
-                new Event { Name = "Inside start touching month", Start = new DateTime(2014, 7, 1, 0, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59) },
-                new Event { Name = "Inside month", Start = new DateTime(2014, 7, 4, 10, 0, 0), End = new DateTime(2014, 7, 4, 21, 59, 59) },
-                new Event { Name = "Inside end touching month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 7, 31, 23, 59, 59) },
-                new Event { Name = "Start inside month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
-                new Event { Name = "Start touching month", Start = new DateTime(2014, 8, 1, 0, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
-                new Event { Name = "After month", Start = new DateTime(2014, 8, 1, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
+                new Event { Name = "Before month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 21, 59, 59), Type = EventType_Match },
+                new Event { Name = "End touching month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 23, 59, 59), Type = EventType_Match },
+                new Event { Name = "End inside month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59), Type = EventType_Match },
+                new Event { Name = "Inside start touching month", Start = new DateTime(2014, 7, 1, 0, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59), Type = EventType_Match },
+                new Event { Name = "Inside month", Start = new DateTime(2014, 7, 4, 10, 0, 0), End = new DateTime(2014, 7, 4, 21, 59, 59), Type = EventType_Match },
+                new Event { Name = "Inside end touching month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 7, 31, 23, 59, 59), Type = EventType_Match },
+                new Event { Name = "Start inside month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59), Type = EventType_Match },
+                new Event { Name = "Start touching month", Start = new DateTime(2014, 8, 1, 0, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59), Type = EventType_Match },
+                new Event { Name = "After month", Start = new DateTime(2014, 8, 1, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59), Type = EventType_Match },
             };
             events.ForEach(e => context.Events.Add(e));
 

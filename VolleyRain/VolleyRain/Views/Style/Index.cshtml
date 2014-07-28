@@ -1,9 +1,13 @@
-﻿@model IEnumerable<VolleyRain.Models.AttendanceType>
+﻿<style>
 
-<style>
-
-    @foreach (var type in Model) {
+    @foreach (var type in ViewBag.AttendanceTypes as IEnumerable<VolleyRain.Models.AttendanceType>) {
     
+        @:.@type.GetCssClass() { background-color: @type.ColorCode; }
+        
+    }
+
+    @foreach (var type in ViewBag.EventTypes as IEnumerable<VolleyRain.Models.EventType>) { 
+        
         @:.@type.GetCssClass() { background-color: @type.ColorCode; }
         
     }
