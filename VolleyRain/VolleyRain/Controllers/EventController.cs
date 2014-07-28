@@ -11,10 +11,8 @@ using VolleyRain.DataAccess;
 
 namespace VolleyRain.Controllers
 {
-    public class EventController : Controller
+    public class EventController : BaseController
     {
-        private DatabaseContext db = new DatabaseContext();
-
         public ActionResult Create()
         {
             var model = new EventCreation
@@ -52,21 +50,12 @@ namespace VolleyRain.Controllers
                     entity.End = model.EndDate.Date.Add(model.EndTime.Value.TimeOfDay);
                 }
 
-                db.Events.Add(entity);
-                db.SaveChanges();
+                Context.Events.Add(entity);
+                Context.SaveChanges();
                 return RedirectToAction("Index", "Calendar");
             }
 
             return View(model);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -8,17 +8,15 @@ using VolleyRain.Models;
 
 namespace VolleyRain.Controllers
 {
-    public class AttendanceController : Controller
+    public class AttendanceController : BaseController
     {
-        private DatabaseContext db = new DatabaseContext();
-
         public ActionResult Index()
         {
-            var events = db.Events
+            var events = Context.Events
                 .Where(e => e.Type == EventType.Training && e.Start >= DateTime.Today)
                 .Take(5)
                 .ToList();
-            var users = db.Users
+            var users = Context.Users
                 .ToList();
             var attendances = events
                 .SelectMany(e => e.Attendances)
@@ -27,15 +25,6 @@ namespace VolleyRain.Controllers
             var model = new AttendanceMatrix(events, users, attendances);
 
             return View(model);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

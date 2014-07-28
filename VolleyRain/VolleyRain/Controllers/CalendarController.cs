@@ -8,10 +8,8 @@ using VolleyRain.Models;
 
 namespace VolleyRain.Controllers
 {
-    public class CalendarController : Controller
+    public class CalendarController : BaseController
     {
-        private DatabaseContext db = new DatabaseContext();
-
         public ActionResult Index(int? year, int? month)
         {
             if (!year.HasValue || year < DateTime.MinValue.Year || year > DateTime.MaxValue.Year)
@@ -29,7 +27,7 @@ namespace VolleyRain.Controllers
         public ActionResult Details(int year, int month, int day)
         {
             var model = new Day(year, month, day);
-            if (db.Events.None(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End)) return RedirectToAction("Create", "Event");
+            if (Context.Events.None(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End)) return RedirectToAction("Create", "Event");
 
             return View();
         }
@@ -38,7 +36,7 @@ namespace VolleyRain.Controllers
         {
             var model = new Month(year, month);
 
-            var events = db.Events
+            var events = Context.Events
                 .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End)
                 .ToList()
                 .Select(e => new Itenso.TimePeriod.TimeRange(e.Start, e.End, true));
@@ -49,15 +47,6 @@ namespace VolleyRain.Controllers
             }
 
             return model;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

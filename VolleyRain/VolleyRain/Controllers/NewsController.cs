@@ -12,16 +12,14 @@ using VolleyRain.DataAccess;
 
 namespace VolleyRain.Controllers
 {
-    public class NewsController : Controller
+    public class NewsController : BaseController
     {
         private const int DefaultPageSize = 2;
-
-        private DatabaseContext db = new DatabaseContext();
 
         public ActionResult Index(int? page)
         {
             int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
-            return View(db.NewsArticles.OrderByDescending(i => i.PublishDate).ToPagedList(currentPageIndex, DefaultPageSize));
+            return View(Context.NewsArticles.OrderByDescending(i => i.PublishDate).ToPagedList(currentPageIndex, DefaultPageSize));
         }
 
         public ActionResult Details(int? id)
@@ -30,7 +28,7 @@ namespace VolleyRain.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsArticle newsarticle = db.NewsArticles.Find(id);
+            NewsArticle newsarticle = Context.NewsArticles.Find(id);
             if (newsarticle == null)
             {
                 return HttpNotFound();
@@ -53,8 +51,8 @@ namespace VolleyRain.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.NewsArticles.Add(newsarticle);
-                db.SaveChanges();
+                Context.NewsArticles.Add(newsarticle);
+                Context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -68,7 +66,7 @@ namespace VolleyRain.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsArticle newsarticle = db.NewsArticles.Find(id);
+            NewsArticle newsarticle = Context.NewsArticles.Find(id);
             if (newsarticle == null)
             {
                 return HttpNotFound();
@@ -85,8 +83,8 @@ namespace VolleyRain.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(newsarticle).State = EntityState.Modified;
-                db.SaveChanges();
+                Context.Entry(newsarticle).State = EntityState.Modified;
+                Context.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(newsarticle);
@@ -99,7 +97,7 @@ namespace VolleyRain.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NewsArticle newsarticle = db.NewsArticles.Find(id);
+            NewsArticle newsarticle = Context.NewsArticles.Find(id);
             if (newsarticle == null)
             {
                 return HttpNotFound();
@@ -112,19 +110,10 @@ namespace VolleyRain.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NewsArticle newsarticle = db.NewsArticles.Find(id);
-            db.NewsArticles.Remove(newsarticle);
-            db.SaveChanges();
+            NewsArticle newsarticle = Context.NewsArticles.Find(id);
+            Context.NewsArticles.Remove(newsarticle);
+            Context.SaveChanges();
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

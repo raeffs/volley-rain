@@ -9,41 +9,67 @@ namespace VolleyRain.DataAccess
 {
     public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<DatabaseContext>
     {
-        protected override void Seed(DatabaseContext context)
+        private Role Role_Admin;
+        private Role Role_User;
+
+        private User User_Admin;
+
+        private void SeedRoles(DatabaseContext context)
         {
-            // built-in data
-            var adminRole = new Role { IsBuiltIn = true, Name = "Administrator", Description = "Built-in administrator role" };
-            var userRole = new Role { IsBuiltIn = true, Name = "User", Description = "Built-in user role" };
-            context.Roles.Add(adminRole);
-            context.Roles.Add(userRole);
+            Role_Admin = new Role { IsBuiltIn = true, Name = "Administrator", Description = "Built-in administrator role" };
+            Role_User = new Role { IsBuiltIn = true, Name = "User", Description = "Built-in user role" };
+            context.Roles.Add(Role_Admin);
+            context.Roles.Add(Role_User);
+            context.SaveChanges();
+        }
+
+        private void SeedUsers(DatabaseContext context)
+        {
+            User_Admin = new User { Username = "Admin", Password = "12345", Email = "admin@volleyrain.ch", IsApproved = true };
+            User_Admin.Roles.Add(Role_Admin);
+            User_Admin.Roles.Add(Role_User);
+            context.Users.Add(User_Admin);
             context.SaveChanges();
 
-            var adminUser = new User { Username = "Admin", Password = "12345", Email = "admin@volleyrain.ch", IsApproved = true };
-            adminUser.Roles.Add(adminRole);
-            adminUser.Roles.Add(userRole);
-            context.Users.Add(adminUser);
+            var users = new List<User>
+            {
+                new User { Username = "Susi", Password = "12345", Email = "susi@volleyrain.ch", IsApproved = true },
+                new User { Username = "Deborah", Password = "12345", Email = "deborah@volleyrain.ch", IsApproved = true },
+                new User { Username = "Christina", Password = "12345", Email = "christina@volleyrain.ch", IsApproved = true },
+                new User { Username = "Jessica", Password = "12345", Email = "jessica@volleyrain.ch", IsApproved = true },
+                new User { Username = "Jennifer", Password = "12345", Email = "jennifer@volleyrain.ch", IsApproved = true },
+                new User { Username = "Nathalie", Password = "12345", Email = "nathalie@volleyrain.ch", IsApproved = true },
+                new User { Username = "Adriana", Password = "12345", Email = "adriana@volleyrain.ch", IsApproved = true },
+                new User { Username = "Michelle", Password = "12345", Email = "michelle@volleyrain.ch", IsApproved = true },
+                new User { Username = "Nicole", Password = "12345", Email = "nicole@volleyrain.ch", IsApproved = true },
+                new User { Username = "Sophie", Password = "12345", Email = "sophie@volleyrain.ch", IsApproved = true },
+            };
+            users.ForEach(u =>
+            {
+                u.Roles.Add(Role_User);
+                context.Users.Add(u);
+            });
             context.SaveChanges();
+        }
 
-            // test data
+        private void SeedNewsArticles(DatabaseContext context)
+        {
+            var data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer fringilla mollis risus dictum convallis. Phasellus semper velit dolor, eget vulputate ante consectetur at. Mauris a nunc malesuada quam tristique tincidunt. Ut purus leo, auctor eu fermentum nec, tempus id dolor. Cras facilisis, dui in laoreet sollicitudin, nisi tellus consectetur sapien.";
+            var dataArray = data.Split(' ');
             for (var index = 0; index <= 100; index++)
             {
                 context.NewsArticles.Add(new NewsArticle
                 {
                     Title = string.Format("News Item {0}", index),
-                    Content = "Lorem ipsum dolor sit amet...",
+                    Content = string.Concat(dataArray.Skip(index % 25).Take(index % 10 + 10).Select(s => s + " ")),
                     PublishDate = DateTime.Now.AddDays(index * -1)
                 });
             }
             context.SaveChanges();
+        }
 
-            var training = new Event
-            {
-                Name = "Training",
-                Start = new DateTime(2014, 8, 8, 10, 0, 0),
-                End = new DateTime(2014, 8, 9, 10, 0, 0),
-                Type = EventType.Training
-            };
-
+        private void SeedEvents(DatabaseContext context)
+        {
             var events = new List<Event>
             {
                 new Event { Name = "Before month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 21, 59, 59) },
@@ -55,11 +81,36 @@ namespace VolleyRain.DataAccess
                 new Event { Name = "Start inside month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
                 new Event { Name = "Start touching month", Start = new DateTime(2014, 8, 1, 0, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
                 new Event { Name = "After month", Start = new DateTime(2014, 8, 1, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59) },
-                training,
             };
             events.ForEach(e => context.Events.Add(e));
-            context.SaveChanges();
 
+            for (var index = 0; index <= 10; index++)
+            {
+                context.Events.Add(new Event
+                {
+                    Name = string.Format("Training {0}", index),
+                    Type = EventType.Training,
+                    Start = DateTime.Today.AddDays(index * 7).AddHours(18),
+                    End = DateTime.Today.AddDays(index * 7).AddHours(20),
+                });
+            }
+
+            for (var index = 0; index <= 5; index++)
+            {
+                context.Events.Add(new Event
+                {
+                    Name = string.Format("Spiel {0}", index),
+                    Type = EventType.Match,
+                    Start = DateTime.Today.AddDays(2 + index * 14).AddHours(10),
+                    End = DateTime.Today.AddDays(2 + index * 14).AddHours(14),
+                });
+            }
+
+            context.SaveChanges();
+        }
+
+        private void SeedRankings(DatabaseContext context)
+        {
             var rankings = new List<Ranking>
             {
                 new Ranking { Rank = 1, Team = "VBC Willisau 2", NumberOfGames = 14, SetsWon = 35, SetsLost = 21, SetQuotient = 1.7M, BallsWon = 1213, BallsLost = 1113, BallQuotient = 1.1M, Points = 28 },
@@ -73,19 +124,37 @@ namespace VolleyRain.DataAccess
             };
             rankings.ForEach(r => context.Rankings.Add(r));
             context.SaveChanges();
+        }
 
-            var susi = new User { Username = "Susi", Password = "12345", Email = "susi@volleyrain.ch", IsApproved = true };
-            susi.Roles.Add(userRole);
-            context.Users.Add(susi);
-            context.SaveChanges();
-
-            var attendances = new List<Attendance>
+        private void SeedAttendances(DatabaseContext context)
+        {
+            var rand = new Random();
+            foreach (var e in context.Events)
             {
-                new Attendance { Event = training, User = adminUser, Type = AttendanceType.Attending },
-                new Attendance { Event = training, User = susi, Type = AttendanceType.Sickness },
-            };
-            attendances.ForEach(a => context.Attendances.Add(a));
+                foreach (var u in context.Users)
+                {
+                    var type = (AttendanceType)rand.Next(4);
+                    if (type == AttendanceType.Unknown) continue;
+
+                    context.Attendances.Add(new Attendance
+                    {
+                        Event = e,
+                        User = u,
+                        Type = type
+                    });
+                }
+            }
             context.SaveChanges();
+        }
+
+        protected override void Seed(DatabaseContext context)
+        {
+            SeedRoles(context);
+            SeedUsers(context);
+            SeedNewsArticles(context);
+            SeedEvents(context);
+            SeedRankings(context);
+            SeedAttendances(context);
         }
     }
 }

@@ -7,24 +7,13 @@ using VolleyRain.DataAccess;
 
 namespace VolleyRain.Controllers
 {
-    public class RankingController : Controller
+    public class RankingController : BaseController
     {
-        private DatabaseContext db = new DatabaseContext();
-
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return View(db.Rankings.ToList());
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return View(Context.Rankings.ToList());
         }
     }
 }

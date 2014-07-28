@@ -9,10 +9,8 @@ using VolleyRain.Models;
 
 namespace VolleyRain.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        private DatabaseContext db = new DatabaseContext();
-
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
@@ -43,15 +41,6 @@ namespace VolleyRain.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Account");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
