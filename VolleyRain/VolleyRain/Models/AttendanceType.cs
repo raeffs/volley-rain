@@ -6,18 +6,16 @@ using System.Web;
 
 namespace VolleyRain.Models
 {
-    public enum AttendanceType
+    public class AttendanceType
     {
-        [Display(Name = "?")]
-        Unknown = 0,
+        public int ID { get; set; }
 
-        [Display(Name = "Anwesend")]
-        Attending = 1,
+        public string Name { get; set; }
 
-        [Display(Name = "Abwesend")]
-        Absent = 2,
+        public string ShortName { get; set; }
 
-        [Display(Name = "Krank")]
-        Sickness = 3
+        public bool RepresentsAttendance { get; set; }
+
+        public string ColorCode { get; set; }
     }
 }

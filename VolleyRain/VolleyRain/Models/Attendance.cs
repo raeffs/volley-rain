@@ -9,7 +9,7 @@ namespace VolleyRain.Models
     {
         public int ID { get; set; }
 
-        public AttendanceType Type { get; set; }
+        public virtual AttendanceType Type { get; set; }
 
         public virtual Event Event { get; set; }
 

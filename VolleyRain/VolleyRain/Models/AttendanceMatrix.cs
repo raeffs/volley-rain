@@ -24,13 +24,12 @@ namespace VolleyRain.Models
 
         public AttendanceType GetAttendanceFor(User user, Event @event)
         {
-            var attendance = _attendances.SingleOrDefault(a => a.User == user && a.Event == @event);
-            return attendance != null ? attendance.Type : AttendanceType.Unknown;
+            return _attendances.Where(a => a.User == user && a.Event == @event).Select(a => a.Type).SingleOrDefault();
         }
 
         public int GetAttendeesFor(Event @event)
         {
-            return _attendances.Count(a => a.Event == @event && a.Type == AttendanceType.Attending);
+            return _attendances.Count(a => a.Event == @event && a.Type.RepresentsAttendance);
         }
     }
 }

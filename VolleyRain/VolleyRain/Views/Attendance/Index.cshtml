@@ -27,22 +27,8 @@
             @foreach (var item in Model.Events) {
 
                 var attendanceType = Model.GetAttendanceFor(user, item);
-                
-                var cssClass = string.Empty;
-                
-                switch (attendanceType) {
-                    case VolleyRain.Models.AttendanceType.Attending:
-                        cssClass = "bg-success";
-                        break;
-                    case VolleyRain.Models.AttendanceType.Absent:
-                        cssClass = "bg-danger";
-                        break;
-                    case VolleyRain.Models.AttendanceType.Sickness:
-                        cssClass = "bg-warning";
-                        break;
-                }
-                
-                <td class="@cssClass">@Html.DisplayFor(modelItem => attendanceType)</td>
+              
+                <td>@Html.DisplayFor(modelItem => attendanceType.Name)</td>
                 
             }
 

@@ -29,6 +29,8 @@ namespace VolleyRain.DataAccess
 
         public DbSet<Attendance> Attendances { get; set; }
 
+        public DbSet<AttendanceType> AttendanceTypes { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

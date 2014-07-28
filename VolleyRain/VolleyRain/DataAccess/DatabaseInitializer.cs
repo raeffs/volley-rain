@@ -17,6 +17,9 @@ namespace VolleyRain.DataAccess
         private EventType EventType_Training;
         private EventType EventType_Match;
 
+        private AttendanceType AttendanceType_Attending;
+        private AttendanceType AttendanceType_Absent;
+
         private void SeedRoles(DatabaseContext context)
         {
             Role_Admin = new Role { IsBuiltIn = true, Name = "Administrator", Description = "Built-in administrator role" };
@@ -145,6 +148,18 @@ namespace VolleyRain.DataAccess
             context.SaveChanges();
         }
 
+        private void SeedAttendacneTypes(DatabaseContext context)
+        {
+            AttendanceType_Attending = new AttendanceType { Name = "Zusage", ShortName = "Zu", RepresentsAttendance = true, ColorCode = "" };
+            AttendanceType_Absent = new AttendanceType { Name = "Absage", ShortName = "Ab", RepresentsAttendance = false, ColorCode = "" };
+            var attendanceTypes = new List<AttendanceType>
+            {
+                new AttendanceType { Name = "Verletzt", ShortName = "V", RepresentsAttendance = false, ColorCode = "" }
+            };
+            attendanceTypes.ForEach(a => context.AttendanceTypes.Add(a));
+            context.SaveChanges();
+        }
+
         private void SeedAttendances(DatabaseContext context)
         {
             var rand = new Random();
@@ -152,8 +167,17 @@ namespace VolleyRain.DataAccess
             {
                 foreach (var u in context.Users)
                 {
-                    var type = (AttendanceType)rand.Next(4);
-                    if (type == AttendanceType.Unknown) continue;
+                    AttendanceType type = null;
+                    switch (rand.Next(3))
+                    {
+                        case 0: continue;
+                        case 1:
+                            type = AttendanceType_Attending;
+                            break;
+                        case 2:
+                            type = AttendanceType_Absent;
+                            break;
+                    }
 
                     context.Attendances.Add(new Attendance
                     {
@@ -174,6 +198,7 @@ namespace VolleyRain.DataAccess
             SeedEventTypes(context);
             SeedEvents(context);
             SeedRankings(context);
+            SeedAttendacneTypes(context);
             SeedAttendances(context);
         }
     }

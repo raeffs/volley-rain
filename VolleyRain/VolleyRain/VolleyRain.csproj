@@ -168,6 +168,7 @@
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RankingController.cs" />
+    <Compile Include="Controllers\StylesController.cs" />
     <Compile Include="DataAccess\DatabaseContext.cs" />
     <Compile Include="DataAccess\DatabaseInitializer.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
@@ -219,6 +220,7 @@
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Attendance\Index.cshtml" />
+    <Content Include="Views\Styles\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
