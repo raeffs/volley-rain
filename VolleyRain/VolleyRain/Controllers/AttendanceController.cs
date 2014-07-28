@@ -13,8 +13,8 @@ namespace VolleyRain.Controllers
         public ActionResult Index()
         {
             var events = Context.Events
-                .Where(e => e.Type == EventType.Training && e.Start >= DateTime.Today)
-                .Take(5)
+                .Where(e => e.Start >= DateTime.Today)
+                .Take(10)
                 .ToList();
             var users = Context.Users
                 .ToList();

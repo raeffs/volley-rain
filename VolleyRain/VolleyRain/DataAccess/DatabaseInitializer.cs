@@ -14,6 +14,9 @@ namespace VolleyRain.DataAccess
 
         private User User_Admin;
 
+        private EventType EventType_Training;
+        private EventType EventType_Match;
+
         private void SeedRoles(DatabaseContext context)
         {
             Role_Admin = new Role { IsBuiltIn = true, Name = "Administrator", Description = "Built-in administrator role" };
@@ -68,6 +71,22 @@ namespace VolleyRain.DataAccess
             context.SaveChanges();
         }
 
+        private void SeedEventTypes(DatabaseContext context)
+        {
+            EventType_Training = new EventType { Name = "Training", ShortName = "TR", ColorCode = "" };
+            EventType_Match = new EventType { Name = "Heimmatch", ShortName = "MH", ColorCode = "" };
+            var eventTypes = new List<EventType>
+            {
+                EventType_Training,
+                EventType_Match,
+                new EventType { Name = "Auswärtsmatch", ShortName = "MA", ColorCode = "" },
+                new EventType { Name = "Turnier", ShortName = "TU", ColorCode = "" },
+                new EventType { Name = "Ferien", ShortName = "F", ColorCode = "" },
+            };
+            eventTypes.ForEach(e => context.EventTypes.Add(e));
+            context.SaveChanges();
+        }
+
         private void SeedEvents(DatabaseContext context)
         {
             var events = new List<Event>
@@ -89,7 +108,7 @@ namespace VolleyRain.DataAccess
                 context.Events.Add(new Event
                 {
                     Name = string.Format("Training {0}", index),
-                    Type = EventType.Training,
+                    Type = EventType_Training,
                     Start = DateTime.Today.AddDays(index * 7).AddHours(18),
                     End = DateTime.Today.AddDays(index * 7).AddHours(20),
                 });
@@ -100,7 +119,7 @@ namespace VolleyRain.DataAccess
                 context.Events.Add(new Event
                 {
                     Name = string.Format("Spiel {0}", index),
-                    Type = EventType.Match,
+                    Type = EventType_Match,
                     Start = DateTime.Today.AddDays(2 + index * 14).AddHours(10),
                     End = DateTime.Today.AddDays(2 + index * 14).AddHours(14),
                 });
@@ -152,6 +171,7 @@ namespace VolleyRain.DataAccess
             SeedRoles(context);
             SeedUsers(context);
             SeedNewsArticles(context);
+            SeedEventTypes(context);
             SeedEvents(context);
             SeedRankings(context);
             SeedAttendances(context);

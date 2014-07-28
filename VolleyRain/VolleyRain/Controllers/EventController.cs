@@ -13,6 +13,12 @@ namespace VolleyRain.Controllers
 {
     public class EventController : BaseController
     {
+        public EventController()
+            : base()
+        {
+            ViewBag.EventTypes = new SelectList(Context.EventTypes, "ID", "Name");
+        }
+
         public ActionResult Create()
         {
             var model = new EventCreation
@@ -29,6 +35,13 @@ namespace VolleyRain.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind] EventCreation model)
         {
+            // TODO: geht bestimmt eleganter
+            var selectedType = Context.EventTypes.SingleOrDefault(t => t.ID == model.Type.ID);
+            if (selectedType == null)
+            {
+                ModelState.AddModelError("Type", "Selected type does not exist!");
+            }
+
             if (ModelState.IsValid)
             {
                 var entity = new Event
@@ -36,7 +49,7 @@ namespace VolleyRain.Controllers
                     Name = model.Name,
                     Description = model.Description,
                     Location = model.Location,
-                    Type = model.Type,
+                    Type = selectedType,
                 };
 
                 if (model.FullTime)

@@ -6,15 +6,26 @@ using System.Web;
 
 namespace VolleyRain.Models
 {
-    public enum EventType
+    //public enum EventType
+    //{
+    //    [Display(Name = "Ligaspiel")]
+    //    Match = 0,
+
+    //    [Display(Name = "Freundschaftsspiel")]
+    //    FriendlyMatch = 1,
+
+    //    [Display(Name = "Training")]
+    //    Training = 2,
+    //}
+
+    public class EventType
     {
-        [Display(Name = "Ligaspiel")]
-        Match = 0,
+        public int ID { get; set; }
 
-        [Display(Name = "Freundschaftsspiel")]
-        FriendlyMatch = 1,
+        public string Name { get; set; }
 
-        [Display(Name = "Training")]
-        Training = 2,
+        public string ShortName { get; set; }
+
+        public string ColorCode { get; set; }
     }
 }
