@@ -20,20 +20,47 @@
 
     @foreach (var user in Model.Users) { 
     
-        Model.SelectedUser = user;
-    
         <tr>
 
             <td>@Html.DisplayFor(model => user.Username)</td>
 
             @foreach (var item in Model.Events) {
-            
-                <td>@Html.DisplayFor(modelItem => Model[item])</td>
+
+                var attendanceType = Model.GetAttendanceFor(user, item);
+                
+                var cssClass = string.Empty;
+                
+                switch (attendanceType) {
+                    case VolleyRain.Models.AttendanceType.Attending:
+                        cssClass = "bg-success";
+                        break;
+                    case VolleyRain.Models.AttendanceType.Absent:
+                        cssClass = "bg-danger";
+                        break;
+                    case VolleyRain.Models.AttendanceType.Sickness:
+                        cssClass = "bg-warning";
+                        break;
+                }
+                
+                <td class="@cssClass">@Html.DisplayFor(modelItem => attendanceType)</td>
                 
             }
 
         </tr>
         
     }
+
+    <tfoot>
+        <tr>
+            <th>Total</th>
+
+            @foreach (var item in Model.Events) { 
+            
+                <th>@Model.GetAttendeesFor(item)</th>
+                
+            }
+
+        </tr>
+    </tfoot>
 
 </table>

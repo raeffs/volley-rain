@@ -39,8 +39,8 @@ namespace VolleyRain.DataAccess
             var training = new Event
             {
                 Name = "Training",
-                Start = new DateTime(2014, 7, 8, 10, 0, 0),
-                End = new DateTime(2014, 7, 9, 10, 0, 0),
+                Start = new DateTime(2014, 8, 8, 10, 0, 0),
+                End = new DateTime(2014, 8, 9, 10, 0, 0),
                 Type = EventType.Training
             };
 

@@ -22,17 +22,15 @@ namespace VolleyRain.Models
 
         public List<User> Users { get { return _users; } }
 
-        public User SelectedUser { get; set; }
-
-        public AttendanceType this[Event index]
+        public AttendanceType GetAttendanceFor(User user, Event @event)
         {
-            get
-            {
-                if (SelectedUser == null) return AttendanceType.Unknown;
+            var attendance = _attendances.SingleOrDefault(a => a.User == user && a.Event == @event);
+            return attendance != null ? attendance.Type : AttendanceType.Unknown;
+        }
 
-                var attendance = _attendances.SingleOrDefault(a => a.User == SelectedUser && a.Event == index);
-                return attendance != null ? attendance.Type : AttendanceType.Unknown;
-            }
+        public int GetAttendeesFor(Event @event)
+        {
+            return _attendances.Count(a => a.Event == @event && a.Type == AttendanceType.Attending);
         }
     }
 }
