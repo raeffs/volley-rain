@@ -49,10 +49,6 @@ namespace VolleyRain.Security
                 var membershipUser = new CustomMembershipUser(user);
                 HttpRuntime.Cache.Insert(cacheKey, membershipUser, null, DateTime.Now.AddMinutes(_cacheTimeoutInMinutes), Cache.NoSlidingExpiration);
 
-                // TODO: move to correct place
-                //var session = new SessionDecorator();
-                //session.Teams = user.Teams.Select(t => t.ID).ToArray();
-
                 return membershipUser;
             }
         }

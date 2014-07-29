@@ -10,12 +10,18 @@ namespace VolleyRain.Controllers
 {
     public abstract class BaseController : Controller
     {
-        protected DatabaseContext Context { get; private set; }
+        private readonly Lazy<DatabaseContext> _context;
+        private readonly Lazy<SessionDecorator> _session;
 
         public BaseController()
         {
-            Context = new DatabaseContext();
+            _session = new Lazy<SessionDecorator>(() => new SessionDecorator(HttpContext.Session));
+            _context = new Lazy<DatabaseContext>(() => new DatabaseContext());
         }
+
+        protected DatabaseContext Context { get { return _context.Value; } }
+
+        protected new SessionDecorator Session { get { return _session.Value; } }
 
         protected override void Dispose(bool disposing)
         {
