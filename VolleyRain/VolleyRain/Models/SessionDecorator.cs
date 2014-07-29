@@ -24,7 +24,7 @@ namespace VolleyRain.Models
 
         public ICollection<int> Teams
         {
-            get { return GetValue(() => Teams); }
+            get { return GetValue(() => Teams, new List<int>()); }
             set { SetValue(() => Teams, value); }
         }
 
@@ -42,24 +42,19 @@ namespace VolleyRain.Models
             _context[propertyName] = value;
         }
 
-        private T GetValue<T>(Expression<Func<T>> property)
+        private T GetValue<T>(Expression<Func<T>> property, T defaultValue = default(T))
         {
             var lambdaExpression = property as LambdaExpression;
             if (lambdaExpression == null) throw new ArgumentException("Invalid lambda expression", "property");
 
             var propertyName = GetPropertyName(lambdaExpression);
-            return GetPropertyValue<T>(propertyName);
-        }
-
-        private T GetPropertyValue<T>(string propertyName)
-        {
             try
             {
                 return (T)_context[propertyName];
             }
             catch
             {
-                return default(T);
+                return defaultValue;
             }
         }
 

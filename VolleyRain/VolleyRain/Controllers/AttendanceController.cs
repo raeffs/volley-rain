@@ -10,6 +10,7 @@ namespace VolleyRain.Controllers
 {
     public class AttendanceController : BaseController
     {
+        [Authorize(Roles = "User")]
         public ActionResult Index()
         {
             var events = Context.Events
@@ -25,6 +26,12 @@ namespace VolleyRain.Controllers
             var model = new AttendanceMatrix(events, users, attendances);
 
             return View(model);
+        }
+
+        [Authorize(Roles = "User")]
+        public ActionResult Edit()
+        {
+            return View();
         }
     }
 }
