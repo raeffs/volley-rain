@@ -11,10 +11,10 @@ namespace VolleyRain.Controllers
     public class AttendanceController : BaseController
     {
         [Authorize(Roles = "User")]
-        public ActionResult Index()
+        public ActionResult Index(int? teamID)
         {
             var events = Context.Events
-                .Where(e => e.Start >= DateTime.Today)
+                .Where(e => e.Start >= DateTime.Today && (e.Team == null || Session.Teams.Contains(e.Team.ID)))
                 .Take(10)
                 .ToList();
             var users = Context.Users
