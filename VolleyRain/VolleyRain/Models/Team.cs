@@ -6,7 +6,7 @@ using System.Web;
 
 namespace VolleyRain.Models
 {
-    public class EventType
+    public class Team
     {
         public int ID { get; set; }
 
@@ -14,14 +14,19 @@ namespace VolleyRain.Models
         public string Name { get; set; }
 
         [Required]
-        public string ShortName { get; set; }
+        public int ExternalID { get; set; }
 
         [Required]
-        public string ColorCode { get; set; }
+        public int ExternalGroupID { get; set; }
 
-        public string GetCssClass()
+        [Required]
+        public virtual Season Season { get; set; }
+
+        public ICollection<User> Members { get; set; }
+
+        public Team()
         {
-            return string.Format("event-type-{0}", ID);
+            Members = new List<User>();
         }
     }
 }

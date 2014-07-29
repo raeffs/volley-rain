@@ -10,12 +10,16 @@ namespace VolleyRain.Models
     {
         public int ID { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string ShortName { get; set; }
 
+        [Required]
         public bool RepresentsAttendance { get; set; }
 
+        [Required]
         public string ColorCode { get; set; }
 
         public string GetCssClass()

@@ -189,6 +189,8 @@
     <Compile Include="Models\Ranking.cs" />
     <Compile Include="Models\RecurrenceType.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Season.cs" />
+    <Compile Include="Models\Team.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\CustomIdentity.cs" />

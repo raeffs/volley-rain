@@ -9,6 +9,10 @@ namespace VolleyRain.DataAccess
 {
     public class DatabaseInitializer : DropCreateDatabaseIfModelChanges<DatabaseContext>
     {
+        private Season Season;
+
+        private Team Team;
+
         private Role Role_Admin;
         private Role Role_User;
 
@@ -19,6 +23,20 @@ namespace VolleyRain.DataAccess
 
         private AttendanceType AttendanceType_Attending;
         private AttendanceType AttendanceType_Absent;
+
+        private void SeedSeasons(DatabaseContext context)
+        {
+            Season = new Season { Name = "Saison 2014 / 2015", Start = new DateTime(2014, 7, 1), End = new DateTime(2015, 6, 30) };
+            context.Seasons.Add(Season);
+            context.SaveChanges();
+        }
+
+        private void SeedTeams(DatabaseContext context)
+        {
+            Team = new Team { Name = "SVKT Rain", Season = Season, ExternalID = 23589, ExternalGroupID = 8297 };
+            context.Teams.Add(Team);
+            context.SaveChanges();
+        }
 
         private void SeedRoles(DatabaseContext context)
         {
@@ -53,6 +71,7 @@ namespace VolleyRain.DataAccess
             users.ForEach(u =>
             {
                 u.Roles.Add(Role_User);
+                u.Teams.Add(Team);
                 context.Users.Add(u);
             });
             context.SaveChanges();
@@ -192,6 +211,8 @@ namespace VolleyRain.DataAccess
 
         protected override void Seed(DatabaseContext context)
         {
+            SeedSeasons(context);
+            SeedTeams(context);
             SeedRoles(context);
             SeedUsers(context);
             SeedNewsArticles(context);
