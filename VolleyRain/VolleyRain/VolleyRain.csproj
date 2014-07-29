@@ -160,6 +160,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="DataAccess\DatabaseContext.cs" />
     <Compile Include="DataAccess\DatabaseInitializer.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Filter\SessionDataFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -190,6 +192,7 @@
     <Compile Include="Models\RecurrenceType.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Season.cs" />
+    <Compile Include="Models\SessionDecorator.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

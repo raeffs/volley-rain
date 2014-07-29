@@ -36,8 +36,10 @@ namespace VolleyRain.Controllers
         {
             var model = new Month(year, month);
 
+            var session = new SessionDecorator(Session);
+
             var events = Context.Events
-                .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End)
+                .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End && (e.Team == null || session.Teams.Contains(e.Team.ID)))
                 .ToList()
                 .Select(e => new Itenso.TimePeriod.TimeRange(e.Start, e.End, true));
 

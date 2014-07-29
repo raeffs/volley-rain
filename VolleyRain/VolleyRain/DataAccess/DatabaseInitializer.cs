@@ -133,6 +133,7 @@ namespace VolleyRain.DataAccess
                     Type = EventType_Training,
                     Start = DateTime.Today.AddDays(index * 7).AddHours(18),
                     End = DateTime.Today.AddDays(index * 7).AddHours(20),
+                    Team = Team,
                 });
             }
 
@@ -144,6 +145,7 @@ namespace VolleyRain.DataAccess
                     Type = EventType_Match,
                     Start = DateTime.Today.AddDays(2 + index * 14).AddHours(10),
                     End = DateTime.Today.AddDays(2 + index * 14).AddHours(14),
+                    Team = Team,
                 });
             }
 

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Caching;
 using System.Web.Security;
 using VolleyRain.DataAccess;
+using VolleyRain.Models;
 
 namespace VolleyRain.Security
 {
@@ -46,8 +47,11 @@ namespace VolleyRain.Security
                 if (user == null) return null;
 
                 var membershipUser = new CustomMembershipUser(user);
-
                 HttpRuntime.Cache.Insert(cacheKey, membershipUser, null, DateTime.Now.AddMinutes(_cacheTimeoutInMinutes), Cache.NoSlidingExpiration);
+
+                // TODO: move to correct place
+                //var session = new SessionDecorator();
+                //session.Teams = user.Teams.Select(t => t.ID).ToArray();
 
                 return membershipUser;
             }
