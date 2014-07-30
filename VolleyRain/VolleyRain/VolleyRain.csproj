@@ -156,12 +156,12 @@
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\responsive-calendar.js" />
     <Content Include="Scripts\responsive-calendar.min.js" />
-    <Content Include="Service References\SwissVolley\configuration91.svcinfo" />
-    <Content Include="Service References\SwissVolley\configuration.svcinfo" />
-    <Content Include="Service References\SwissVolley\Reference.svcmap">
+    <None Include="Service References\SwissVolley\configuration91.svcinfo" />
+    <None Include="Service References\SwissVolley\configuration.svcinfo" />
+    <None Include="Service References\SwissVolley\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
-    </Content>
+    </None>
     <Content Include="usefull.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -196,6 +196,7 @@
     <Compile Include="Models\EventCreation.cs" />
     <Compile Include="Models\EventType.cs" />
     <Compile Include="Models\Extensions\SeasonExtensions.cs" />
+    <Compile Include="Models\GameDetails.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Month.cs" />
     <Compile Include="Models\NewsArticle.cs" />
@@ -243,7 +244,7 @@
     <Content Include="Views\Attendance\Index.cshtml" />
     <Content Include="Views\Style\Index.cshtml" />
     <Content Include="Views\Attendance\Edit.cshtml" />
-    <Content Include="Service References\SwissVolley\SwissVolley.wsdl" />
+    <None Include="Service References\SwissVolley\SwissVolley.wsdl" />
     <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.ClubEntry.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>

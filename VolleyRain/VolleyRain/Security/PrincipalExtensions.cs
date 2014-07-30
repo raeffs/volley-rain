@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Web;
 
-namespace VolleyRain.Extensions
+namespace VolleyRain
 {
     public static class PrincipalExtensions
     {

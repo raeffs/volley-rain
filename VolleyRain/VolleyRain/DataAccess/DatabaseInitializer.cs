@@ -111,19 +111,19 @@ namespace VolleyRain.DataAccess
 
         private void SeedEvents(DatabaseContext context)
         {
-            var events = new List<Event>
-            {
-                new Event { Name = "Before month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 21, 59, 59), Type = EventType_Match },
-                new Event { Name = "End touching month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 23, 59, 59), Type = EventType_Match },
-                new Event { Name = "End inside month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59), Type = EventType_Match },
-                new Event { Name = "Inside start touching month", Start = new DateTime(2014, 7, 1, 0, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59), Type = EventType_Match },
-                new Event { Name = "Inside month", Start = new DateTime(2014, 7, 4, 10, 0, 0), End = new DateTime(2014, 7, 4, 21, 59, 59), Type = EventType_Match },
-                new Event { Name = "Inside end touching month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 7, 31, 23, 59, 59), Type = EventType_Match },
-                new Event { Name = "Start inside month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59), Type = EventType_Match },
-                new Event { Name = "Start touching month", Start = new DateTime(2014, 8, 1, 0, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59), Type = EventType_Match },
-                new Event { Name = "After month", Start = new DateTime(2014, 8, 1, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59), Type = EventType_Match },
-            };
-            events.ForEach(e => context.Events.Add(e));
+            //var events = new List<Event>
+            //{
+            //    new Event { Name = "Before month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 21, 59, 59), Type = EventType_Match },
+            //    new Event { Name = "End touching month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 6, 30, 23, 59, 59), Type = EventType_Match },
+            //    new Event { Name = "End inside month", Start = new DateTime(2014, 6, 30, 10, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59), Type = EventType_Match },
+            //    new Event { Name = "Inside start touching month", Start = new DateTime(2014, 7, 1, 0, 0, 0), End = new DateTime(2014, 7, 1, 21, 59, 59), Type = EventType_Match },
+            //    new Event { Name = "Inside month", Start = new DateTime(2014, 7, 4, 10, 0, 0), End = new DateTime(2014, 7, 4, 21, 59, 59), Type = EventType_Match },
+            //    new Event { Name = "Inside end touching month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 7, 31, 23, 59, 59), Type = EventType_Match },
+            //    new Event { Name = "Start inside month", Start = new DateTime(2014, 7, 31, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59), Type = EventType_Match },
+            //    new Event { Name = "Start touching month", Start = new DateTime(2014, 8, 1, 0, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59), Type = EventType_Match },
+            //    new Event { Name = "After month", Start = new DateTime(2014, 8, 1, 10, 0, 0), End = new DateTime(2014, 8, 1, 21, 59, 59), Type = EventType_Match },
+            //};
+            //events.ForEach(e => context.Events.Add(e));
 
             for (var index = 0; index <= 10; index++)
             {
@@ -137,17 +137,17 @@ namespace VolleyRain.DataAccess
                 });
             }
 
-            for (var index = 0; index <= 5; index++)
-            {
-                context.Events.Add(new Event
-                {
-                    Name = string.Format("Spiel {0}", index),
-                    Type = EventType_Match,
-                    Start = DateTime.Today.AddDays(2 + index * 14).AddHours(10),
-                    End = DateTime.Today.AddDays(2 + index * 14).AddHours(14),
-                    Team = Team,
-                });
-            }
+            //for (var index = 0; index <= 5; index++)
+            //{
+            //    context.Events.Add(new Event
+            //    {
+            //        Name = string.Format("Spiel {0}", index),
+            //        Type = EventType_Match,
+            //        Start = DateTime.Today.AddDays(2 + index * 14).AddHours(10),
+            //        End = DateTime.Today.AddDays(2 + index * 14).AddHours(14),
+            //        Team = Team,
+            //    });
+            //}
 
             context.SaveChanges();
         }

@@ -23,6 +23,8 @@ namespace VolleyRain.DataAccess
 
         public DbSet<EventType> EventTypes { get; set; }
 
+        public DbSet<GameDetails> GameDetails { get; set; }
+
         public DbSet<NewsArticle> NewsArticles { get; set; }
 
         public DbSet<Ranking> Rankings { get; set; }

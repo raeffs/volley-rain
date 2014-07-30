@@ -29,6 +29,8 @@ namespace VolleyRain.Models
 
         public virtual Team Team { get; set; }
 
+        public virtual GameDetails Details { get; set; }
+
         public virtual List<Attendance> Attendances { get; set; }
 
         public Event()
