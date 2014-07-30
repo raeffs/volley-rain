@@ -176,6 +176,7 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\CronController.cs" />
     <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RankingController.cs" />
     <Compile Include="Controllers\StyleController.cs" />
@@ -290,6 +291,7 @@
     <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.TeamDetailed.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Views\Game\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

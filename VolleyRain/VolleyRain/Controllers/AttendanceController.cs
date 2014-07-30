@@ -13,11 +13,16 @@ namespace VolleyRain.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Index(int? teamID)
         {
+            var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
+            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();
             var events = Context.Events
-                .Where(e => e.Start >= DateTime.Today && (e.Team == null || Session.Teams.Contains(e.Team.ID)))
+                .Where(e => e.Start >= DateTime.Today && teamIDs.Contains(e.Team.ID))
                 .Take(10)
                 .ToList();
-            var users = Context.Users
+            var users = Context.Teams
+                .Where(t => teamIDs.Contains(t.ID))
+                .SelectMany(t => t.Members)
+                .Distinct()
                 .ToList();
             var attendances = events
                 .SelectMany(e => e.Attendances)
