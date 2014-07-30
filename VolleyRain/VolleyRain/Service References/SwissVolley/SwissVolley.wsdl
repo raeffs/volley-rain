@@ -1,0 +1,1143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:typens="http://myvolley.swissvolley.ch" xmlns="http://schemas.xmlsoap.org/wsdl/" name="SwissVolley" targetNamespace="http://myvolley.swissvolley.ch" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Swiss Volley Webservices - powered by clicdesign ag</documentation>
+  <wsdl:types>
+    <xsd:schema xmlns="" targetNamespace="http://myvolley.swissvolley.ch">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:complexType name="ArrayOfLeague">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:League[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="League">
+        <xsd:sequence>
+          <xsd:element name="LeagueCategoryCaption" type="xsd:string" />
+          <xsd:element name="Caption" type="xsd:string" />
+          <xsd:element name="Gender" type="xsd:string" />
+          <xsd:element name="league_ID" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfPhase">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:Phase[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="Phase">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="Caption" type="xsd:string" />
+          <xsd:element minOccurs="0" name="phase_ID" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfGroup">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:Group[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="GroupDetailed">
+        <xsd:sequence>
+          <xsd:element name="mode_ID" type="xsd:int" />
+          <xsd:element name="league_ID" type="xsd:int" />
+          <xsd:element name="league_cat_ID" type="xsd:int" />
+          <xsd:element name="Caption" type="xsd:string" />
+          <xsd:element name="LeagueCaption" type="xsd:string" />
+          <xsd:element name="Gender" type="xsd:string" />
+          <xsd:element name="LeagueCategoryCaption" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Group">
+        <xsd:sequence>
+          <xsd:element name="Caption" type="xsd:string" />
+          <xsd:element name="group_ID" type="xsd:int" />
+          <xsd:element name="mode_type_ID" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfTableEntry">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:TableEntry[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="TableEntry">
+        <xsd:sequence>
+          <xsd:element name="Rank" type="xsd:string" />
+          <xsd:element name="NumberOfGames" type="xsd:int" />
+          <xsd:element name="team_ID" type="xsd:int" />
+          <xsd:element name="Caption" type="xsd:string" />
+          <xsd:element name="SetsWon" type="xsd:int" />
+          <xsd:element name="SetsLost" type="xsd:int" />
+          <xsd:element name="SetQuotient" type="xsd:float" />
+          <xsd:element name="BallsWon" type="xsd:int" />
+          <xsd:element name="BallsLost" type="xsd:int" />
+          <xsd:element name="BallsQuotient" type="xsd:float" />
+          <xsd:element name="Points" type="xsd:int" />
+          <xsd:element name="PenaltyPointsReasons" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="PlayOffArray">
+        <xsd:sequence>
+          <xsd:element name="Rank" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfGameEntry">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:GameEntry[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfPhasesResults">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:phasesResults[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="GameEntry">
+        <xsd:sequence>
+          <xsd:element name="ID_game" type="xsd:int" />
+          <xsd:element name="IsCommited" type="xsd:int" />
+          <xsd:element name="PlayDate" type="xsd:string" />
+          <xsd:element name="OptionalGame" type="xsd:string" />
+          <xsd:element name="RoundIndex" type="xsd:int" />
+          <xsd:element name="TeamHomeID" type="xsd:int" />
+          <xsd:element name="TeamHomeCaption" type="xsd:string" />
+          <xsd:element name="TeamAwayID" type="xsd:int" />
+          <xsd:element name="TeamAwayCaption" type="xsd:string" />
+          <xsd:element name="Name1Ref" type="xsd:string" />
+          <xsd:element name="referee_ID" type="xsd:int" />
+          <xsd:element name="Name2Ref" type="xsd:string" />
+          <xsd:element name="referee_second_ID" type="xsd:int" />
+          <xsd:element name="Name3Ref" type="xsd:string" />
+          <xsd:element name="line_referee_ID" type="xsd:int" />
+          <xsd:element name="Name4Ref" type="xsd:string" />
+          <xsd:element name="line_referee_socond_ID" type="xsd:int" />
+          <xsd:element name="NumberOfWinsHome" type="xsd:int" />
+          <xsd:element name="NumberOfWinsAway" type="xsd:int" />
+          <xsd:element name="IsResultCommited" type="xsd:int" />
+          <xsd:element name="UncompletedResultHome" type="xsd:int" />
+          <xsd:element name="UncompletedResultAway" type="xsd:int" />
+          <xsd:element name="ResultAdvicedHome" type="xsd:int" />
+          <xsd:element name="ResultAdvicedAway" type="xsd:int" />
+          <xsd:element name="league_cat_ID" type="xsd:int" />
+          <xsd:element name="LeagueCatCaption" type="xsd:string" />
+          <xsd:element name="group_ID" type="xsd:int" />
+          <xsd:element name="GroupCaption" type="xsd:string" />
+          <xsd:element name="mode_ID" type="xsd:int" />
+          <xsd:element name="ModeCaption" type="xsd:string" />
+          <xsd:element name="league_ID" type="xsd:int" />
+          <xsd:element name="Gender" type="xsd:string" />
+          <xsd:element name="LeagueCaption" type="xsd:string" />
+          <xsd:element name="hall_ID" type="xsd:int" />
+          <xsd:element name="HallCaption" type="xsd:string" />
+          <xsd:element name="HallPlace" type="xsd:string" />
+          <xsd:element name="Set1PointsHome" type="xsd:int" />
+          <xsd:element name="Set1PointsAway" type="xsd:int" />
+          <xsd:element name="Set2PointsHome" type="xsd:int" />
+          <xsd:element name="Set2PointsAway" type="xsd:int" />
+          <xsd:element name="Set3PointsHome" type="xsd:int" />
+          <xsd:element name="Set3PointsAway" type="xsd:int" />
+          <xsd:element name="Set4PointsHome" type="xsd:int" />
+          <xsd:element name="Set4PointsAway" type="xsd:int" />
+          <xsd:element name="Set5PointsHome" type="xsd:int" />
+          <xsd:element name="Set5PointsAway" type="xsd:int" />
+          <xsd:element name="parent_group_ID_home" type="xsd:int" />
+          <xsd:element name="ParentRank_home" type="xsd:int" />
+          <xsd:element name="parent_group_ID_away" type="xsd:int" />
+          <xsd:element name="ParentRank_away" type="xsd:int" />
+          <xsd:element name="DateMode" type="xsd:int" />
+          <xsd:element name="DateModeDate" type="xsd:string" />
+          <xsd:element name="PlayDateDisplacement" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TeamDetailed">
+        <xsd:sequence>
+          <xsd:element name="ID_team" type="xsd:int" />
+          <xsd:element name="ID_team_core" type="xsd:int" />
+          <xsd:element name="Caption" type="xsd:string" />
+          <xsd:element name="Gender" type="xsd:string" />
+          <xsd:element name="club_ID" type="xsd:int" />
+          <xsd:element name="ClubCaption" type="xsd:string" />
+          <xsd:element name="LeagueCaption" type="xsd:string" />
+          <xsd:element name="OrganisationCaption" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GameDetailed">
+        <xsd:sequence>
+          <xsd:element name="ID_game" type="xsd:int" />
+          <xsd:element name="IsCommited" type="xsd:int" />
+          <xsd:element name="league_ID" type="xsd:int" />
+          <xsd:element name="LeagueCaption" type="xsd:string" />
+          <xsd:element name="mode_ID" type="xsd:int" />
+          <xsd:element name="ModeCaption" type="xsd:string" />
+          <xsd:element name="group_ID" type="xsd:int" />
+          <xsd:element name="GroupCaption" type="xsd:string" />
+          <xsd:element name="RoundIndex" type="xsd:int" />
+          <xsd:element name="PlayDate" type="xsd:string" />
+          <xsd:element name="hall_ID" type="xsd:int" />
+          <xsd:element name="HallCaption" type="xsd:string" />
+          <xsd:element name="HallPlace" type="xsd:string" />
+          <xsd:element name="HallAreaCode" type="xsd:string" />
+          <xsd:element name="HallStreetNumber" type="xsd:string" />
+          <xsd:element name="HallStreet" type="xsd:string" />
+          <xsd:element name="sportstaetten_ID" type="xsd:int" />
+          <xsd:element name="TeamHomeID" type="xsd:int" />
+          <xsd:element name="TeamHomeCaption" type="xsd:string" />
+          <xsd:element name="TeamAwayID" type="xsd:int" />
+          <xsd:element name="TeamAwayCaption" type="xsd:string" />
+          <xsd:element name="Sets" type="xsd:string" />
+          <xsd:element name="Result" type="xsd:string" />
+          <xsd:element name="RefereeFirstCaption" type="xsd:string" />
+          <xsd:element name="RefereeFirstID" type="xsd:int" />
+          <xsd:element name="RefereeSecondCaption" type="xsd:string" />
+          <xsd:element name="RefereeSecondID" type="xsd:int" />
+          <xsd:element name="LineRefereeFirstCaption" type="xsd:string" />
+          <xsd:element name="LineRefereeFirstID" type="xsd:int" />
+          <xsd:element name="LineRefereeSecondCaption" type="xsd:string" />
+          <xsd:element name="LineRefereeSecondID" type="xsd:int" />
+          <xsd:element name="DateMode" type="xsd:int" />
+          <xsd:element name="DateModeDate" type="xsd:string" />
+          <xsd:element name="GameReport" type="xsd:string" />
+          <xsd:element name="PlayDateDisplacement" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="phasesResults">
+        <xsd:sequence>
+          <xsd:element name="phase_ID" type="xsd:int" />
+          <xsd:element name="Caption" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RefereeDetail">
+        <xsd:sequence>
+          <xsd:element name="ID_referee" type="xsd:int" />
+          <xsd:element name="SVNumber" type="xsd:int" />
+          <xsd:element name="FirstName" type="xsd:string" />
+          <xsd:element name="LastName" type="xsd:string" />
+          <xsd:element name="Street" type="xsd:string" />
+          <xsd:element name="Number" type="xsd:string" />
+          <xsd:element name="AreaCode" type="xsd:string" />
+          <xsd:element name="Place" type="xsd:string" />
+          <xsd:element name="AgeGroup" type="xsd:int" />
+          <xsd:element name="Email" type="xsd:string" />
+          <xsd:element name="OrganisationCaption" type="xsd:string" />
+          <xsd:element name="QualificationCaption" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="HallDetailed">
+        <xsd:sequence>
+          <xsd:element name="ID_hall" type="xsd:int" />
+          <xsd:element name="Caption" type="xsd:string" />
+          <xsd:element name="Homologation" type="xsd:string" />
+          <xsd:element name="Street" type="xsd:string" />
+          <xsd:element name="Number" type="xsd:string" />
+          <xsd:element name="AreaCode" type="xsd:string" />
+          <xsd:element name="Place" type="xsd:string" />
+          <xsd:element name="PublicAccessable" type="xsd:int" />
+          <xsd:element name="sportstaetten_ID" type="xsd:int" />
+          <xsd:element name="Description" type="xsd:string" />
+          <xsd:element name="Courts" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfDates">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:DateEntry[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="DateEntry">
+        <xsd:sequence>
+          <xsd:element name="Date" type="xsd:string" />
+          <xsd:element name="NumberOfGames" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfTeams">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:TeamDetailed[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ClubEntry">
+        <xsd:sequence>
+          <xsd:element name="ID_club" type="xsd:string" />
+          <xsd:element name="Caption" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfClubs">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:ClubEntry[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfHalls">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:HallDetailed[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ArrayOfAddresses">
+        <xsd:complexContent mixed="false">
+          <xsd:restriction base="soapenc:Array">
+            <xsd:attribute wsdl:arrayType="typens:ContactAddress[]" ref="soapenc:arrayType" />
+          </xsd:restriction>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:complexType name="ContactAddress">
+        <xsd:sequence>
+          <xsd:element name="SVNumber" type="xsd:int" />
+          <xsd:element name="Role" type="xsd:string" />
+          <xsd:element name="FirstName" type="xsd:string" />
+          <xsd:element name="LastName" type="xsd:string" />
+          <xsd:element name="Street" type="xsd:string" />
+          <xsd:element name="Number" type="xsd:string" />
+          <xsd:element name="POBox" type="xsd:string" />
+          <xsd:element name="AreaCode" type="xsd:string" />
+          <xsd:element name="Place" type="xsd:string" />
+          <xsd:element name="AgeGroup" type="xsd:int" />
+          <xsd:element name="Email" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="sendLeagues">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send existing leagues by a
+			given keyword</documentation>
+    <wsdl:part name="leagues" type="typens:ArrayOfLeague">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of League data
+				type</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestGames">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request games of a group
+		</documentation>
+    <wsdl:part name="group_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">keyword of a leagues group
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestPlayOffGamesView">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request games of a group
+		</documentation>
+    <wsdl:part name="group_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">keyword of a leagues group
+			</documentation>
+    </wsdl:part>
+    <wsdl:part name="mode_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">keyword of a leagues group
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestPhasesResults">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request Phases Results of a
+			group</documentation>
+    <wsdl:part name="league_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">keyword of a leagues group
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendPhases">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send phases by a given league
+		</documentation>
+    <wsdl:part name="phases" type="typens:ArrayOfPhase">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of Phase data
+				type</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendTable">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a table of a given group
+		</documentation>
+    <wsdl:part name="table" type="typens:ArrayOfTableEntry">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of TableEnty
+				datatype</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestGroupDetailed">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request detailed information
+			of a group</documentation>
+    <wsdl:part name="group_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique group_ID
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestGamesDateSpan">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request games by a given date
+			span</documentation>
+    <wsdl:part name="group_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique group_ID
+			</documentation>
+    </wsdl:part>
+    <wsdl:part name="str_dateStart" type="xsd:string">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Start-Date in ISO-Format
+			</documentation>
+    </wsdl:part>
+    <wsdl:part name="str_dateEnd" type="xsd:string">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">End-Date in ISO-Format
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestGamesDateSpanAllGroups">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request all games of a all
+			groups by a given league</documentation>
+    <wsdl:part name="keyword" type="xsd:string">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">keyword of league
+			</documentation>
+    </wsdl:part>
+    <wsdl:part name="str_dateStart" type="xsd:string">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Start-Date in ISO-Format
+			</documentation>
+    </wsdl:part>
+    <wsdl:part name="str_dateEnd" type="xsd:string">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">End-Date in ISO-Format
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestGamesTeam">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request games of a team
+		</documentation>
+    <wsdl:part name="team_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique team_ID
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendGameDetailed">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed informations of
+			a game</documentation>
+    <wsdl:part name="game" type="typens:GameDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns GameDetailed datatype
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestGroups">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request all groups of a phase
+		</documentation>
+    <wsdl:part name="phase_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique phase_ID
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendGroupDetailed">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed information of a
+			group</documentation>
+    <wsdl:part name="group" type="typens:GroupDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns GroupDetailed data
+				type</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestResultsLimited">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request a limited number of
+			results of a group</documentation>
+    <wsdl:part name="group_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique group_ID
+			</documentation>
+    </wsdl:part>
+    <wsdl:part name="limitFrom" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">first dataset (mostly 0)
+			</documentation>
+    </wsdl:part>
+    <wsdl:part name="limitTo" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">number of records
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendGames">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a group
+		</documentation>
+    <wsdl:part name="games" type="typens:ArrayOfGameEntry">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of GameEntry
+				datatype</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendPlayOffGamesView">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a play off group
+		</documentation>
+    <wsdl:part name="playoff" type="typens:PlayOffArray">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of GameArray
+				datatype</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendPhasesResults">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send results of a phase
+		</documentation>
+    <wsdl:part name="games" type="typens:ArrayOfPhasesResults">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of GameArray
+				datatype</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendGamesDateSpan">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games by a given date
+			span</documentation>
+    <wsdl:part name="games" type="typens:ArrayOfGameEntry">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of GameEntry
+				datatype</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendGroups">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all groups of a phase
+		</documentation>
+    <wsdl:part name="groups" type="typens:ArrayOfGroup">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of Group data
+				type</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestPhases">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request phases by a given
+			league</documentation>
+    <wsdl:part name="league_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique league_ID
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendTeamDetailed">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed information of a
+			team</documentation>
+    <wsdl:part name="team" type="typens:TeamDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns TeamDatailed dataset
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendResultsLimited">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a limited number of
+			results of a group</documentation>
+    <wsdl:part name="results" type="typens:ArrayOfGameEntry">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of GameEntry
+				data type</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendGamesDateSpanAllGroups">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games of a all groups
+			by a given league</documentation>
+    <wsdl:part name="games" type="typens:ArrayOfGameEntry">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">return array of GameEntry
+				datatype</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestTable">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request a table of a given
+			group</documentation>
+    <wsdl:part name="group_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique group_ID
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestResults">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request results by a given
+			group</documentation>
+    <wsdl:part name="group_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique group_ID
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendResults">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send results by a given group
+		</documentation>
+    <wsdl:part name="results" type="typens:ArrayOfGameEntry">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of GameEntry
+				data type</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestLeagues">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request existing leagues by a
+			given keyword</documentation>
+    <wsdl:part name="keyword" type="xsd:string">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">keyword of the wished league
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestGameDetailed">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request detailed informations
+			of a game</documentation>
+    <wsdl:part name="game_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique game_ID
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="requestTeamDetailed">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Request detailed information
+			of a team</documentation>
+    <wsdl:part name="team_ID" type="xsd:int">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">unique team_ID
+			</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sendGamesTeam">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a team
+		</documentation>
+    <wsdl:part name="games" type="typens:ArrayOfGameEntry">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">returns array of GameEntry
+				datatype</documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRefereeDetailsRequest">
+    <wsdl:part name="getRefereeDetailsRequest" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getRefereeDetailsResponse">
+    <wsdl:part name="getRefereeDetailsResponse" type="typens:RefereeDetail" />
+  </wsdl:message>
+  <wsdl:message name="getGamesOfRefereeRequest">
+    <wsdl:part name="getGamesOfRefereeRequest" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getGamesOfRefereeResponse">
+    <wsdl:part name="getGamesOfRefereeResponse" type="typens:ArrayOfGameEntry" />
+  </wsdl:message>
+  <wsdl:message name="getHallDetailedRequest">
+    <wsdl:part name="getHallDetailedRequest" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getHallDetailedResponse">
+    <wsdl:part name="getHallDetailedResponse" type="typens:HallDetailed" />
+  </wsdl:message>
+  <wsdl:message name="getGamesOfHallRequest">
+    <wsdl:part name="getGamesOfHallRequest" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getGamesOfHallResponse">
+    <wsdl:part name="getGamesOfHallResponse" type="typens:ArrayOfGameEntry" />
+  </wsdl:message>
+  <wsdl:message name="getGamesOfDateRequest">
+    <wsdl:part name="stamp" type="xsd:int" />
+    <wsdl:part name="keyword" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getGamesOfDateResponse">
+    <wsdl:part name="getGamesOfDateResponse" type="typens:ArrayOfGameEntry" />
+  </wsdl:message>
+  <wsdl:message name="getDatesRequest">
+    <wsdl:part name="keyword" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getDatesResponse">
+    <wsdl:part name="getDatesResponse" type="typens:ArrayOfDates" />
+  </wsdl:message>
+  <wsdl:message name="getActiveTeamsRequest">
+    <wsdl:part name="keyword" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getActiveTeamsResponse">
+    <wsdl:part name="getActiveTeamsResponse" type="typens:ArrayOfTeams" />
+  </wsdl:message>
+  <wsdl:message name="getActiveClubsRequest">
+    <wsdl:part name="keyword" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getActiveClubsResponse">
+    <wsdl:part name="getActiveClubsResponse" type="typens:ArrayOfClubs" />
+  </wsdl:message>
+  <wsdl:message name="getHallsRequest">
+    <wsdl:part name="keyword" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="getHallsResponse">
+    <wsdl:part name="getHallsResponse" type="typens:ArrayOfHalls" />
+  </wsdl:message>
+  <wsdl:message name="getClubDetailsRequest">
+    <wsdl:part name="getClubDetailsRequest" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getClubDetailsResponse">
+    <wsdl:part name="getClubDetailsResponse" type="typens:ClubEntry" />
+  </wsdl:message>
+  <wsdl:message name="getGamesByClubRequest">
+    <wsdl:part name="getGamesByClubRequest" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getGamesByClubResponse">
+    <wsdl:part name="getGamesByClubResponse" type="typens:ArrayOfGameEntry" />
+  </wsdl:message>
+  <wsdl:message name="getTeamsByClubRequest">
+    <wsdl:part name="getTeamsByClubRequest" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getTeamsByClubResponse">
+    <wsdl:part name="getTeamsByClubResponse" type="typens:ArrayOfTeams" />
+  </wsdl:message>
+  <wsdl:message name="getAddressesByClubRequest">
+    <wsdl:part name="ID_club" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getAddressesByClubResponse">
+    <wsdl:part name="getAddressesByClubResponse" type="typens:ArrayOfAddresses" />
+  </wsdl:message>
+  <wsdl:message name="getAddressesByTeamRequest">
+    <wsdl:part name="ID_team" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="getAddressesByTeamResponse">
+    <wsdl:part name="getAddressesByTeamResponse" type="typens:ArrayOfAddresses" />
+  </wsdl:message>
+  <wsdl:portType name="SwissVolleyPortType">
+    <wsdl:operation name="getLeagues">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send existing leagues by a
+				given keyword</documentation>
+      <wsdl:input message="typens:requestLeagues" />
+      <wsdl:output message="typens:sendLeagues" />
+    </wsdl:operation>
+    <wsdl:operation name="getPhases">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send phases by a given league
+			</documentation>
+      <wsdl:input message="typens:requestPhases" />
+      <wsdl:output message="typens:sendPhases" />
+    </wsdl:operation>
+    <wsdl:operation name="getGroups">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all groups of a phase
+			</documentation>
+      <wsdl:input message="typens:requestGroups" />
+      <wsdl:output message="typens:sendGroups" />
+    </wsdl:operation>
+    <wsdl:operation name="getGroupDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed information of
+				a group</documentation>
+      <wsdl:input message="typens:requestGroupDetailed" />
+      <wsdl:output message="typens:sendGroupDetailed" />
+    </wsdl:operation>
+    <wsdl:operation name="getTeamDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed information of
+				a team</documentation>
+      <wsdl:input message="typens:requestTeamDetailed" />
+      <wsdl:output message="typens:sendTeamDetailed" />
+    </wsdl:operation>
+    <wsdl:operation name="getGameDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed informations of
+				a game</documentation>
+      <wsdl:input message="typens:requestGameDetailed" />
+      <wsdl:output message="typens:sendGameDetailed" />
+    </wsdl:operation>
+    <wsdl:operation name="getTable">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a table of a given group
+			</documentation>
+      <wsdl:input message="typens:requestTable" />
+      <wsdl:output message="typens:sendTable" />
+    </wsdl:operation>
+    <wsdl:operation name="getResults">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send results by a given group
+			</documentation>
+      <wsdl:input message="typens:requestResults" />
+      <wsdl:output message="typens:sendResults" />
+    </wsdl:operation>
+    <wsdl:operation name="getResultsLimited">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a limited number of
+				results of a group</documentation>
+      <wsdl:input message="typens:requestResultsLimited" />
+      <wsdl:output message="typens:sendResultsLimited" />
+    </wsdl:operation>
+    <wsdl:operation name="getGames">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a group
+			</documentation>
+      <wsdl:input message="typens:requestGames" />
+      <wsdl:output message="typens:sendGames" />
+    </wsdl:operation>
+    <wsdl:operation name="getPlayOffGamesView">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a group
+			</documentation>
+      <wsdl:input message="typens:requestPlayOffGamesView" />
+      <wsdl:output message="typens:sendPlayOffGamesView" />
+    </wsdl:operation>
+    <wsdl:operation name="getPhasesResults">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send phases results of a
+				group</documentation>
+      <wsdl:input message="typens:requestPhasesResults" />
+      <wsdl:output message="typens:sendPhasesResults" />
+    </wsdl:operation>
+    <wsdl:operation name="getGamesTeam">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a team
+			</documentation>
+      <wsdl:input message="typens:requestGamesTeam" />
+      <wsdl:output message="typens:sendGamesTeam" />
+    </wsdl:operation>
+    <wsdl:operation name="getGamesDateSpan">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games by a given date
+				span</documentation>
+      <wsdl:input message="typens:requestGamesDateSpan" />
+      <wsdl:output message="typens:sendGamesDateSpan" />
+    </wsdl:operation>
+    <wsdl:operation name="getGamesDateSpanAllGroups">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games of a all
+				groups by a given league</documentation>
+      <wsdl:input message="typens:requestGamesDateSpanAllGroups" />
+      <wsdl:output message="typens:sendGamesDateSpanAllGroups" />
+    </wsdl:operation>
+    <wsdl:operation name="getRefereeDetails">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send referee details
+			</documentation>
+      <wsdl:input message="typens:getRefereeDetailsRequest" />
+      <wsdl:output message="typens:getRefereeDetailsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getGamesOfReferee">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games for a given referee</documentation>
+      <wsdl:input message="typens:getGamesOfRefereeRequest" />
+      <wsdl:output message="typens:getGamesOfRefereeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getHallDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detail infos for a given hall</documentation>
+      <wsdl:input message="typens:getHallDetailedRequest" />
+      <wsdl:output message="typens:getHallDetailedResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getGamesOfHall">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games taking place in a given hall</documentation>
+      <wsdl:input message="typens:getGamesOfHallRequest" />
+      <wsdl:output message="typens:getGamesOfHallResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getGamesOfDate">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games for a specific date</documentation>
+      <wsdl:input message="typens:getGamesOfDateRequest" />
+      <wsdl:output message="typens:getGamesOfDateResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getDates">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send dates</documentation>
+      <wsdl:input message="typens:getDatesRequest" />
+      <wsdl:output message="typens:getDatesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getActiveTeams">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends active teams</documentation>
+      <wsdl:input message="typens:getActiveTeamsRequest" />
+      <wsdl:output message="typens:getActiveTeamsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getActiveClubs">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends active clubs</documentation>
+      <wsdl:input message="typens:getActiveClubsRequest" />
+      <wsdl:output message="typens:getActiveClubsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getHalls">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends halls</documentation>
+      <wsdl:input message="typens:getHallsRequest" />
+      <wsdl:output message="typens:getHallsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getClubDetails">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends details of club</documentation>
+      <wsdl:input message="typens:getClubDetailsRequest" />
+      <wsdl:output message="typens:getClubDetailsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getGamesByClub">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends games for all teams of a given club</documentation>
+      <wsdl:input message="typens:getGamesByClubRequest" />
+      <wsdl:output message="typens:getGamesByClubResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getTeamsByClub">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends all teams of a given club</documentation>
+      <wsdl:input message="typens:getTeamsByClubRequest" />
+      <wsdl:output message="typens:getTeamsByClubResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAddressesByClub">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends addresses regarding to club</documentation>
+      <wsdl:input message="typens:getAddressesByClubRequest" />
+      <wsdl:output message="typens:getAddressesByClubResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAddressesByTeam">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends addresses for a given team</documentation>
+      <wsdl:input message="typens:getAddressesByTeamRequest" />
+      <wsdl:output message="typens:getAddressesByTeamResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SwissVolleyBinding" type="typens:SwissVolleyPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="getLeagues">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send existing leagues by a
+				given keyword</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getLeagues" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPhases">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send phases by a given league
+			</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getPhases" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGroups">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all groups of a phase
+			</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGroups" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGroupDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed information of
+				a group</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGroupDetailed" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTeamDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed information of
+				a team</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getTeamDetailed" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGameDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed informations of
+				a game</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGameDetailed" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTable">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a table of a given group
+			</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getTable" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResults">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send results by a given group
+			</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getResults" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getResultsLimited">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a limited number of
+				results of a group</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getResultsLimited" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGames">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a group
+			</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGames" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPlayOffGamesView">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a group
+			</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getPlayOffGamesView" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPhasesResults">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a group
+			</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getPhasesResults" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGamesTeam">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a team
+			</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesTeam" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGamesDateSpan">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games by a given date
+				span</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesDateSpan" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGamesDateSpanAllGroups">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games of a all
+				groups by a given league</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesDateSpanAllGroups" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGamesOfReferee">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games of a given referee</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesOfReferee" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRefereeDetails">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send details for given referee</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getRefereeDetails" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHallDetailed">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send details of a given hall</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getHallDetailed" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGamesOfHall">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games taking place in a given hall</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesOfHall" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGamesOfDate">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games taking place on a given date</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesOfDate" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDates">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all dates on which games are taking place</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getDates" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveTeams">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all active teams</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getActiveTeams" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveClubs">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all active clubs</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getActiveClubs" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getHalls">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all halls</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getHalls" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getClubDetails">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send details of a given club</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getClubDetails" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGamesByClub">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games involving teams of a given club</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesByClub" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getTeamsByClub">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all teams of a given club</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getTeamsByClub" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAddressesByClub">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send addresses of a given club</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getAddressesByClub" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAddressesByTeam">
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send addresses of a given team</documentation>
+      <soap:operation soapAction="http://myvolley.swissvolley.ch/getAddressesByTeam" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SwissVolleyServices">
+    <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">The Web-Service for recieving
+			all public information of all leagues managed by Swiss Volley
+		</documentation>
+    <wsdl:port name="SwissVolleyPort" binding="typens:SwissVolleyBinding">
+      <soap:address location="http://myvolley.swissvolley.ch/svserver.php" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

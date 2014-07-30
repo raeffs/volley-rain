@@ -10,14 +10,18 @@ namespace VolleyRain.Controllers
 {
     public abstract class BaseController : Controller
     {
+        private readonly Lazy<CacheDecorator> _cache;
         private readonly Lazy<DatabaseContext> _context;
         private readonly Lazy<SessionDecorator> _session;
 
         public BaseController()
         {
-            _session = new Lazy<SessionDecorator>(() => new SessionDecorator(HttpContext.Session));
+            _cache = new Lazy<CacheDecorator>(() => new CacheDecorator(HttpContext.Cache));
             _context = new Lazy<DatabaseContext>(() => new DatabaseContext());
+            _session = new Lazy<SessionDecorator>(() => new SessionDecorator(HttpContext.Session));
         }
+
+        protected CacheDecorator Cache { get { return _cache.Value; } }
 
         protected DatabaseContext Context { get { return _context.Value; } }
 

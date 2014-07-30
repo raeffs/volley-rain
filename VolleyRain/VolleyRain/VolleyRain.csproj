@@ -53,6 +53,8 @@
     <Reference Include="MvcPaging">
       <HintPath>..\packages\MvcPaging.2.1.0\lib\net40\MvcPaging.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -154,6 +156,12 @@
     <Content Include="Scripts\modernizr-2.7.2.js" />
     <Content Include="Scripts\responsive-calendar.js" />
     <Content Include="Scripts\responsive-calendar.min.js" />
+    <Content Include="Service References\SwissVolley\configuration91.svcinfo" />
+    <Content Include="Service References\SwissVolley\configuration.svcinfo" />
+    <Content Include="Service References\SwissVolley\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
     <Content Include="usefull.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -166,6 +174,7 @@
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\CronController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RankingController.cs" />
@@ -180,11 +189,13 @@
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\AttendanceMatrix.cs" />
     <Compile Include="Models\AttendanceType.cs" />
+    <Compile Include="Models\CacheDecorator.cs" />
     <Compile Include="Models\DateTimeModelBinder.cs" />
     <Compile Include="Models\Day.cs" />
     <Compile Include="Models\Event.cs" />
     <Compile Include="Models\EventCreation.cs" />
     <Compile Include="Models\EventType.cs" />
+    <Compile Include="Models\Extensions\SeasonExtensions.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Month.cs" />
     <Compile Include="Models\NewsArticle.cs" />
@@ -202,6 +213,11 @@
     <Compile Include="Security\CustomPrincipal.cs" />
     <Compile Include="Security\CustomRoleProvider.cs" />
     <Compile Include="Security\PrincipalExtensions.cs" />
+    <Compile Include="Service References\SwissVolley\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -227,6 +243,52 @@
     <Content Include="Views\Attendance\Index.cshtml" />
     <Content Include="Views\Style\Index.cshtml" />
     <Content Include="Views\Attendance\Edit.cshtml" />
+    <Content Include="Service References\SwissVolley\SwissVolley.wsdl" />
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.ClubEntry.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.ContactAddress.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.DateEntry.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.GameDetailed.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.GameEntry.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.Group.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.GroupDetailed.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.HallDetailed.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.League.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.Phase.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.phasesResults.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.PlayOffArray.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.RefereeDetail.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.TableEntry.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.TeamDetailed.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -236,6 +298,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cron\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\SwissVolley\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
