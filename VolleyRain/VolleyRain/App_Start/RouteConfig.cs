@@ -13,11 +13,11 @@ namespace VolleyRain
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "AttendanceIndex",
-                url: "Attendance/{team}",
-                defaults: new { controller = "Attendance", action = "Index", team = UrlParameter.Optional }
-            );
+            //routes.MapRoute(
+            //    name: "AttendanceIndex",
+            //    url: "Attendance/{team}",
+            //    defaults: new { controller = "Attendance", action = "Index", team = UrlParameter.Optional }
+            //);
 
             routes.MapRoute(
                 name: "CalendarDetails",

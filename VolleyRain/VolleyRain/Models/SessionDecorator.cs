@@ -22,6 +22,12 @@ namespace VolleyRain.Models
             set { SetValue(() => IsInitialized, value); }
         }
 
+        public int UserID
+        {
+            get { return GetValue(() => UserID); }
+            set { SetValue(() => UserID, value); }
+        }
+
         public ICollection<int> Teams
         {
             get { return GetValue(() => Teams, new List<int>()); }

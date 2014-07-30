@@ -51,7 +51,29 @@ namespace VolleyRain.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Edit()
         {
-            return View();
+            ViewBag.AttendanceTypes = new SelectList(Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList()), "ID", "Name");
+
+            var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
+            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();
+
+            var model = Context.Events
+                .Where(e => teamIDs.Contains(e.Team.ID))
+                .Select(e => new AttendanceSelection
+                {
+                    ID = e.ID,
+                    Start = e.Start,
+                    EventType = e.Type,
+                })
+                .ToList();
+
+            var ids = model.Select(m => m.ID).ToList();
+
+            foreach (var attendance in Context.Attendances.Where(a => a.User.ID == Session.UserID && ids.Contains(a.Event.ID)))
+            {
+                model.Single(m => m.ID == attendance.Event.ID).AttendanceType = attendance.Type;
+            }
+
+            return View(model);
         }
     }
 }

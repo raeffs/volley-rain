@@ -192,6 +192,7 @@
     <Compile Include="Models\Entities\AttendanceType.cs" />
     <Compile Include="Models\CacheDecorator.cs" />
     <Compile Include="Models\DateTimeModelBinder.cs" />
+    <Compile Include="Models\ViewModels\AttendanceSelection.cs" />
     <Compile Include="Models\ViewModels\Day.cs" />
     <Compile Include="Models\Entities\Event.cs" />
     <Compile Include="Models\ViewModels\EventCreation.cs" />

@@ -25,7 +25,9 @@ namespace VolleyRain.Filter
             using (var context = new DatabaseContext())
             {
                 var username = filterContext.HttpContext.User.Identity.Name;
-                session.Teams = context.Users.Single(u => u.Username == username).Teams.Select(t => t.ID).ToArray();
+                var user = context.Users.Single(u => u.Username == username);
+                session.UserID = user.ID;
+                session.Teams = user.Teams.Select(t => t.ID).ToArray();
                 session.IsInitialized = true;
             }
         }

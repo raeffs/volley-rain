@@ -1,1 +1,22 @@
-﻿
+﻿@model IEnumerable<VolleyRain.Models.AttendanceSelection>
+
+<table class="table table-condensed">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+            <th>@Html.DisplayNameFor(model => model.StartTime)</th>
+            <th>@Html.DisplayNameFor(model => model.EventType)</th>
+            <th>@Html.DisplayNameFor(model => model.AttendanceType)</th>
+            <th>@Html.DisplayNameFor(model => model.Comment)</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model) { 
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+            <td class="@item.EventType.GetCssClass()">@Html.DisplayFor(modelItem => item.EventType.Name)</td>
+            <td>@Html.DropDownListFor(modelItem => item.AttendanceType.ID, (SelectList)ViewBag.AttendanceTypes, new { @class = "form-control" })</td>
+            <td>@Html.EditorFor(modelItem => item.Comment, new { @class = "form-control" })</td>
+        </tr>
+    }
+</table>
