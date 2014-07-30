@@ -2,9 +2,23 @@
 
 @{
     ViewBag.Title = "Index";
+    var pagination = ViewBag.Pagination as VolleyRain.Models.Pagination;
 }
 
 <h2>Anwesenheitskontrolle</h2>
+
+@if (pagination.HasPreviousPage)
+{
+    <a href="@Url.Action("Index", new { page = pagination.PreviousPage })" class="btn btn-primary">
+        <span class="glyphicon glyphicon-chevron-left"></span> Zurück
+    </a>
+}
+@if (pagination.HasNextPage)
+{ 
+    <a href="@Url.Action("Index", new { page = pagination.NextPage })" class="btn btn-primary">
+        Weiter <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+}
 
 <table class="table table-condensed">
     <thead>
