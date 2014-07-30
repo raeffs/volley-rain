@@ -1,22 +1,24 @@
-﻿@model IEnumerable<VolleyRain.Models.Event>
+﻿@model IEnumerable<VolleyRain.Models.Game>
 
 <table class="table table-condensed">
     <thead>
         <tr>
-            <th>Datum</th>
-            <th>Heim</th>
+            <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+            <th>@Html.DisplayNameFor(model => model.StartTime)</th>
+            <th>@Html.DisplayNameFor(model => model.HomeTeam)</th>
             <th></th>
-            <th>Gast</th>
-            <th>Halle</th>
+            <th>@Html.DisplayNameFor(model => model.GuestTeam)</th>
+            <th>@Html.DisplayNameFor(model => model.Hall)</th>
         </tr>
     </thead>
     @foreach (var item in Model) { 
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.Start)</td>
-            <td>@Html.DisplayFor(modelItem => item.Details.HomeTeam)</td>
+            <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
+            <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+            <td>@Html.DisplayFor(modelItem => item.HomeTeam)</td>
             <td>-</td>
-            <td>@Html.DisplayFor(modelItem => item.Details.GuestTeam)</td>
-            <td>@Html.DisplayFor(modelItem => item.Details.Hall)</td>
+            <td>@Html.DisplayFor(modelItem => item.GuestTeam)</td>
+            <td>@Html.DisplayFor(modelItem => item.Hall)</td>
         </tr>
     }
 </table>
