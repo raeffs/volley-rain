@@ -1,0 +1,30 @@
+﻿@model PaginationModel
+
+@foreach (var link in Model.PaginationLinks)
+{
+    @BuildLink(link)
+}
+
+@helper BuildLink(PaginationLink link)
+{
+    if (link.Url != null && (link.DisplayText == "«" || link.DisplayText == "»"))
+    {
+        var aBuilder = new TagBuilder("a");
+        aBuilder.MergeAttribute("class", "btn btn-primary");
+        aBuilder.MergeAttribute("href", link.Url);
+
+        var spanBuilder = new TagBuilder("span");
+        if (link.DisplayText == "«")
+        {
+            spanBuilder.MergeAttribute("class", "glyphicon glyphicon-chevron-left");
+            aBuilder.InnerHtml = spanBuilder.ToString() + " Zurück";
+        }
+        if (link.DisplayText == "»")
+        {
+            spanBuilder.MergeAttribute("class", "glyphicon glyphicon-chevron-right");
+            aBuilder.InnerHtml = "Weiter " + spanBuilder.ToString();
+        }
+        
+        @Html.Raw(aBuilder.ToString());
+    }
+}

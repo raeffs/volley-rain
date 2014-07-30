@@ -23,7 +23,7 @@
 
 <div class="text-center">
     @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
-        .DisplayTemplate("Bootstrap3Pagination")
+        .DisplayTemplate("Bootstrap3PaginationSimple")
         .MaxNrOfPages(2)
         .AlwaysAddFirstPageNumber()
     )

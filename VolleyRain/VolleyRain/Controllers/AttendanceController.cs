@@ -11,7 +11,7 @@ namespace VolleyRain.Controllers
     public class AttendanceController : BaseController
     {
         [Authorize(Roles = "User")]
-        public ActionResult Index(int? teamID)
+        public ActionResult Index(int? teamID, int? page)
         {
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
             var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();

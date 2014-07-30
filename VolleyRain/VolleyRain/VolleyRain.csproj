@@ -293,6 +293,7 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
     <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Bootstrap3PaginationSimple.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
