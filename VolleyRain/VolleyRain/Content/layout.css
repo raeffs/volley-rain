@@ -76,7 +76,8 @@ table .form-control {
     background-color: black;
     padding: 15px 30px;
     color: white;
-    font-size: 11px
+    font-size: 11px;
+    text-align: center;
 }
 
 /* styles for validation helpers */

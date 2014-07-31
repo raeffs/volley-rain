@@ -1,13 +1,9 @@
 ﻿@model IEnumerable<VolleyRain.Models.NewsArticle>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "News";
     var pagination = ViewBag.Pagination as VolleyRain.Models.Pagination;
 }
-
-<!--
-<a href="@Url.Action("Create", "News")" class="btn btn-success btn-sm pull-right"><span class="glyphicon glyphicon-plus"></span></a>
--->
 
 @foreach (var item in Model) { 
     <div class="jumbotron">
