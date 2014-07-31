@@ -1,7 +1,8 @@
-﻿@model IPagedList<VolleyRain.Models.NewsArticle>
+﻿@model IEnumerable<VolleyRain.Models.NewsArticle>
 
 @{
     ViewBag.Title = "Index";
+    var pagination = ViewBag.Pagination as VolleyRain.Models.Pagination;
 }
 
 <!--
@@ -21,10 +22,20 @@
     </div>
 }
 
-<div class="text-center">
-    @Html.Pager(Model.PageSize, Model.PageNumber, Model.TotalItemCount).Options(o => o
-        .DisplayTemplate("Bootstrap3PaginationSimple")
-        .MaxNrOfPages(2)
-        .AlwaysAddFirstPageNumber()
-    )
-</div>
+@if (pagination.PageCount > 1)
+{ 
+    <div class="pager">
+        @if (pagination.HasPreviousPage)
+        {
+            <a href="@Url.Action("Index", new { page = pagination.PreviousPage })" class="btn btn-primary pull-left">
+                <span class="glyphicon glyphicon-chevron-left"></span> Zurück
+            </a>
+        }
+        @if (pagination.HasNextPage)
+        { 
+            <a href="@Url.Action("Index", new { page = pagination.NextPage })" class="btn btn-primary pull-right">
+                Weiter <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        }
+    </div>
+}

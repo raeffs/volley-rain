@@ -25,6 +25,7 @@
 
 .jumbotron {
     padding: 30px;
+    margin-bottom: 20px;
 }
 
 .table > thead > tr > th, 
@@ -67,6 +68,15 @@ table .form-control {
 
 .with-comment {
     font-style: italic;
+}
+
+.footer {
+    clear: both;
+    margin-bottom: 20px;
+    background-color: black;
+    padding: 15px 30px;
+    color: white;
+    font-size: 11px
 }
 
 /* styles for validation helpers */

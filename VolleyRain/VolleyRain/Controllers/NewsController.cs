@@ -14,12 +14,18 @@ namespace VolleyRain.Controllers
 {
     public class NewsController : BaseController
     {
-        private const int DefaultPageSize = 2;
-
         public ActionResult Index(int? page)
         {
-            int currentPageIndex = page.HasValue ? page.Value - 1 : 0;
-            return View(Context.NewsArticles.OrderByDescending(i => i.PublishDate).ToPagedList(currentPageIndex, DefaultPageSize));
+            var pagination = new Pagination(5, Context.NewsArticles.Count(), page);
+            ViewBag.Pagination = pagination;
+
+            var model = Context.NewsArticles
+                .OrderByDescending(a => a.PublishDate)
+                .Skip(pagination.ItemsToSkip)
+                .Take(pagination.PageSize)
+                .ToList();
+
+            return View(model);
         }
 
         public ActionResult Details(int? id)
