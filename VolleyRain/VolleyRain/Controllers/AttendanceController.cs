@@ -62,6 +62,7 @@ namespace VolleyRain.Controllers
 
             var model = Context.Events
                 .Where(e => teamIDs.Contains(e.Team.ID))
+                .OrderBy(e => e.Start)
                 .Select(e => new AttendanceSelection
                 {
                     ID = e.ID,
