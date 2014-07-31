@@ -11,6 +11,12 @@ namespace VolleyRain.Models
     {
         public int ID { get; set; }
 
+        [Required]
+        public int ExternalID { get; set; }
+
+        [Required]
+        public virtual Team AssociatedTeam { get; set; }
+
         [Display(Name = "Rang")]
         public int Rank { get; set; }
 

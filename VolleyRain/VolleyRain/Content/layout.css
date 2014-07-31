@@ -47,6 +47,10 @@
 
 /* Responsive Calendar customization */
 
+body {
+    font-family: 'ubunturegular';
+}
+
 .logo { 
     width: 258px;
     margin-top: 10px; 
