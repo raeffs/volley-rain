@@ -65,6 +65,10 @@ table .form-control {
     padding: 4px;
 }
 
+.with-comment {
+    font-style: italic;
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;

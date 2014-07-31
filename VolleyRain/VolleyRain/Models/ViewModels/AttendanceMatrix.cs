@@ -27,6 +27,16 @@ namespace VolleyRain.Models
             return _attendances.Where(a => a.User == user && a.Event == @event).Select(a => a.Type).SingleOrDefault();
         }
 
+        public bool HasComment(User user, Event @event)
+        {
+            return _attendances.Where(a => a.User == user && a.Event == @event).Any(a => !string.IsNullOrWhiteSpace(a.Comment));
+        }
+
+        public string GetComment(User user, Event @event)
+        {
+            return _attendances.Where(a => a.User == user && a.Event == @event).Select(a => a.Comment).SingleOrDefault() ?? string.Empty;
+        }
+
         public int GetAttendeesFor(Event @event)
         {
             return _attendances.Count(a => a.Event == @event && a.Type.RepresentsAttendance);

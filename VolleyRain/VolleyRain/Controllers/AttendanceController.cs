@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -98,7 +99,7 @@ namespace VolleyRain.Controllers
                 .Where(e => teamIDs.Contains(e.Team.ID))
                 .Select(m => m.ID)
                 .ToList();
-            var attendances = Context.Attendances.Include("User").Where(a => a.User.ID == Session.UserID && eventIDs.Contains(a.Event.ID)).ToList();
+            var attendances = Context.Attendances.Include(a => a.User).Where(a => a.User.ID == Session.UserID && eventIDs.Contains(a.Event.ID)).ToList();
             var toRemove = new List<Attendance>();
 
             foreach (var item in model.Where(i => eventIDs.Contains(i.ID)))

@@ -46,8 +46,15 @@
 
                 var attendanceType = Model.GetAttendanceFor(user, item);
                 var cssClass = attendanceType != null ? attendanceType.GetCssClass() : string.Empty;
-              
-                <td class="@cssClass">@Html.DisplayFor(modelItem => attendanceType.Name)</td>
+
+                if (@Model.HasComment(user, item))
+                {
+                    <td class="@cssClass"><div class="with-comment" data-toggle="tooltip" title="@Model.GetComment(user, item)">@Html.DisplayFor(modelItem => attendanceType.Name)</div></td>
+                }
+                else
+                { 
+                    <td class="@cssClass">@Html.DisplayFor(modelItem => attendanceType.Name)</td>
+                }
                 
             }
 
@@ -69,3 +76,9 @@
     </tfoot>
 
 </table>
+
+<script>
+    $(function () {
+        $('.with-comment').tooltip();
+    });
+</script>
