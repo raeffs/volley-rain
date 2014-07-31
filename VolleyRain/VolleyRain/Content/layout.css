@@ -37,6 +37,15 @@
     vertical-align: middle;
 }
 
+.pager .disabled > a, 
+.pager .disabled > a:hover, 
+.pager .disabled > a:focus, 
+.pager .disabled > span {
+    color: inherit;
+    cursor: not-allowed;
+    background-color: inherit;
+}
+
 /* Bootstrap customization */
 
 /* Responsive Calendar customization */

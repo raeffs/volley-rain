@@ -11,21 +11,13 @@ namespace VolleyRain.Controllers
 {
     public class AttendanceController : BaseController
     {
-        public AttendanceController()
-        {
-            ViewBag.PageSize = 10;
-        }
-
         [Authorize(Roles = "User")]
         public ActionResult Index(int? teamID, int? page)
         {
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
             var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();
 
-            var pagination = new Pagination(
-                10,
-                Context.Events.Count(e => teamIDs.Contains(e.Team.ID)),
-                page);
+            var pagination = new Pagination(10, Context.Events.Count(e => teamIDs.Contains(e.Team.ID)), page);
             if (!page.HasValue) pagination.JumpToItem(Context.Events.Count(e => teamIDs.Contains(e.Team.ID) && e.Start < DateTime.Today) + 1);
             ViewBag.Pagination = pagination;
 
@@ -34,18 +26,29 @@ namespace VolleyRain.Controllers
                 .OrderBy(e => e.Start)
                 .Skip(pagination.ItemsToSkip)
                 .Take(pagination.PageSize)
-                .Include(e => e.Attendances)
-                .Include(e => e.Type)
-                .Include("Attendances.Type")
-                .Include("Attendances.User")
+                .Select(e => new EventSummary { ID = e.ID, Start = e.Start, TypeID = e.Type.ID })
                 .ToList();
             var users = Context.Teams
                 .Where(t => teamIDs.Contains(t.ID))
                 .SelectMany(t => t.Members)
                 .Distinct()
+                .Select(u => new UserSummary { ID = u.ID, DisplayName = u.Name + " " + u.Surname })
                 .ToList();
-            var attendances = events
-                .SelectMany(e => e.Attendances)
+
+            var eventIDs = events.Select(e => e.ID).ToList();
+            var userIDs = users.Select(u => u.ID).ToList();
+
+            var attendances = Context.Attendances
+                .Where(a => eventIDs.Contains(a.Event.ID) && userIDs.Contains(a.User.ID))
+                .Select(a => new AttendanceSummary
+                {
+                    EventID = a.Event.ID,
+                    UserID = a.User.ID,
+                    TypeID = a.Type.ID,
+                    TypeName = a.Type.Name,
+                    RepresentsAttendance = a.Type.RepresentsAttendance,
+                    Comment = a.Comment,
+                })
                 .ToList();
 
             var model = new AttendanceMatrix(events, users, attendances);

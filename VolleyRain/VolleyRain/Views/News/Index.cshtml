@@ -18,20 +18,7 @@
     </div>
 }
 
-@if (pagination.PageCount > 1)
-{ 
-    <div class="pager">
-        @if (pagination.HasPreviousPage)
-        {
-            <a href="@Url.Action("Index", new { page = pagination.PreviousPage })" class="btn btn-primary pull-left">
-                <span class="glyphicon glyphicon-chevron-left"></span> Zurück
-            </a>
-        }
-        @if (pagination.HasNextPage)
-        { 
-            <a href="@Url.Action("Index", new { page = pagination.NextPage })" class="btn btn-primary pull-right">
-                Weiter <span class="glyphicon glyphicon-chevron-right"></span>
-            </a>
-        }
-    </div>
-}
+<div class="pager">
+    @Html.PreviousPageButton(pagination, "Neuere")
+    @Html.NextPageButton(pagination, "Ältere")
+</div>

@@ -8,18 +8,8 @@
 <h2>Anwesenheitskontrolle <small>Team SVKT Rain</small></h2>
 
 <div class="pager">
-    @if (pagination.HasPreviousPage)
-    {
-        <a href="@Url.Action("Index", new { page = pagination.PreviousPage })" class="btn btn-primary pull-left">
-            <span class="glyphicon glyphicon-chevron-left"></span> Zurück
-        </a>
-    }
-    @if (pagination.HasNextPage)
-    { 
-        <a href="@Url.Action("Index", new { page = pagination.NextPage })" class="btn btn-primary pull-right">
-            Weiter <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-    }
+    @Html.PreviousPageButton(pagination, "Zurück")
+    @Html.NextPageButton(pagination, "Weiter")
     <a href="@Url.Action("Edit")" class="btn btn-success">Bearbeiten</a>
 </div>
 
@@ -30,7 +20,7 @@
 
             @foreach (var item in Model.Events) { 
             
-                <th class="@item.Type.GetCssClass()">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</th>
+                <th class="@item.GetCssClass()">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</th>
                 
             }
 
@@ -41,22 +31,26 @@
     
         <tr>
 
-            <td>@Html.DisplayFor(model => user.Username)</td>
+            <td>@Html.DisplayFor(model => user.DisplayName)</td>
 
             @foreach (var item in Model.Events) {
 
-                var attendanceType = Model.GetAttendanceFor(user, item);
-                var cssClass = attendanceType != null ? attendanceType.GetCssClass() : string.Empty;
-
-                if (@Model.HasComment(user, item))
+                var attendance = Model.GetAttendanceFor(user, item);
+                var tdBuilder = new TagBuilder("td");
+                if (attendance != null)
                 {
-                    <td class="@cssClass"><div class="with-comment" data-toggle="tooltip" title="@Model.GetComment(user, item)">@Html.DisplayFor(modelItem => attendanceType.Name)</div></td>
+                    tdBuilder.MergeAttribute("class", attendance.GetCssClass());
+                    var divBuilder = new TagBuilder("div");
+                    if (attendance.HasComment)
+                    {
+                        divBuilder.MergeAttribute("class", "with-comment");
+                        divBuilder.MergeAttribute("data-toggle", "tooltip");
+                        divBuilder.MergeAttribute("title", attendance.Comment);
+                    }
+                    divBuilder.SetInnerText(attendance.TypeName);
+                    tdBuilder.InnerHtml = divBuilder.ToString();
                 }
-                else
-                { 
-                    <td class="@cssClass">@Html.DisplayFor(modelItem => attendanceType.Name)</td>
-                }
-                
+                @Html.Raw(tdBuilder.ToString());
             }
 
         </tr>
