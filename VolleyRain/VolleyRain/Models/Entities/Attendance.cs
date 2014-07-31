@@ -18,5 +18,7 @@ namespace VolleyRain.Models
 
         [Required]
         public virtual User User { get; set; }
+
+        public string Comment { get; set; }
     }
 }

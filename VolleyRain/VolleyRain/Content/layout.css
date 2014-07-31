@@ -60,6 +60,11 @@
     
 }
 
+table .form-control {
+    height: 28px;
+    padding: 4px;
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;

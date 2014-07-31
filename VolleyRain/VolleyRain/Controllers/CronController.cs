@@ -16,7 +16,7 @@ namespace VolleyRain.Controllers
         public void UpdateGames(int? teamID)
         {
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
-            var teams = season.Teams;
+            var teams = Context.Teams.Where(t => t.Season.ID == season.ID).ToList();
             if (teamID.HasValue) teams = teams.Where(t => t.ID == teamID).ToList();
 
             foreach (var team in teams)
