@@ -34,6 +34,10 @@ namespace VolleyRain.Controllers
                 .OrderBy(e => e.Start)
                 .Skip(pagination.ItemsToSkip)
                 .Take(pagination.PageSize)
+                .Include(e => e.Attendances)
+                .Include(e => e.Type)
+                .Include("Attendances.Type")
+                .Include("Attendances.User")
                 .ToList();
             var users = Context.Teams
                 .Where(t => teamIDs.Contains(t.ID))

@@ -1,8 +1,16 @@
 ﻿@model IList<VolleyRain.Models.AttendanceSelection>
 
+@{
+    ViewBag.Title = "Anwesenheitskontrolle";
+}
+
+<h2>Anwesenheitskontrolle <small>Team SVKT Rain</small></h2>
+
 @using (Html.BeginForm())
 {
-    <input type="submit" value="Speichern" class="btn btn-default btn-success" />
+    <div class="pager">
+        <input type="submit" value="Speichern" class="btn btn-default btn-success" />
+    </div>
     
     <table class="table table-condensed">
         <thead>
