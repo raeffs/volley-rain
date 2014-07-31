@@ -20,6 +20,12 @@ namespace VolleyRain.Models
         public string Email { get; set; }
 
         [Required]
+        public string Name { get; set; }
+
+        [Required]
+        public string Surname { get; set; }
+
+        [Required]
         public bool IsApproved { get; set; }
 
         [Required]
