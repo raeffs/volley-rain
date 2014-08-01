@@ -72,6 +72,58 @@
 
 </table>
 
+@{
+    var eventTypes = ViewBag.EventTypes as IList<EventType>;
+    var attendanceTypes = ViewBag.AttendanceTypes as IList<AttendanceType>;
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Legende <small>Anlässe</small></h3>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Html.DisplayNameFor(model => eventTypes[0].ShortName)</th>
+                    <th>@Html.DisplayNameFor(model => eventTypes[0].Name)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var type in eventTypes)
+                { 
+                    <tr>
+                        <td><div class="@type.GetCssClass()">&nbsp;</div></td>
+                        <td>@Html.DisplayFor(model => type.ShortName)</td>
+                        <td>@Html.DisplayFor(model => type.Name)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-sm-6">
+        <h3>Legende <small>Zustände</small></h3>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@Html.DisplayNameFor(model => attendanceTypes[0].ShortName)</th>
+                    <th>@Html.DisplayNameFor(model => attendanceTypes[0].Name)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var type in attendanceTypes)
+                { 
+                    <tr>
+                        <td><div class="@type.GetCssClass()">&nbsp;</div></td>
+                        <td>@Html.DisplayFor(model => type.ShortName)</td>
+                        <td>@Html.DisplayFor(model => type.Name)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <script>
     $(function () {
         $('.with-comment').tooltip();

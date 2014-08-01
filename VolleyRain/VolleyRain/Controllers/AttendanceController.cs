@@ -14,6 +14,9 @@ namespace VolleyRain.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Index(int? teamID, int? page)
         {
+            ViewBag.AttendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList());
+            ViewBag.EventTypes = Cache.GetEventTypes(() => Context.EventTypes.ToList());
+
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
             var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();
 

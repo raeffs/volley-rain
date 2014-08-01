@@ -11,9 +11,11 @@ namespace VolleyRain.Models
         public int ID { get; set; }
 
         [Required]
+        [Display(Name = "Bezeichnung")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Kürzel")]
         public string ShortName { get; set; }
 
         [Required]
