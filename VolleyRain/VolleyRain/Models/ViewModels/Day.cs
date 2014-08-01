@@ -11,13 +11,18 @@ namespace VolleyRain.Models
 
         public int NumberOfEvents { get; set; }
 
+        public bool IsInsideMonth { get; set; }
+
         public Itenso.TimePeriod.ITimePeriod CalendarViewPeriod { get; private set; }
+
+        public List<EventSummary> Events { get; set; }
 
         public Day(int year, int month, int day)
         {
             var dayBase = new Itenso.TimePeriod.Day(year, month, day);
             Date = dayBase.FirstDayStart;
             CalendarViewPeriod = dayBase;
+            Events = new List<EventSummary>();
         }
     }
 }

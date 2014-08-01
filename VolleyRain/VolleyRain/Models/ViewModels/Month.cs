@@ -29,12 +29,17 @@ namespace VolleyRain.Models
             Date = monthBase.FirstDayStart;
             NextMonth = monthBase.GetNextMonth().FirstDayStart;
             PreviousMonth = monthBase.GetPreviousMonth().FirstDayStart;
-            CalendarViewPeriod = monthBase;
 
-            var day = Date;
+            CalendarViewPeriod = new Itenso.TimePeriod.CalendarTimeRange(
+                monthBase.FirstDayStart.AddDays(-1 * ((int)monthBase.FirstDayStart.DayOfWeek + 6) % 7),
+                monthBase.LastDayStart.AddDays((7 - (int)monthBase.LastDayStart.DayOfWeek) % 7 + 1));
+
+            var day = CalendarViewPeriod.Start;
             while (CalendarViewPeriod.HasInside(day))
             {
-                Days.Add(new Day(day.Year, day.Month, day.Day));
+                var model = new Day(day.Year, day.Month, day.Day);
+                model.IsInsideMonth = monthBase.HasInside(day);
+                Days.Add(model);
                 day = day.AddDays(1);
             }
         }

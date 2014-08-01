@@ -32,28 +32,4 @@ namespace VolleyRain.Models
             return _attendances.Count(a => a.EventID == @event.ID && a.RepresentsAttendance);
         }
     }
-
-    public class EventSummary
-    {
-        public int ID { get; set; }
-        public int TypeID { get; set; }
-        public DateTime Start { get; set; }
-    }
-
-    public class UserSummary
-    {
-        public int ID { get; set; }
-        public string DisplayName { get; set; }
-    }
-
-    public class AttendanceSummary
-    {
-        public int EventID { get; set; }
-        public int UserID { get; set; }
-        public int TypeID { get; set; }
-        public string TypeName { get; set; }
-        public bool RepresentsAttendance { get; set; }
-        public string Comment { get; set; }
-        public bool HasComment { get { return !string.IsNullOrWhiteSpace(Comment); } }
-    }
 }

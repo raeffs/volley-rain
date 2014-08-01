@@ -21,7 +21,24 @@ namespace VolleyRain.Controllers
                 month = DateTime.Today.Month;
             }
 
-            return View(GetMonth(year.Value, month.Value));
+            var model = new Month(year.Value, month.Value);
+            var events = Context.Events
+                .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End && (e.Team == null || Session.Teams.Contains(e.Team.ID)))
+                .Select(e => new EventSummary
+                {
+                    ID = e.ID,
+                    Name = e.Name,
+                    Start = e.Start,
+                    End = e.End,
+                    TypeID = e.Type.ID
+                })
+                .ToList();
+            foreach (var day in model.Days)
+            {
+                day.Events = events.Where(e => day.CalendarViewPeriod.OverlapsWith(new Itenso.TimePeriod.TimeRange(e.Start, e.End))).ToList();
+            }
+
+            return View(model);
         }
 
         public ActionResult Details(int year, int month, int day)
@@ -32,21 +49,21 @@ namespace VolleyRain.Controllers
             return View();
         }
 
-        private Month GetMonth(int year, int month)
-        {
-            var model = new Month(year, month);
+        //private Month GetMonth(int year, int month)
+        //{
+        //    var model = new Month(year, month);
 
-            var events = Context.Events
-                .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End && (e.Team == null || Session.Teams.Contains(e.Team.ID)))
-                .ToList()
-                .Select(e => new Itenso.TimePeriod.TimeRange(e.Start, e.End, true));
+        //    var events = Context.Events
+        //        .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End && (e.Team == null || Session.Teams.Contains(e.Team.ID)))
+        //        .ToList()
+        //        .Select(e => new Itenso.TimePeriod.TimeRange(e.Start, e.End, true));
 
-            foreach (var day in model.Days)
-            {
-                day.NumberOfEvents = events.Count(e => day.CalendarViewPeriod.OverlapsWith(e));
-            }
+        //    foreach (var day in model.Days)
+        //    {
+        //        day.NumberOfEvents = events.Count(e => day.CalendarViewPeriod.OverlapsWith(e));
+        //    }
 
-            return model;
-        }
+        //    return model;
+        //}
     }
 }
