@@ -41,9 +41,9 @@ namespace VolleyRain.DataAccess
 
         private void SeedRoles(DatabaseContext context)
         {
-            Role_Admin = new Role { IsBuiltIn = true, Name = "Administrator", Description = "Built-in administrator role" };
+            Role_Admin = new Role { IsBuiltIn = true, Name = "Administrator", Description = "Built-in administrator role", IsDefaultAdminRole = true };
             Role_TeamAdmin = new Role { IsBuiltIn = true, Name = "Team-Administrator", Description = "Built-in team administrator role" };
-            Role_User = new Role { IsBuiltIn = true, Name = "User", Description = "Built-in user role" };
+            Role_User = new Role { IsBuiltIn = true, Name = "User", Description = "Built-in user role", IsDefaultUserRole = true };
             context.Roles.Add(Role_Admin);
             context.Roles.Add(Role_TeamAdmin);
             context.Roles.Add(Role_User);
@@ -52,28 +52,28 @@ namespace VolleyRain.DataAccess
 
         private void SeedUsers(DatabaseContext context)
         {
-            User_Admin = new User { Username = "Admin", Name = "Raphael", Surname = "Fleischlin", Password = "12345", Email = "admin@volleyrain.ch", IsApproved = true };
+            User_Admin = new User { Name = "Raphael", Surname = "Fleischlin", Password = "12345", Email = "admin@volleyrain.ch", IsApproved = true };
             User_Admin.Roles.Add(Role_Admin);
             User_Admin.Roles.Add(Role_TeamAdmin);
             User_Admin.Roles.Add(Role_User);
             context.Users.Add(User_Admin);
             context.SaveChanges();
 
-            var teamAdmin = new User { Username = "Vanessa", Name = "Vanessa", Surname = "Fleischlin", Password = "12345", Email = "vanessa@volleyrain.ch", IsApproved = true };
+            var teamAdmin = new User { Name = "Vanessa", Surname = "Fleischlin", Password = "12345", Email = "vanessa@volleyrain.ch", IsApproved = true };
             teamAdmin.Roles.Add(Role_TeamAdmin);
 
             var users = new List<User>
             {
                 teamAdmin,
-                new User { Username = "Deborah", Name = "Deborah", Surname = "Drake", Password = "12345", Email = "deborah@volleyrain.ch", IsApproved = true },
-                new User { Username = "Christina", Name = "Christina", Surname = "Miley", Password = "12345", Email = "christina@volleyrain.ch", IsApproved = true },
-                new User { Username = "Jessica", Name = "Jessica", Surname = "Holloway", Password = "12345", Email = "jessica@volleyrain.ch", IsApproved = true },
-                new User { Username = "Jennifer", Name = "Jennifer", Surname = "Prince", Password = "12345", Email = "jennifer@volleyrain.ch", IsApproved = true },
-                new User { Username = "Nathalie", Name = "Nathalie", Surname = "Janne", Password = "12345", Email = "nathalie@volleyrain.ch", IsApproved = true },
-                new User { Username = "Adriana", Name = "Adriana", Surname = "Blue", Password = "12345", Email = "adriana@volleyrain.ch", IsApproved = true },
-                new User { Username = "Michelle", Name = "Michelle", Surname = "Blonde", Password = "12345", Email = "michelle@volleyrain.ch", IsApproved = true },
-                new User { Username = "Nicole", Name = "Nicole", Surname = "Devil", Password = "12345", Email = "nicole@volleyrain.ch", IsApproved = true },
-                new User { Username = "Sophie", Name = "Sophie", Surname = "Sutra", Password = "12345", Email = "sophie@volleyrain.ch", IsApproved = true },
+                new User { Name = "Deborah", Surname = "Drake", Password = "12345", Email = "deborah@volleyrain.ch", IsApproved = true },
+                new User { Name = "Christina", Surname = "Miley", Password = "12345", Email = "christina@volleyrain.ch", IsApproved = true },
+                new User { Name = "Jessica", Surname = "Holloway", Password = "12345", Email = "jessica@volleyrain.ch", IsApproved = true },
+                new User { Name = "Jennifer", Surname = "Prince", Password = "12345", Email = "jennifer@volleyrain.ch", IsApproved = true },
+                new User { Name = "Nathalie", Surname = "Janne", Password = "12345", Email = "nathalie@volleyrain.ch", IsApproved = true },
+                new User { Name = "Adriana", Surname = "Blue", Password = "12345", Email = "adriana@volleyrain.ch", IsApproved = true },
+                new User { Name = "Michelle", Surname = "Blonde", Password = "12345", Email = "michelle@volleyrain.ch", IsApproved = true },
+                new User { Name = "Nicole", Surname = "Devil", Password = "12345", Email = "nicole@volleyrain.ch", IsApproved = true },
+                new User { Name = "Sophie", Surname = "Sutra", Password = "12345", Email = "sophie@volleyrain.ch", IsApproved = true },
             };
             users.ForEach(u =>
             {

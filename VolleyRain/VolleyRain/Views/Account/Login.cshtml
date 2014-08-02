@@ -13,10 +13,10 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Username, new { @class = "control-label col-sm-2 hidden-xs" })
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-sm-2 hidden-xs" })
             <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Username) })
-                @Html.ValidationMessageFor(model => model.Username)
+                @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = Html.DisplayNameFor(model => model.Email) })
+                @Html.ValidationMessageFor(model => model.Email)
             </div>
         </div>
 
@@ -42,6 +42,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <input type="submit" value="Anmelden" class="btn btn-default btn-success" />
                 <a href="#" class="btn btn-default btn-warning">Passwort vergessen?</a>
+                <a href="@Url.Action("Create", "Account")" class="btn btn-default btn-warning">Registrieren</a>
             </div>
         </div>
     </div>

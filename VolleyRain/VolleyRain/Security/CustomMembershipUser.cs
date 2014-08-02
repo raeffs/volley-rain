@@ -10,7 +10,7 @@ namespace VolleyRain.Security
     public class CustomMembershipUser : MembershipUser
     {
         public CustomMembershipUser(User user)
-            : base("CustomMembershipProvider", user.Username, user.ID, user.Email, string.Empty, string.Empty, user.IsApproved, user.IsLockedOut, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now)
+            : base("CustomMembershipProvider", user.Email, user.ID, user.Email, string.Empty, string.Empty, user.IsApproved, user.IsLockedOut, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now, DateTime.Now)
         {
         }
     }

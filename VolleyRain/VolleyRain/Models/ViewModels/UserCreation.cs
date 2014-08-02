@@ -6,18 +6,27 @@ using System.Web;
 
 namespace VolleyRain.Models
 {
-    public class Login
+    public class UserCreation
     {
         [Required]
+        [Display(Name = "Vorname")]
+        public string Name { get; set; }
+
+        [Required]
+        [Display(Name = "Nachname")]
+        public string Surname { get; set; }
+
+        [Required]
         [Display(Name = "E-Mail")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
         [Display(Name = "Passwort")]
         public string Password { get; set; }
 
-        [Display(Name = "Angemeldet bleiben")]
-        public bool RememberMe { get; set; }
+        [Required]
+        [Display(Name = "Passwort wiederholen")]
+        public string PasswordConfirmation { get; set; }
     }
 }

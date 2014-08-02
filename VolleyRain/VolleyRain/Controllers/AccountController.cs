@@ -26,12 +26,12 @@ namespace VolleyRain.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (Membership.ValidateUser(model.Username, model.Password))
+                if (Membership.ValidateUser(model.Email, model.Password))
                 {
-                    FormsAuthentication.RedirectFromLoginPage(model.Username, model.RememberMe);
+                    FormsAuthentication.RedirectFromLoginPage(model.Email, model.RememberMe);
                 }
 
-                ModelState.AddModelError("", "Incorrect username and/or password");
+                ModelState.AddModelError("", "Falsche E-Mail-Adresse und / oder Passwort.");
             }
 
             return View(model);
@@ -41,6 +41,46 @@ namespace VolleyRain.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Login", "Account");
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(UserCreation model)
+        {
+            if (model.Password != model.PasswordConfirmation)
+            {
+                ModelState.AddModelError("PasswordConfirmation", "Die Passwörter stimmen nicht überein.");
+            }
+            if (Context.Users.Any(u => u.Email == model.Email))
+            {
+                ModelState.AddModelError("Email", "Die E-Mail-Adresse existiert bereits.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var entity = new User
+                {
+                    Name = model.Name,
+                    Surname = model.Surname,
+                    Email = model.Email,
+                    Password = model.Password,
+                };
+                entity.Roles.Add(Context.Roles.Single(r => r.IsDefaultUserRole));
+                Context.Users.Add(entity);
+                Context.SaveChanges();
+
+                return RedirectToAction("Login");
+            }
+
+            return View(model);
         }
     }
 }

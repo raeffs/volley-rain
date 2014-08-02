@@ -10,11 +10,6 @@ namespace VolleyRain.Controllers
 {
     public class TeamController : BaseController
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [Authorize(Roles = "Team-Administrator")]
         public ActionResult Members(int? teamID)
         {

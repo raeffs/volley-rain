@@ -31,7 +31,7 @@ namespace VolleyRain.Security
 
             using (var db = new DatabaseContext())
             {
-                return db.Users.Any(u => u.Username == username && u.Password == password);
+                return db.Users.Any(u => u.Email == username && u.Password == password);
             }
         }
 
@@ -43,7 +43,7 @@ namespace VolleyRain.Security
             using (var db = new DatabaseContext())
             {
                 // TODO: add is approved and is locked out checks
-                var user = db.Users.SingleOrDefault(u => u.Username == username);
+                var user = db.Users.SingleOrDefault(u => u.Email == username);
                 if (user == null) return null;
 
                 var membershipUser = new CustomMembershipUser(user);

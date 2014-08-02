@@ -10,13 +10,16 @@ namespace VolleyRain.Models
     {
         public int ID { get; set; }
 
-        [Required]
         public bool IsBuiltIn { get; set; }
 
         [Required]
         public string Name { get; set; }
 
         public string Description { get; set; }
+
+        public bool IsDefaultUserRole { get; set; }
+
+        public bool IsDefaultAdminRole { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
 

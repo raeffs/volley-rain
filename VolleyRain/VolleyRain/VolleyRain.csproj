@@ -225,6 +225,7 @@
     <Compile Include="Models\Entities\Attendance.cs" />
     <Compile Include="Models\ViewModels\EventSummary.cs" />
     <Compile Include="Models\Extensions\CssClassExtensions.cs" />
+    <Compile Include="Models\ViewModels\UserCreation.cs" />
     <Compile Include="Models\ViewModels\UserSummary.cs" />
     <Compile Include="Models\ViewModels\AttendanceMatrix.cs" />
     <Compile Include="Models\Entities\AttendanceType.cs" />
@@ -335,6 +336,7 @@
     <Content Include="Views\Game\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Bootstrap3PaginationSimple.cshtml" />
     <Content Include="Views\Team\Members.cshtml" />
+    <Content Include="Views\Account\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

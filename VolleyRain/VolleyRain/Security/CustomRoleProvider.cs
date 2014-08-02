@@ -40,7 +40,7 @@ namespace VolleyRain.Security
             var userRoles = new string[] { };
             using (var db = new DatabaseContext())
             {
-                var user = db.Users.SingleOrDefault(u => u.Username == username);
+                var user = db.Users.SingleOrDefault(u => u.Email == username);
                 if (user != null) userRoles = user.Roles.Select(r => r.Name).ToArray();
             }
 
