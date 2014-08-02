@@ -1,0 +1,34 @@
+﻿@model IList<TeamMembership>
+
+@{
+    ViewBag.Title = "Teammitglieder";
+}
+
+<h2>Teammitglieder <small>Team SVKT Rain</small></h2>
+
+@using (Html.BeginForm())
+{
+    <div class="pager">
+        <input type="submit" value="Speichern" class="btn btn-default btn-success" />
+        <a href="@Url.Action("Index")" class="btn btn-default btn-warning">Zurück</a>
+    </div>
+    
+    <table class="table table-condensed">
+        <thead>
+            <tr>
+                <th class="hidden"></th>
+                <th>@Html.DisplayNameFor(model => Model[0].Name)</th>
+                <th>@Html.DisplayNameFor(model => Model[0].Surname)</th>
+                <th>@Html.DisplayNameFor(model => Model[0].IsMemberOfTeam)</th>
+            </tr>
+        </thead>
+        @for (int i = 0; i < Model.Count(); i++) { 
+            <tr>
+                <td class="hidden">@Html.HiddenFor(model => Model[i].UserID)</td>
+                <td>@Html.DisplayFor(model => Model[i].Name)</td>
+                <td>@Html.DisplayFor(model => Model[i].Surname)</td>
+                <td>@Html.CheckBoxFor(model => Model[i].IsMemberOfTeam)</td>
+            </tr>
+        }
+    </table>
+}

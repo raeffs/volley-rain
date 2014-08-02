@@ -14,6 +14,7 @@ namespace VolleyRain.DataAccess
         private Team Team;
 
         private Role Role_Admin;
+        private Role Role_TeamAdmin;
         private Role Role_User;
 
         private User User_Admin;
@@ -41,8 +42,10 @@ namespace VolleyRain.DataAccess
         private void SeedRoles(DatabaseContext context)
         {
             Role_Admin = new Role { IsBuiltIn = true, Name = "Administrator", Description = "Built-in administrator role" };
+            Role_TeamAdmin = new Role { IsBuiltIn = true, Name = "Team-Administrator", Description = "Built-in team administrator role" };
             Role_User = new Role { IsBuiltIn = true, Name = "User", Description = "Built-in user role" };
             context.Roles.Add(Role_Admin);
+            context.Roles.Add(Role_TeamAdmin);
             context.Roles.Add(Role_User);
             context.SaveChanges();
         }
@@ -51,12 +54,17 @@ namespace VolleyRain.DataAccess
         {
             User_Admin = new User { Username = "Admin", Name = "Raphael", Surname = "Fleischlin", Password = "12345", Email = "admin@volleyrain.ch", IsApproved = true };
             User_Admin.Roles.Add(Role_Admin);
+            User_Admin.Roles.Add(Role_TeamAdmin);
             User_Admin.Roles.Add(Role_User);
             context.Users.Add(User_Admin);
             context.SaveChanges();
 
+            var teamAdmin = new User { Username = "Vanessa", Name = "Vanessa", Surname = "Fleischlin", Password = "12345", Email = "vanessa@volleyrain.ch", IsApproved = true };
+            teamAdmin.Roles.Add(Role_TeamAdmin);
+
             var users = new List<User>
             {
+                teamAdmin,
                 new User { Username = "Deborah", Name = "Deborah", Surname = "Drake", Password = "12345", Email = "deborah@volleyrain.ch", IsApproved = true },
                 new User { Username = "Christina", Name = "Christina", Surname = "Miley", Password = "12345", Email = "christina@volleyrain.ch", IsApproved = true },
                 new User { Username = "Jessica", Name = "Jessica", Surname = "Holloway", Password = "12345", Email = "jessica@volleyrain.ch", IsApproved = true },

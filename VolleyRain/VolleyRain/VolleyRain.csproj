@@ -211,6 +211,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RankingController.cs" />
     <Compile Include="Controllers\StyleController.cs" />
+    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="DataAccess\DatabaseContext.cs" />
     <Compile Include="DataAccess\DatabaseInitializer.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
@@ -219,6 +220,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\PaginationHelper.cs" />
+    <Compile Include="Models\ViewModels\TeamMembership.cs" />
     <Compile Include="Models\ViewModels\AttendanceSummary.cs" />
     <Compile Include="Models\Entities\Attendance.cs" />
     <Compile Include="Models\ViewModels\EventSummary.cs" />
@@ -332,6 +334,7 @@
     </Content>
     <Content Include="Views\Game\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Bootstrap3PaginationSimple.cshtml" />
+    <Content Include="Views\Team\Members.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

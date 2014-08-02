@@ -12,5 +12,10 @@ namespace VolleyRain
         {
             return principal.IsInRole("Administrator");
         }
+
+        public static bool IsTeamAdministrator(this IPrincipal principal)
+        {
+            return principal.IsInRole("Team-Administrator");
+        }
     }
 }
