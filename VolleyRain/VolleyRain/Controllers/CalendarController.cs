@@ -48,22 +48,5 @@ namespace VolleyRain.Controllers
 
             return View();
         }
-
-        //private Month GetMonth(int year, int month)
-        //{
-        //    var model = new Month(year, month);
-
-        //    var events = Context.Events
-        //        .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End && (e.Team == null || Session.Teams.Contains(e.Team.ID)))
-        //        .ToList()
-        //        .Select(e => new Itenso.TimePeriod.TimeRange(e.Start, e.End, true));
-
-        //    foreach (var day in model.Days)
-        //    {
-        //        day.NumberOfEvents = events.Count(e => day.CalendarViewPeriod.OverlapsWith(e));
-        //    }
-
-        //    return model;
-        //}
     }
 }

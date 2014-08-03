@@ -147,5 +147,21 @@ namespace VolleyRain.Controllers
 
             return RedirectToAction("Edit");
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult Types()
+        {
+            return View(Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList()));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult Types(IList<AttendanceType> model)
+        {
+
+
+            return RedirectToAction("Types");
+        }
     }
 }

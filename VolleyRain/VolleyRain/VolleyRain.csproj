@@ -341,6 +341,7 @@
     <Content Include="Views\Team\Members.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Navigation\Render.cshtml" />
+    <Content Include="Views\Attendance\Types.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

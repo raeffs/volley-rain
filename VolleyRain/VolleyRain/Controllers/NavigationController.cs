@@ -47,6 +47,7 @@ namespace VolleyRain.Controllers
                 Links = new List<NavigationLink> 
                 {
                     new NavigationLink { Controller = "Team", Action = "Members", DisplayText = "Teammitglieder", Role = "Team-Administrator" },
+                    new NavigationLink { Controller = "Attendance", Action = "Types", DisplayText = "Anwesenheits-Typen", Role = "Team-Administrator" },
                 }
             },
         };
@@ -60,7 +61,6 @@ namespace VolleyRain.Controllers
             var active = model.SelectMany(g => g.Links).SingleOrDefault(l => l.Controller == currentController && l.Action == currentAction)
                 ?? model.SelectMany(g => g.Links).First(l => l.Controller == currentController);
             active.IsActive = true;
-            //model.ForEach(g => g.Links.Where(l => l != active).ToList().ForEach(l => l.IsActive = false));
 
             foreach (var group in model)
             {
