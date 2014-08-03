@@ -208,6 +208,7 @@
     <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RankingController.cs" />
     <Compile Include="Controllers\StyleController.cs" />
@@ -220,6 +221,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\PaginationHelper.cs" />
+    <Compile Include="Models\ViewModels\NavigationGroup.cs" />
+    <Compile Include="Models\ViewModels\NavigationLink.cs" />
     <Compile Include="Models\ViewModels\TeamMembership.cs" />
     <Compile Include="Models\ViewModels\AttendanceSummary.cs" />
     <Compile Include="Models\Entities\Attendance.cs" />
@@ -285,7 +288,7 @@
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Attendance\Index.cshtml" />
-    <Content Include="Views\Style\Index.cshtml" />
+    <Content Include="Views\Style\Render.cshtml" />
     <Content Include="Views\Attendance\Edit.cshtml" />
     <None Include="Service References\SwissVolley\SwissVolley.wsdl" />
     <Content Include="Service References\SwissVolley\VolleyRain.SwissVolley.ClubEntry.datasource">
@@ -337,6 +340,7 @@
     <Content Include="Views\Shared\DisplayTemplates\Bootstrap3PaginationSimple.cshtml" />
     <Content Include="Views\Team\Members.cshtml" />
     <Content Include="Views\Account\Create.cshtml" />
+    <Content Include="Views\Navigation\Render.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

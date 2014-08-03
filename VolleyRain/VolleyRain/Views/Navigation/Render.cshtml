@@ -1,0 +1,79 @@
+﻿@model IEnumerable<NavigationGroup>
+
+<div class="navbar navbar-default navbar-inverse">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            @foreach (var group in Model.Where(g => !g.AlignRight))
+            {
+                @RenderGroup(group)
+            }
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            @foreach (var group in Model.Where(g => g.AlignRight)) 
+            { 
+                @RenderGroup(group)
+            }
+        </ul>
+    </div>
+
+</div>
+
+@helper RenderGroup(NavigationGroup group)
+{
+    if (group.Links.Count == 1 && group.HideIfOnlyOneLink)
+    {
+        var link = group.Links.Single();
+        var liBuilder = new TagBuilder("li");
+        if (link.IsActive)
+        {
+            liBuilder.AddCssClass("active");
+        }
+        var aBuilder = new TagBuilder("a");
+        aBuilder.MergeAttribute("href", Url.Action(link.Action, link.Controller));
+        aBuilder.SetInnerText(link.DisplayText);
+        liBuilder.InnerHtml = aBuilder.ToString();
+                
+        @Html.Raw(liBuilder.ToString())
+    }
+    else
+    {
+        var liBuilder = new TagBuilder("li");
+        liBuilder.AddCssClass("dropdown");
+        if (group.IsActive)
+        {
+            liBuilder.AddCssClass("active");
+        }
+        var aBuilder = new TagBuilder("a");
+        aBuilder.MergeAttribute("href", "#");
+        aBuilder.AddCssClass("dropdown-toggle");
+        aBuilder.MergeAttribute("data-toggle", "dropdown");
+        var bBuilder = new TagBuilder("b");
+        bBuilder.AddCssClass("caret");
+        aBuilder.InnerHtml = group.DisplayText + " " + bBuilder.ToString();
+        liBuilder.InnerHtml = aBuilder.ToString();
+        var ulBuilder = new TagBuilder("ul");
+        ulBuilder.AddCssClass("dropdown-menu");
+
+        foreach (var link in group.Links)
+        {
+            var innerLiBuilder = new TagBuilder("li");
+            var innerABuilder = new TagBuilder("a");
+            innerABuilder.MergeAttribute("href", Url.Action(link.Action, link.Controller));
+            innerABuilder.SetInnerText(link.DisplayText);
+            innerLiBuilder.InnerHtml = innerABuilder.ToString();
+            ulBuilder.InnerHtml += innerLiBuilder.ToString();
+        }
+
+        liBuilder.InnerHtml += ulBuilder.ToString();
+                
+        @Html.Raw(liBuilder.ToString())
+    }
+}

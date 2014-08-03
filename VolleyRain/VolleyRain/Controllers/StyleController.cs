@@ -10,7 +10,7 @@ namespace VolleyRain.Controllers
 {
     public class StyleController : BaseController
     {
-        public ActionResult Index()
+        public ActionResult Render()
         {
             ViewBag.AttendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList());
             ViewBag.EventTypes = Cache.GetEventTypes(() => Context.EventTypes.ToList());
