@@ -52,28 +52,28 @@ namespace VolleyRain.DataAccess
 
         private void SeedUsers(DatabaseContext context)
         {
-            User_Admin = new User { Name = "Raphael", Surname = "Fleischlin", Password = "12345", Email = "admin@volleyrain.ch", IsApproved = true };
+            User_Admin = new User { Name = "Raphael", Surname = "Fleischlin", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "admin@volleyrain.ch", IsApproved = true };
             User_Admin.Roles.Add(Role_Admin);
             User_Admin.Roles.Add(Role_TeamAdmin);
             User_Admin.Roles.Add(Role_User);
             context.Users.Add(User_Admin);
             context.SaveChanges();
 
-            var teamAdmin = new User { Name = "Vanessa", Surname = "Fleischlin", Password = "12345", Email = "vanessa@volleyrain.ch", IsApproved = true };
+            var teamAdmin = new User { Name = "Vanessa", Surname = "Fleischlin", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "vanessa@volleyrain.ch", IsApproved = true };
             teamAdmin.Roles.Add(Role_TeamAdmin);
 
             var users = new List<User>
             {
                 teamAdmin,
-                new User { Name = "Deborah", Surname = "Drake", Password = "12345", Email = "deborah@volleyrain.ch", IsApproved = true },
-                new User { Name = "Christina", Surname = "Miley", Password = "12345", Email = "christina@volleyrain.ch", IsApproved = true },
-                new User { Name = "Jessica", Surname = "Holloway", Password = "12345", Email = "jessica@volleyrain.ch", IsApproved = true },
-                new User { Name = "Jennifer", Surname = "Prince", Password = "12345", Email = "jennifer@volleyrain.ch", IsApproved = true },
-                new User { Name = "Nathalie", Surname = "Janne", Password = "12345", Email = "nathalie@volleyrain.ch", IsApproved = true },
-                new User { Name = "Adriana", Surname = "Blue", Password = "12345", Email = "adriana@volleyrain.ch", IsApproved = true },
-                new User { Name = "Michelle", Surname = "Blonde", Password = "12345", Email = "michelle@volleyrain.ch", IsApproved = true },
-                new User { Name = "Nicole", Surname = "Devil", Password = "12345", Email = "nicole@volleyrain.ch", IsApproved = true },
-                new User { Name = "Sophie", Surname = "Sutra", Password = "12345", Email = "sophie@volleyrain.ch", IsApproved = true },
+                new User { Name = "Deborah", Surname = "Drake", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "deborah@volleyrain.ch", IsApproved = true },
+                new User { Name = "Christina", Surname = "Miley", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "christina@volleyrain.ch", IsApproved = true },
+                new User { Name = "Jessica", Surname = "Holloway", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "jessica@volleyrain.ch", IsApproved = true },
+                new User { Name = "Jennifer", Surname = "Prince", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "jennifer@volleyrain.ch", IsApproved = true },
+                new User { Name = "Nathalie", Surname = "Janne", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "nathalie@volleyrain.ch", IsApproved = true },
+                new User { Name = "Adriana", Surname = "Blue", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "adriana@volleyrain.ch", IsApproved = true },
+                new User { Name = "Michelle", Surname = "Blonde", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "michelle@volleyrain.ch", IsApproved = true },
+                new User { Name = "Nicole", Surname = "Devil", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "nicole@volleyrain.ch", IsApproved = true },
+                new User { Name = "Sophie", Surname = "Sutra", Password = "7562D3C24B642876D8C99C0D8D4FE836511BDC39BD71143BAD5A76A758E30640F1B97C4924E65796D30679A221C79E715D9F384159E5A9BAF47D9B3917D847CE", Salt = "E47CE43021D6A534DF8EE287FDC27ED67114BC1284C308156CCF8BCE89B0150689E4AA62F28F4AAC5A771C7D0568E9A859060B4BD724ED9C915439DFBEC1B4C0", Email = "sophie@volleyrain.ch", IsApproved = true },
             };
             users.ForEach(u =>
             {

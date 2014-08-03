@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Caching;
 using System.Web.Security;
@@ -31,7 +32,14 @@ namespace VolleyRain.Security
 
             using (var db = new DatabaseContext())
             {
-                return db.Users.Any(u => u.Email == username && u.Password == password);
+                var user = db.Users.SingleOrDefault(u => u.Email == username);
+                if (user == null) return false;
+
+                using (var derivedBytes = new Rfc2898DeriveBytes(password, StringToByteArray(user.Salt)))
+                {
+                    var key = BitConverter.ToString(derivedBytes.GetBytes(64)).Replace("-", "");
+                    return user.Password == key;
+                }
             }
         }
 
@@ -53,6 +61,20 @@ namespace VolleyRain.Security
             }
         }
 
+        public byte[] StringToByteArray(String hex)
+        {
+            int NumberChars = hex.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+            return bytes;
+        }
+
+        public override bool ChangePassword(string username, string oldPassword, string newPassword)
+        {
+            throw new NotImplementedException();
+        }
+
         public override string ApplicationName
         {
             get
@@ -63,11 +85,6 @@ namespace VolleyRain.Security
             {
                 throw new NotImplementedException();
             }
-        }
-
-        public override bool ChangePassword(string username, string oldPassword, string newPassword)
-        {
-            throw new NotImplementedException();
         }
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)

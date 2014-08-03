@@ -14,6 +14,9 @@ namespace VolleyRain.Models
         public string Password { get; set; }
 
         [Required]
+        public string Salt { get; set; }
+
+        [Required]
         public string Email { get; set; }
 
         [Required]

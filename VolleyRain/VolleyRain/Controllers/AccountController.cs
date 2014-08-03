@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -66,12 +68,22 @@ namespace VolleyRain.Controllers
 
             if (ModelState.IsValid)
             {
+                var salt = string.Empty;
+                var key = string.Empty;
+
+                using (var derivedBytes = new Rfc2898DeriveBytes(model.Password, 64))
+                {
+                    salt = BitConverter.ToString(derivedBytes.Salt).Replace("-", "");
+                    key = BitConverter.ToString(derivedBytes.GetBytes(64)).Replace("-", "");
+                }
+
                 var entity = new User
                 {
                     Name = model.Name,
                     Surname = model.Surname,
                     Email = model.Email,
-                    Password = model.Password,
+                    Password = key,
+                    Salt = salt,
                 };
                 entity.Roles.Add(Context.Roles.Single(r => r.IsDefaultUserRole));
                 Context.Users.Add(entity);
