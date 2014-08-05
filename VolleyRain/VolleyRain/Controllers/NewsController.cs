@@ -8,13 +8,18 @@ using System.Web;
 using System.Web.Mvc;
 using VolleyRain.Models;
 using VolleyRain.DataAccess;
+using NLog;
 
 namespace VolleyRain.Controllers
 {
     public class NewsController : BaseController
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public ActionResult Index(int? page)
         {
+            Logger.Info("Going to fetch news entries...");
+
             var pagination = new Pagination(5, Context.NewsArticles.Count(), page);
             ViewBag.Pagination = pagination;
 

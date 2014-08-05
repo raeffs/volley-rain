@@ -50,6 +50,12 @@
       <HintPath>..\packages\TimePeriodLibrary.NET.2.0.0\lib\net35\Desktop.Release\Itenso.TimePeriod.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog.Extended">
+      <HintPath>..\packages\NLog.Extended.3.1.0.0\lib\net45-full\NLog.Extended.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -221,6 +227,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\PaginationHelper.cs" />
+    <Compile Include="Models\Entities\Log.cs" />
     <Compile Include="Models\ViewModels\NavigationGroup.cs" />
     <Compile Include="Models\ViewModels\NavigationLink.cs" />
     <Compile Include="Models\ViewModels\TeamMembership.cs" />
