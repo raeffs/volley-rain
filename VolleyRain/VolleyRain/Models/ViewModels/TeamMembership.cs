@@ -18,5 +18,8 @@ namespace VolleyRain.Models
 
         [Display(Name = "Mitglied?")]
         public bool IsMemberOfTeam { get; set; }
+
+        [Display(Name = "Administrator?")]
+        public bool IsAdminOfTeam { get; set; }
     }
 }

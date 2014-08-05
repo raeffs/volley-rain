@@ -42,7 +42,7 @@ namespace VolleyRain.DataAccess
         private void SeedRoles(DatabaseContext context)
         {
             Role_Admin = new Role { IsBuiltIn = true, Name = "Administrator", Description = "Built-in administrator role", IsDefaultAdminRole = true };
-            Role_TeamAdmin = new Role { IsBuiltIn = true, Name = "Team-Administrator", Description = "Built-in team administrator role" };
+            Role_TeamAdmin = new Role { IsBuiltIn = true, Name = "Team-Administrator", Description = "Built-in team administrator role", IsDefaultTeamAdminRole = true };
             Role_User = new Role { IsBuiltIn = true, Name = "User", Description = "Built-in user role", IsDefaultUserRole = true };
             context.Roles.Add(Role_Admin);
             context.Roles.Add(Role_TeamAdmin);

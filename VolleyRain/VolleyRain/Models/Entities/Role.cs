@@ -21,6 +21,8 @@ namespace VolleyRain.Models
 
         public bool IsDefaultAdminRole { get; set; }
 
+        public bool IsDefaultTeamAdminRole { get; set; }
+
         public virtual ICollection<User> Users { get; set; }
 
         public Role()

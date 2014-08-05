@@ -17,7 +17,8 @@ namespace VolleyRain.Controllers
             var team = Context.Teams.Include(t => t.Members).Single(t => t.Season.ID == season.ID);
             var members = team.Members.Select(t => t.ID).ToList();
             var model = Context.Users
-                .Select(u => new TeamMembership { UserID = u.ID, Name = u.Name, Surname = u.Surname })
+                .Include(u => u.Roles)
+                .Select(u => new TeamMembership { UserID = u.ID, Name = u.Name, Surname = u.Surname, IsAdminOfTeam = u.Roles.Any(r => r.IsDefaultTeamAdminRole) })
                 .ToList();
 
             foreach (var user in model)
