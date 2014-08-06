@@ -221,12 +221,18 @@
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="DataAccess\DatabaseContext.cs" />
     <Compile Include="DataAccess\DatabaseInitializer.cs" />
+    <Compile Include="DataAccess\OldDatabaseInitializer.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Filter\SessionDataFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\PaginationHelper.cs" />
+    <Compile Include="Migrations\201408061659567_InitialVersion.cs" />
+    <Compile Include="Migrations\201408061659567_InitialVersion.Designer.cs">
+      <DependentUpon>201408061659567_InitialVersion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Log.cs" />
     <Compile Include="Models\ViewModels\NavigationGroup.cs" />
     <Compile Include="Models\ViewModels\NavigationLink.cs" />
@@ -364,6 +370,11 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\SwissVolley\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201408061659567_InitialVersion.resx">
+      <DependentUpon>201408061659567_InitialVersion.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
