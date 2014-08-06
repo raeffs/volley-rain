@@ -128,6 +128,17 @@ table .form-control {
     color: #ddd;
 }
 
+.footer a {
+    color: #999;
+}
+
+.footer a:hover,
+.footer a:active, 
+.footer a:focus {
+    text-decoration: none;
+    color: #fff;
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;
