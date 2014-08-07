@@ -27,8 +27,22 @@
                 <td class="hidden">@Html.HiddenFor(model => Model[i].UserID)</td>
                 <td>@Html.DisplayFor(model => Model[i].Name)</td>
                 <td>@Html.DisplayFor(model => Model[i].Surname)</td>
-                <td>@Html.CheckBoxFor(model => Model[i].IsMemberOfTeam)</td>
-                <td>@Html.DisplayFor(model => Model[i].IsAdminOfTeam)</td>
+                @if (Model[i].IsSelf)
+                { 
+                    <td>@Html.DisplayFor(model => Model[i].IsMemberOfTeam)</td>
+                }
+                else
+                { 
+                    <td>@Html.CheckBoxFor(model => Model[i].IsMemberOfTeam)</td>
+                }
+                @if (!Model[i].IsSelf && HttpContext.Current.User.IsAdministrator())
+                {
+                    <td>@Html.CheckBoxFor(model => Model[i].IsAdminOfTeam)</td>
+                }
+                else
+                { 
+                    <td>@Html.DisplayFor(model => Model[i].IsAdminOfTeam)</td>
+                }
             </tr>
         }
     </table>

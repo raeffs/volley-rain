@@ -21,5 +21,7 @@ namespace VolleyRain.Models
 
         [Display(Name = "Administrator?")]
         public bool IsAdminOfTeam { get; set; }
+
+        public bool IsSelf { get; set; }
     }
 }
