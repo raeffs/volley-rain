@@ -10,15 +10,15 @@ namespace VolleyRain.Models
     {
         public int ID { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Bezeichnung")]
         public string Name { get; set; }
 
-        [Required]
+        //[Required]
         [Display(Name = "Kürzel")]
         public string ShortName { get; set; }
 
-        [Required]
+        //[Required]
         public string ColorCode { get; set; }
     }
 }

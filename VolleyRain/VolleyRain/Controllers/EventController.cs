@@ -19,6 +19,7 @@ namespace VolleyRain.Controllers
             ViewBag.EventTypes = new SelectList(Context.EventTypes, "ID", "Name");
         }
 
+        [Authorize(Roles = "Team-Administrator")]
         public ActionResult Create()
         {
             var model = new EventCreation
@@ -32,6 +33,7 @@ namespace VolleyRain.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Team-Administrator")]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind] EventCreation model)
         {
@@ -44,12 +46,14 @@ namespace VolleyRain.Controllers
 
             if (ModelState.IsValid)
             {
+                var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
                 var entity = new Event
                 {
                     Name = model.Name,
                     Description = model.Description,
                     Location = model.Location,
                     Type = selectedType,
+                    Team = Context.Teams.Include(t => t.Members).Single(t => t.Season.ID == season.ID)
                 };
 
                 if (model.FullTime)

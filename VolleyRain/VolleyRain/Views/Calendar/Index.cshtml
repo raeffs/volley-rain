@@ -50,14 +50,26 @@
             {
                 tdBuilder.AddCssClass("fadeout"); 
             }
-            if (day.Date.Day == 1)
+            var aBuilder = new TagBuilder("a");
+            if (HttpContext.Current.User.IsTeamAdministrator())
             {
-                tdBuilder.SetInnerText(day.Date.ToString("d. MMM"));
+                aBuilder.MergeAttribute("href", Url.Action("Create", "Event"));
             }
             else
             {
-                tdBuilder.SetInnerText(day.Date.Day.ToString());
+                aBuilder.MergeAttribute("href", "#");
             }
+            var spanBuilder = new TagBuilder("span");
+            if (day.Date.Day == 1)
+            {
+                spanBuilder.SetInnerText(day.Date.ToString("d. MMM"));
+            }
+            else
+            {
+                spanBuilder.SetInnerText(day.Date.Day.ToString());
+            }
+            aBuilder.InnerHtml = spanBuilder.ToString();
+            tdBuilder.InnerHtml = aBuilder.ToString();
             headBuilder.InnerHtml += tdBuilder.ToString();
 
             tdBuilder = new TagBuilder("td");
@@ -67,9 +79,9 @@
             }
             foreach (var @event in day.Events)
             {
-                var aBuilder = new TagBuilder("a");
+                aBuilder = new TagBuilder("a");
                 aBuilder.MergeAttribute("href", "#");
-                var spanBuilder = new TagBuilder("span");
+                spanBuilder = new TagBuilder("span");
                 spanBuilder.AddCssClass("label");
                 spanBuilder.AddCssClass(@event.GetCssClass());
                 spanBuilder.SetInnerText(@event.Name);

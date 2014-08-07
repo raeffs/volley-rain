@@ -59,8 +59,8 @@ namespace VolleyRain.Controllers
             var currentController = HttpContext.Request.RequestContext.RouteData.Values["controller"] as string ?? "News";
             var currentAction = HttpContext.Request.RequestContext.RouteData.Values["action"] as string ?? "Index";
             var active = model.SelectMany(g => g.Links).SingleOrDefault(l => l.Controller == currentController && l.Action == currentAction)
-                ?? model.SelectMany(g => g.Links).First(l => l.Controller == currentController);
-            active.IsActive = true;
+                ?? model.SelectMany(g => g.Links).SingleOrDefault(l => l.Controller == currentController);
+            if (active != null) active.IsActive = true;
 
             foreach (var group in model)
             {

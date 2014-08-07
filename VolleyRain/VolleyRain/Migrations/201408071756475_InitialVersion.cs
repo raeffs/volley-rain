@@ -117,9 +117,9 @@ namespace VolleyRain.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(nullable: false),
-                        ShortName = c.String(nullable: false),
-                        ColorCode = c.String(nullable: false),
+                        Name = c.String(),
+                        ShortName = c.String(),
+                        ColorCode = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
             

@@ -18,7 +18,9 @@ namespace VolleyRain.Controllers
             ViewBag.EventTypes = Cache.GetEventTypes(() => Context.EventTypes.ToList());
 
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
-            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();
+            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID && Session.Teams.Contains(t.ID)).Select(t => t.ID).ToList();
+
+            if (teamIDs.Count == 0) return RedirectToAction("NoTeam");
 
             var pagination = new Pagination(10, Context.Events.Count(e => teamIDs.Contains(e.Team.ID)), page);
             if (!page.HasValue) pagination.JumpToItem(Context.Events.Count(e => teamIDs.Contains(e.Team.ID) && e.Start < DateTime.Today) + 1);
@@ -68,7 +70,9 @@ namespace VolleyRain.Controllers
             ViewBag.AttendanceTypes = attendanceTypes.OrderBy(t => t.ID).ToList();
 
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
-            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();
+            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID && Session.Teams.Contains(t.ID)).Select(t => t.ID).ToList();
+
+            if (teamIDs.Count == 0) return RedirectToAction("NoTeam");
 
             var model = Context.Events
                 .Where(e => teamIDs.Contains(e.Team.ID))
@@ -146,6 +150,11 @@ namespace VolleyRain.Controllers
             Context.SaveChanges();
 
             return RedirectToAction("Edit");
+        }
+
+        public ActionResult NoTeam()
+        {
+            return View();
         }
 
         [HttpGet]

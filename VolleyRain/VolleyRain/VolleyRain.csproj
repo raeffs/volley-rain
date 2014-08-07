@@ -228,9 +228,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\PaginationHelper.cs" />
-    <Compile Include="Migrations\201408061659567_InitialVersion.cs" />
-    <Compile Include="Migrations\201408061659567_InitialVersion.Designer.cs">
-      <DependentUpon>201408061659567_InitialVersion.cs</DependentUpon>
+    <Compile Include="Migrations\201408071756475_InitialVersion.cs" />
+    <Compile Include="Migrations\201408071756475_InitialVersion.Designer.cs">
+      <DependentUpon>201408071756475_InitialVersion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Log.cs" />
@@ -355,6 +355,7 @@
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Navigation\Render.cshtml" />
     <Content Include="Views\Attendance\Types.cshtml" />
+    <Content Include="Views\Attendance\NoTeam.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -372,8 +373,8 @@
     <WCFMetadataStorage Include="Service References\SwissVolley\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201408061659567_InitialVersion.resx">
-      <DependentUpon>201408061659567_InitialVersion.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408071756475_InitialVersion.resx">
+      <DependentUpon>201408071756475_InitialVersion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
