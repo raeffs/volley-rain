@@ -7,12 +7,15 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using VolleyRain.DataAccess;
+using VolleyRain.Mailers;
 using VolleyRain.Models;
 
 namespace VolleyRain.Controllers
 {
     public class AccountController : BaseController
     {
+        private UserMailer mailer = new UserMailer();
+
         [HttpGet]
         [AllowAnonymous]
         public ActionResult Login()
@@ -88,6 +91,8 @@ namespace VolleyRain.Controllers
                 entity.Roles.Add(Context.Roles.Single(r => r.IsDefaultUserRole));
                 Context.Users.Add(entity);
                 Context.SaveChanges();
+
+                //mailer.Welcome(entity).SendAsync();
 
                 return RedirectToAction("Login");
             }

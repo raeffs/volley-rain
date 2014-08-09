@@ -1,0 +1,12 @@
+@{
+    var user = ViewBag.User as User;
+}
+
+Willkommen @user.Name
+
+Dein automatisch generiertes Passwort lautet: abc
+Du kannst es nach dem Login ändern.
+
+Hier geht es zum Login: @Url.Abs(Url.Action("Login", "Account"))
+
+Viel Spass!
