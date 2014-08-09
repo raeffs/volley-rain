@@ -91,7 +91,8 @@ namespace VolleyRain.Controllers
                     AlignRight = true,
                     Links = new List<NavigationLink>
                     {
-                        new NavigationLink { Controller = "Account", Action = "Logout", DisplayText = "Logout", Role = string.Empty }
+                        new NavigationLink { Controller = "Account", Action = "ChangePassword", DisplayText = "Passwort ändern", Role = string.Empty },
+                        new NavigationLink { Controller = "Account", Action = "Logout", DisplayText = "Logout", Role = string.Empty },
                     }
                 });
             }

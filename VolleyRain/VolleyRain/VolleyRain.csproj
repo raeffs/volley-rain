@@ -238,6 +238,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Log.cs" />
     <Compile Include="Models\Entities\PasswordResetToken.cs" />
+    <Compile Include="Models\ViewModels\PasswordChange.cs" />
     <Compile Include="Models\ViewModels\PasswordReset.cs" />
     <Compile Include="Models\ViewModels\PasswordResetRequest.cs" />
     <Compile Include="Models\ViewModels\NavigationGroup.cs" />
@@ -366,6 +367,7 @@
     <Content Include="Views\Account\LostPassword.cshtml" />
     <Content Include="Views\UserMailer\PasswordReset.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -160,10 +160,42 @@ namespace VolleyRain.Controllers
             {
                 var entity = Context.PasswordResetTokens.Include(t => t.User).Single(t => t.Token == token);
                 var user = Membership.GetUser(entity.User.Email);
-                user.ChangePassword(null, model.Password);
+                user.ChangePassword("dummy", model.Password);
 
                 TempData["SuccessMessage"] = "Dein Passwort wurde geändert.";
                 return RedirectToAction("Login");
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangePassword(PasswordChange model)
+        {
+            if (model.Password != model.PasswordConfirmation)
+            {
+                ModelState.AddModelError("PasswordConfirmation", "Die Passwörter stimmen nicht überein.");
+            }
+            if (!Membership.ValidateUser(Context.Users.Single(u => u.ID == Session.UserID).Email, model.CurrentPassword))
+            {
+                ModelState.AddModelError("CurrentPassword", "Das Passwort ist nicht korrekt.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var user = Membership.GetUser(Context.Users.Single(u => u.ID == Session.UserID).Email);
+                user.ChangePassword("dummy", model.Password);
+
+                TempData["SuccessMessage"] = "Dein Passwort wurde geändert.";
             }
 
             return View();
