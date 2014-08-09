@@ -34,12 +34,7 @@ namespace VolleyRain.Security
             {
                 var user = db.Users.SingleOrDefault(u => u.Email == username);
                 if (user == null) return false;
-
-                using (var derivedBytes = new Rfc2898DeriveBytes(password, StringToByteArray(user.Salt)))
-                {
-                    var key = BitConverter.ToString(derivedBytes.GetBytes(64)).Replace("-", "");
-                    return user.Password == key;
-                }
+                return VerifyKey(password, user.Password, user.Salt);
             }
         }
 
@@ -61,16 +56,53 @@ namespace VolleyRain.Security
             }
         }
 
-        public byte[] StringToByteArray(String hex)
+        public override MembershipUser CreateUser(
+            string username,
+            string password,
+            string email,
+            string passwordQuestion,
+            string passwordAnswer,
+            bool isApproved,
+            object providerUserKey,
+            out MembershipCreateStatus status)
         {
-            int NumberChars = hex.Length;
-            byte[] bytes = new byte[NumberChars / 2];
-            for (int i = 0; i < NumberChars; i += 2)
-                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
-            return bytes;
+            using (var db = new DatabaseContext())
+            {
+                if (db.Users.Any(u => u.Email == email))
+                {
+                    status = MembershipCreateStatus.DuplicateEmail;
+                    return null;
+                }
+
+                string key;
+                string salt;
+                GenerateKey(password, out key, out salt);
+
+                var user = new User
+                {
+                    Email = email,
+                    Password = key,
+                    Salt = salt,
+                    Name = string.Empty,
+                    Surname = string.Empty,
+                    IsApproved = true,
+                    IsLockedOut = false
+                };
+                user.Roles.Add(db.Roles.Single(r => r.IsDefaultUserRole));
+                db.Users.Add(user);
+                db.SaveChanges();
+
+                status = MembershipCreateStatus.Success;
+                return new CustomMembershipUser(user);
+            }
         }
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ResetPassword(string username, string answer)
         {
             throw new NotImplementedException();
         }
@@ -88,11 +120,6 @@ namespace VolleyRain.Security
         }
 
         public override bool ChangePasswordQuestionAndAnswer(string username, string password, string newPasswordQuestion, string newPasswordAnswer)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override System.Web.Security.MembershipUser CreateUser(string username, string password, string email, string passwordQuestion, string passwordAnswer, bool isApproved, object providerUserKey, out System.Web.Security.MembershipCreateStatus status)
         {
             throw new NotImplementedException();
         }
@@ -187,11 +214,6 @@ namespace VolleyRain.Security
             get { throw new NotImplementedException(); }
         }
 
-        public override string ResetPassword(string username, string answer)
-        {
-            throw new NotImplementedException();
-        }
-
         public override bool UnlockUser(string userName)
         {
             throw new NotImplementedException();
@@ -200,6 +222,33 @@ namespace VolleyRain.Security
         public override void UpdateUser(System.Web.Security.MembershipUser user)
         {
             throw new NotImplementedException();
+        }
+
+        private void GenerateKey(string password, out string key, out string salt)
+        {
+            using (var derivedBytes = new Rfc2898DeriveBytes(password, 64))
+            {
+                salt = BitConverter.ToString(derivedBytes.Salt).Replace("-", "");
+                key = BitConverter.ToString(derivedBytes.GetBytes(64)).Replace("-", "");
+            }
+        }
+
+        private bool VerifyKey(string password, string key, string salt)
+        {
+            using (var derivedBytes = new Rfc2898DeriveBytes(password, StringToByteArray(salt)))
+            {
+                var keyToVerify = BitConverter.ToString(derivedBytes.GetBytes(64)).Replace("-", "");
+                return key == keyToVerify;
+            }
+        }
+
+        private byte[] StringToByteArray(string hexString)
+        {
+            int NumberChars = hexString.Length;
+            byte[] bytes = new byte[NumberChars / 2];
+            for (int i = 0; i < NumberChars; i += 2)
+                bytes[i / 2] = Convert.ToByte(hexString.Substring(i, 2), 16);
+            return bytes;
         }
     }
 }

@@ -19,10 +19,10 @@ namespace VolleyRain.Models
         [Required]
         public string Email { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         public string Name { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         public string Surname { get; set; }
 
         [Required]

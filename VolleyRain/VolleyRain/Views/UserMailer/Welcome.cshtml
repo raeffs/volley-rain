@@ -1,11 +1,12 @@
-@{
+﻿@{
     var user = ViewBag.User as User;
 }
 
 <h1>Willkommen @user.Name</h1>
 
-<p>Dein automatisch generiertes Passwort lautet: abc</p>
-<p>Du kannst es nach dem Login �ndern.</p>
+<p>Dein automatisch generiertes Passwort lautet:</p>
+<p>@ViewBag.Password</p>
+<p>Du kannst es nach dem Login ändern.</p>
 <p></p>
 <p>Hier geht es zum Login: <a href="@Url.Abs(Url.Action("Login", "Account"))">@Url.Abs(Url.Action("Login", "Account"))</a></p>
 <p></p>

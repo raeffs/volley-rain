@@ -10,9 +10,10 @@ namespace VolleyRain.Mailers
             MasterName = "_Layout";
         }
 
-        public virtual MvcMailMessage Welcome(User user)
+        public virtual MvcMailMessage Welcome(User user, string password)
         {
             ViewBag.User = user;
+            ViewBag.Password = password;
             return Populate(x =>
             {
                 x.Subject = string.Format("Willkommen {0}", user.Name);

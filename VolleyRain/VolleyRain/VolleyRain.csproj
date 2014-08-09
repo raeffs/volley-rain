@@ -224,7 +224,7 @@
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="DataAccess\DatabaseContext.cs" />
     <Compile Include="DataAccess\DatabaseInitializer.cs" />
-    <Compile Include="DataAccess\OldDatabaseInitializer.cs" />
+    <Compile Include="DataAccess\TestDatabaseInitializer.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Filter\SessionDataFilter.cs" />
     <Compile Include="Global.asax.cs">
@@ -360,12 +360,8 @@
     <Content Include="Views\Navigation\Render.cshtml" />
     <Content Include="Views\Attendance\Types.cshtml" />
     <Content Include="Views\Attendance\NoTeam.cshtml" />
-    <Content Include="Views\UserMailer\_Layout.cshtml" />
     <Content Include="Views\UserMailer\Welcome.cshtml" />
-    <Content Include="Views\UserMailer\PasswordReset.cshtml" />
-    <Content Include="Views\UserMailer\_Layout.text.cshtml" />
-    <Content Include="Views\UserMailer\Welcome.text.cshtml" />
-    <Content Include="Views\UserMailer\PasswordReset.text.cshtml" />
+    <Content Include="Views\UserMailer\_Layout.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

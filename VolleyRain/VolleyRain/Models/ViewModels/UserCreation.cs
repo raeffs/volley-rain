@@ -22,11 +22,7 @@ namespace VolleyRain.Models
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Passwort")]
-        public string Password { get; set; }
-
-        [Required]
-        [Display(Name = "Passwort wiederholen")]
-        public string PasswordConfirmation { get; set; }
+        [Display(Name = "E-Mail wiederholen")]
+        public string EmailConfirmation { get; set; }
     }
 }

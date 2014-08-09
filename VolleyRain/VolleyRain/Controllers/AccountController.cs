@@ -60,40 +60,28 @@ namespace VolleyRain.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(UserCreation model)
         {
-            if (model.Password != model.PasswordConfirmation)
-            {
-                ModelState.AddModelError("PasswordConfirmation", "Die Passwörter stimmen nicht überein.");
-            }
             if (Context.Users.Any(u => u.Email == model.Email))
             {
                 ModelState.AddModelError("Email", "Die E-Mail-Adresse existiert bereits.");
             }
+            if (model.Email != model.EmailConfirmation)
+            {
+                ModelState.AddModelError("EmailConfirmation", "Die E-Mail-Adressen stimmen nicht überein.");
+            }
 
             if (ModelState.IsValid)
             {
-                var salt = string.Empty;
-                var key = string.Empty;
+                var generatedPassword = Membership.GeneratePassword(10, 2);
+                var user = Membership.CreateUser(model.Email, generatedPassword, model.Email);
 
-                using (var derivedBytes = new Rfc2898DeriveBytes(model.Password, 64))
-                {
-                    salt = BitConverter.ToString(derivedBytes.Salt).Replace("-", "");
-                    key = BitConverter.ToString(derivedBytes.GetBytes(64)).Replace("-", "");
-                }
-
-                var entity = new User
-                {
-                    Name = model.Name,
-                    Surname = model.Surname,
-                    Email = model.Email,
-                    Password = key,
-                    Salt = salt,
-                };
-                entity.Roles.Add(Context.Roles.Single(r => r.IsDefaultUserRole));
-                Context.Users.Add(entity);
+                var entity = Context.Users.Single(u => u.Email == user.Email);
+                entity.Name = model.Name;
+                entity.Surname = model.Surname;
                 Context.SaveChanges();
 
-                //mailer.Welcome(entity).SendAsync();
+                mailer.Welcome(entity, generatedPassword).SendAsync();
 
+                TempData["SuccessMessage"] = "Dein Account wurde erstellt. Das Passwort wurde an die angegebene E-Mail-Adresse gesendet.";
                 return RedirectToAction("Login");
             }
 
