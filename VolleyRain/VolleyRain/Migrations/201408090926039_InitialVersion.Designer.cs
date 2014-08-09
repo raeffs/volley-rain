@@ -13,7 +13,7 @@ namespace VolleyRain.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201408071756475_InitialVersion"; }
+            get { return "201408090926039_InitialVersion"; }
         }
         
         string IMigrationMetadata.Source

@@ -22,14 +22,14 @@ namespace VolleyRain.Mailers
             });
         }
 
-        public virtual MvcMailMessage PasswordReset()
+        public virtual MvcMailMessage PasswordReset(PasswordResetToken token)
         {
-            //ViewBag.Data = someObject;
+            ViewBag.Token = token;
             return Populate(x =>
             {
-                x.Subject = "PasswordReset";
+                x.Subject = "Anweisungen zum Zurücksetzen deines Passworts";
                 x.ViewName = "PasswordReset";
-                x.To.Add("some-email@example.com");
+                x.To.Add(token.User.Email);
             });
         }
     }

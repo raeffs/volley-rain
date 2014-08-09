@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Data.Entity;
 using VolleyRain.DataAccess;
 using VolleyRain.Mailers;
 using VolleyRain.Models;
@@ -86,6 +87,86 @@ namespace VolleyRain.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult LostPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult LostPassword(PasswordResetRequest model)
+        {
+            if (Context.Users.None(u => u.Email == model.Email))
+            {
+                ModelState.AddModelError("Email", "Die E-Mail-Adresse konnte nicht gefunden werden.");
+            }
+            if (ModelState.IsValid)
+            {
+                var user = Context.Users.Single(u => u.Email == model.Email);
+                var generatedToken = Guid.NewGuid().ToString().Replace("-", "").ToUpper();
+
+                var entity = new PasswordResetToken
+                {
+                    User = user,
+                    Token = generatedToken,
+                    ValidUntil = DateTime.Now.AddDays(1)
+                };
+                Context.PasswordResetTokens.Add(entity);
+                Context.SaveChanges();
+
+                mailer.PasswordReset(entity).SendAsync();
+
+                TempData["SuccessMessage"] = "Eine E-Mail mit Anweisungen zum Zurücksetzen deines Passworts wurde an die angegebene E-Mail-Adresse gesendet.";
+                return RedirectToAction("Login");
+            }
+
+            return View();
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ResetPassword(string token)
+        {
+            if (string.IsNullOrWhiteSpace(token) || Context.PasswordResetTokens.None(t => t.Token == token && t.ValidUntil >= DateTime.Now))
+            {
+                TempData["ErrorMessage"] = "Der Link zum Zurücksetzen des Passworts ist nicht mehr gültig.";
+                return RedirectToAction("Login");
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(string token, PasswordReset model)
+        {
+            if (string.IsNullOrWhiteSpace(token) || Context.PasswordResetTokens.None(t => t.Token == token && t.ValidUntil >= DateTime.Now))
+            {
+                TempData["ErrorMessage"] = "Der Link zum Zurücksetzen des Passworts ist nicht mehr gültig.";
+                return RedirectToAction("Login");
+            }
+            if (model.Password != model.PasswordConfirmation)
+            {
+                ModelState.AddModelError("PasswordConfirmation", "Die Passwörter stimmen nicht überein.");
+            }
+
+            if (ModelState.IsValid)
+            {
+                var entity = Context.PasswordResetTokens.Include(t => t.User).Single(t => t.Token == token);
+                var user = Membership.GetUser(entity.User.Email);
+                user.ChangePassword(null, model.Password);
+
+                TempData["SuccessMessage"] = "Dein Passwort wurde geändert.";
+                return RedirectToAction("Login");
+            }
+
+            return View();
         }
     }
 }

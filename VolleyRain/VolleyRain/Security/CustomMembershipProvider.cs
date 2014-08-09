@@ -99,7 +99,21 @@ namespace VolleyRain.Security
 
         public override bool ChangePassword(string username, string oldPassword, string newPassword)
         {
-            throw new NotImplementedException();
+            using (var db = new DatabaseContext())
+            {
+                if (db.Users.None(u => u.Email == username)) return false;
+
+                var user = db.Users.Single(u => u.Email == username);
+
+                string key;
+                string salt;
+                GenerateKey(newPassword, out key, out salt);
+
+                user.Password = key;
+                user.Salt = salt;
+                db.SaveChanges();
+                return true;
+            }
         }
 
         public override string ResetPassword(string username, string answer)

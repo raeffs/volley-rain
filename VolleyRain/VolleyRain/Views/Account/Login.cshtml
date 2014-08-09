@@ -41,7 +41,7 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <input type="submit" value="Anmelden" class="btn btn-default btn-success" />
-                @*<a href="#" class="btn btn-default btn-warning">Passwort vergessen?</a>*@
+                <a href="@Url.Action("LostPassword", "Account")" class="btn btn-default btn-warning">Passwort vergessen?</a>
                 <a href="@Url.Action("Create", "Account")" class="btn btn-default btn-warning">Account erstellen</a>
             </div>
         </div>

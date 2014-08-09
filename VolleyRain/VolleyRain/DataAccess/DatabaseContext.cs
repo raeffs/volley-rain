@@ -27,6 +27,8 @@ namespace VolleyRain.DataAccess
 
         public DbSet<NewsArticle> NewsArticles { get; set; }
 
+        public DbSet<PasswordResetToken> PasswordResetTokens { get; set; }
+
         public DbSet<Ranking> Rankings { get; set; }
 
         public DbSet<Role> Roles { get; set; }

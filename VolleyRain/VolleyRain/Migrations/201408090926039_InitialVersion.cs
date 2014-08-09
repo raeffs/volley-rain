@@ -163,6 +163,19 @@ namespace VolleyRain.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.PasswordResetToken",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Token = c.String(nullable: false),
+                        ValidUntil = c.DateTime(nullable: false),
+                        User_ID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.User", t => t.User_ID, cascadeDelete: true)
+                .Index(t => t.User_ID);
+            
+            CreateTable(
                 "dbo.Ranking",
                 c => new
                     {
@@ -215,6 +228,7 @@ namespace VolleyRain.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.Ranking", "AssociatedTeam_ID", "dbo.Team");
+            DropForeignKey("dbo.PasswordResetToken", "User_ID", "dbo.User");
             DropForeignKey("dbo.Attendance", "User_ID", "dbo.User");
             DropForeignKey("dbo.Attendance", "Type_ID", "dbo.AttendanceType");
             DropForeignKey("dbo.Attendance", "Event_ID", "dbo.Event");
@@ -231,6 +245,7 @@ namespace VolleyRain.Migrations
             DropIndex("dbo.UserRole", new[] { "Role_ID" });
             DropIndex("dbo.UserRole", new[] { "User_ID" });
             DropIndex("dbo.Ranking", new[] { "AssociatedTeam_ID" });
+            DropIndex("dbo.PasswordResetToken", new[] { "User_ID" });
             DropIndex("dbo.Team", new[] { "Season_ID" });
             DropIndex("dbo.GameDetails", new[] { "ID" });
             DropIndex("dbo.Event", new[] { "Type_ID" });
@@ -241,6 +256,7 @@ namespace VolleyRain.Migrations
             DropTable("dbo.TeamMembership");
             DropTable("dbo.UserRole");
             DropTable("dbo.Ranking");
+            DropTable("dbo.PasswordResetToken");
             DropTable("dbo.NewsArticle");
             DropTable("dbo.Log");
             DropTable("dbo.AttendanceType");
