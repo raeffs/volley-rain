@@ -19,6 +19,8 @@ namespace VolleyRain.DataAccess
 
         public DbSet<AttendanceType> AttendanceTypes { get; set; }
 
+        public DbSet<Document> Documents { get; set; }
+
         public DbSet<Event> Events { get; set; }
 
         public DbSet<EventType> EventTypes { get; set; }

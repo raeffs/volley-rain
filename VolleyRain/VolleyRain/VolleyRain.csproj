@@ -215,6 +215,7 @@
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
@@ -231,11 +232,13 @@
     </Compile>
     <Compile Include="Helper\PaginationHelper.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
-    <Compile Include="Migrations\201408090926039_InitialVersion.cs" />
-    <Compile Include="Migrations\201408090926039_InitialVersion.Designer.cs">
-      <DependentUpon>201408090926039_InitialVersion.cs</DependentUpon>
+    <Compile Include="Migrations\201408091703194_InitialVersion.cs" />
+    <Compile Include="Migrations\201408091703194_InitialVersion.Designer.cs">
+      <DependentUpon>201408091703194_InitialVersion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Entities\Document.cs" />
+    <Compile Include="Models\ViewModels\DocumentUpload.cs" />
     <Compile Include="Models\Entities\Log.cs" />
     <Compile Include="Models\Entities\PasswordResetToken.cs" />
     <Compile Include="Models\ViewModels\PasswordChange.cs" />
@@ -284,6 +287,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Validation\FileSizeAttribute.cs" />
+    <Compile Include="Validation\FileTypesAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -368,6 +373,8 @@
     <Content Include="Views\UserMailer\PasswordReset.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Document\Upload.cshtml" />
+    <Content Include="Views\Document\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -376,7 +383,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Documents\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -385,8 +392,8 @@
     <WCFMetadataStorage Include="Service References\SwissVolley\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201408090926039_InitialVersion.resx">
-      <DependentUpon>201408090926039_InitialVersion.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408091703194_InitialVersion.resx">
+      <DependentUpon>201408091703194_InitialVersion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

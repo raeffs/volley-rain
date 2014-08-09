@@ -136,6 +136,16 @@ namespace VolleyRain.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.Document",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        FileName = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "dbo.Log",
                 c => new
                     {
@@ -259,6 +269,7 @@ namespace VolleyRain.Migrations
             DropTable("dbo.PasswordResetToken");
             DropTable("dbo.NewsArticle");
             DropTable("dbo.Log");
+            DropTable("dbo.Document");
             DropTable("dbo.AttendanceType");
             DropTable("dbo.EventType");
             DropTable("dbo.Season");

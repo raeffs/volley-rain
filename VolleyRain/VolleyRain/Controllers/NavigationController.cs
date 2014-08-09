@@ -42,6 +42,16 @@ namespace VolleyRain.Controllers
             },
             new NavigationGroup 
             { 
+                DisplayText = "Dokumente", 
+                HideIfOnlyOneLink = true, 
+                Links = new List<NavigationLink> 
+                {
+                    new NavigationLink { Controller = "Document", Action = "Index", DisplayText = "Dokumente", Role = "User" },
+                    //new NavigationLink { Controller = "Document", Action = "Upload", DisplayText = "Dokument hochladen", Role = string.Empty },
+                }
+            },
+            new NavigationGroup 
+            { 
                 DisplayText = "Verwaltung", 
                 HideIfOnlyOneLink = false, 
                 Links = new List<NavigationLink> 

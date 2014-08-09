@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Document>
+
+@{
+    ViewBag.Title = "Dokumente";
+}
+
+<h2>Dokumente</h2>
+
+<div class="pager">
+    <a href="@Url.Action("Upload")" class="btn btn-success">Dokument hochladen</a>
+</div>
+
+@if (Model.Any())
+{
+    <ul>
+        @foreach (var document in Model)
+        { 
+            <li>@Html.ActionLink(document.Name, "View", new { documentID = document.ID })</li>
+        }
+    </ul>
+}
+else
+{ 
+    <p>Es wurden noch keine Dokumente hochgeladen.</p>
+}
