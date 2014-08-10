@@ -42,5 +42,12 @@ namespace VolleyRain.Models
         [DataType(DataType.Time)]
         [Display(Name = "Zeit (bis)")]
         public DateTime? EndTime { get; set; }
+
+        [Display(Name = "Wöchentlich wiederholen")]
+        public bool RecurrsWeekly { get; set; }
+
+        [Display(Name = "Anzahl Wiederholungen")]
+        [Range(1, 99)]
+        public int? NumberOfRecurrences { get; set; }
     }
 }

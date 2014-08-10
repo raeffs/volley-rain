@@ -43,6 +43,10 @@ namespace VolleyRain.Controllers
             {
                 ModelState.AddModelError("Type", "Selected type does not exist!");
             }
+            if (model.RecurrsWeekly && !model.NumberOfRecurrences.HasValue)
+            {
+                ModelState.AddModelError("NumberOfRecurrences", "Das Feld \"Anzahl Wiederholungen\" wird benötigt.");
+            }
 
             if (ModelState.IsValid)
             {
@@ -68,6 +72,25 @@ namespace VolleyRain.Controllers
                 }
 
                 Context.Events.Add(entity);
+
+                if (model.RecurrsWeekly)
+                {
+                    for (int i = 1; i <= model.NumberOfRecurrences; i++)
+                    {
+                        var recurrence = new Event
+                        {
+                            Name = entity.Name,
+                            Description = entity.Description,
+                            Location = entity.Location,
+                            Type = entity.Type,
+                            Team = entity.Team,
+                            Start = entity.Start.AddDays(7 * i),
+                            End = entity.End.AddDays(7 * i),
+                        };
+                        Context.Events.Add(recurrence);
+                    }
+                }
+
                 Context.SaveChanges();
                 return RedirectToAction("Index", "Calendar");
             }
