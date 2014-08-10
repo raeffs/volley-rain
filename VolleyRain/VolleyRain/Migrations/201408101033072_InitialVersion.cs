@@ -158,6 +158,7 @@ namespace VolleyRain.Migrations
                         SessionID = c.String(nullable: false),
                         ThreadID = c.Int(nullable: false),
                         UserIdentity = c.String(nullable: false),
+                        Exception = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.ID);
             

@@ -18,8 +18,6 @@ namespace VolleyRain.Controllers
 
         public ActionResult Index(int? page)
         {
-            Logger.Info("Going to fetch news entries...");
-
             var pagination = new Pagination(5, Context.NewsArticles.Count(), page);
             ViewBag.Pagination = pagination;
 

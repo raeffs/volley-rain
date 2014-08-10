@@ -33,5 +33,8 @@ namespace VolleyRain.Models
 
         [Required]
         public string UserIdentity { get; set; }
+
+        [Required]
+        public string Exception { get; set; }
     }
 }

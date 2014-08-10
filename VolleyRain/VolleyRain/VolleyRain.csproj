@@ -226,16 +226,15 @@
     <Compile Include="DataAccess\DatabaseContext.cs" />
     <Compile Include="DataAccess\DatabaseInitializer.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
-    <Compile Include="Filter\SessionDataFilter.cs" />
+    <Compile Include="Filter\ActionLoggingAttribute.cs" />
+    <Compile Include="Filter\ConditionalFilterProvider.cs" />
+    <Compile Include="Filter\ExceptionLoggingAttribute.cs" />
+    <Compile Include="Filter\SessionDataFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\PaginationHelper.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
-    <Compile Include="Migrations\201408091703194_InitialVersion.cs" />
-    <Compile Include="Migrations\201408091703194_InitialVersion.Designer.cs">
-      <DependentUpon>201408091703194_InitialVersion.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Document.cs" />
     <Compile Include="Models\ViewModels\DocumentUpload.cs" />
@@ -390,11 +389,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\SwissVolley\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201408091703194_InitialVersion.resx">
-      <DependentUpon>201408091703194_InitialVersion.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

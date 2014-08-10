@@ -8,7 +8,7 @@ using VolleyRain.Models;
 
 namespace VolleyRain.Filter
 {
-    public class SessionDataFilter : ActionFilterAttribute
+    public class SessionDataFilterAttribute : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
