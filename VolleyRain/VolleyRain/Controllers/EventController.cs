@@ -35,13 +35,21 @@ namespace VolleyRain.Controllers
         [HttpPost]
         [Authorize(Roles = "Team-Administrator")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind] EventCreation model)
+        public ActionResult Create(EventCreation model)
         {
             // TODO: geht bestimmt eleganter
             var selectedType = Context.EventTypes.SingleOrDefault(t => t.ID == model.Type.ID);
             if (selectedType == null)
             {
-                ModelState.AddModelError("Type", "Selected type does not exist!");
+                ModelState.AddModelError("Type", "Der gewählte Typ existiert nicht.");
+            }
+            if (!model.FullTime && !model.StartTime.HasValue)
+            {
+                ModelState.AddModelError("StartTime", "Das Feld \"Zeit (von)\" wird benötigt.");
+            }
+            if (!model.FullTime && !model.EndTime.HasValue)
+            {
+                ModelState.AddModelError("StartTime", "Das Feld \"Zeit (bis)\" wird benötigt.");
             }
             if (model.RecurrsWeekly && !model.NumberOfRecurrences.HasValue)
             {
