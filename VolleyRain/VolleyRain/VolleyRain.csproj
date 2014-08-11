@@ -378,6 +378,7 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Document\Upload.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Event\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

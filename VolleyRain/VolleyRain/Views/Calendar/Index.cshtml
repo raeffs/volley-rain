@@ -80,7 +80,14 @@
             foreach (var @event in day.Events)
             {
                 aBuilder = new TagBuilder("a");
-                aBuilder.MergeAttribute("href", "#");
+                if (HttpContext.Current.User.IsTeamAdministrator())
+                {
+                    aBuilder.MergeAttribute("href", Url.Action("Delete", "Event", new { eventID = @event.ID }));
+                }
+                else
+                {
+                    aBuilder.MergeAttribute("href", "#");
+                }
                 spanBuilder = new TagBuilder("span");
                 spanBuilder.AddCssClass("label");
                 spanBuilder.AddCssClass(@event.GetCssClass());

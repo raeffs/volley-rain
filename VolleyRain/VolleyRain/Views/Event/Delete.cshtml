@@ -1,0 +1,71 @@
+﻿@model Event
+
+@{
+    ViewBag.Title = "Termin löschen";
+}
+
+<h2>Termin löschen</h2>
+
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ID, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.ID, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Location, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Location, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Type, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Type.Name, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Start, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Start, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.End, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.End, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Delete" class="btn btn-default btn-danger" />
+                <a href="@Url.Action("Index", "Calendar")" class="btn btn-default btn-warning">Zurück</a>
+            </div>
+        </div>
+    }
+
+</div>

@@ -19,6 +19,7 @@ namespace VolleyRain.Controllers
             ViewBag.EventTypes = new SelectList(Context.EventTypes, "ID", "Name");
         }
 
+        [HttpGet]
         [Authorize(Roles = "Team-Administrator")]
         public ActionResult Create()
         {
@@ -104,6 +105,30 @@ namespace VolleyRain.Controllers
             }
 
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult Delete(int eventID)
+        {
+            if (Context.Events.None(e => e.ID == eventID)) return HttpNotFound();
+
+            var model = Context.Events.Single(e => e.ID == eventID);
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Team-Administrator")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int eventID)
+        {
+            if (Context.Events.None(e => e.ID == eventID)) return HttpNotFound();
+
+            var model = Context.Events.Single(e => e.ID == eventID);
+            Context.Events.Remove(model);
+            Context.SaveChanges();
+            TempData["SuccessMessage"] = "Der Termin wurde gelöscht.";
+            return RedirectToAction("Index", "Calendar");
         }
     }
 }
