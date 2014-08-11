@@ -15,7 +15,7 @@
     <ul>
         @foreach (var document in Model)
         { 
-            <li>@Html.ActionLink(document.Name, "View", new { documentID = document.ID })</li>
+            <li>@Html.ActionLink(document.Name, "View", new { documentID = document.ID }) - @Html.ActionLink("löschen", "Delete", new { documentID = document.ID })</li>
         }
     </ul>
 }

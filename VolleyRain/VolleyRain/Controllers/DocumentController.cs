@@ -61,6 +61,32 @@ namespace VolleyRain.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult Delete(int documentID)
+        {
+            if (Context.Documents.None(d => d.ID == documentID)) return HttpNotFound();
+
+            var model = Context.Documents.Single(d => d.ID == documentID);
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Team-Administrator")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int documentID)
+        {
+            if (Context.Documents.None(d => d.ID == documentID)) return HttpNotFound();
+
+            var model = Context.Documents.Single(d => d.ID == documentID);
+            System.IO.File.Delete(GetDocumentPath(model.FileName));
+            Context.Documents.Remove(model);
+            Context.SaveChanges();
+            TempData["SuccessMessage"] = "Das Dokument wurde gelöscht.";
+            return RedirectToAction("Index");
+        }
+
+
         private string GetDocumentPath(string fileName)
         {
             return Path.Combine(Server.MapPath("~/App_Data/Documents"), fileName);
