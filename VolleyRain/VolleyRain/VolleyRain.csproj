@@ -148,6 +148,7 @@
     <Content Include="Content\themes\custom-theme\jquery-ui-1.10.3.custom.css" />
     <Content Include="Content\themes\custom-theme\jquery-ui-1.10.3.theme.css" />
     <Content Include="Content\themes\custom-theme\jquery.ui.1.10.3.ie.css" />
+    <Content Include="todo.txt" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -218,6 +219,7 @@
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RankingController.cs" />
@@ -241,6 +243,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Document.cs" />
+    <Compile Include="Models\ViewModels\LogSummary.cs" />
     <Compile Include="Models\ViewModels\DocumentUpload.cs" />
     <Compile Include="Models\Entities\Log.cs" />
     <Compile Include="Models\Entities\PasswordResetToken.cs" />
@@ -380,6 +383,7 @@
     <Content Include="Views\Document\Index.cshtml" />
     <Content Include="Views\Event\Delete.cshtml" />
     <Content Include="Views\Document\Delete.cshtml" />
+    <Content Include="Views\Log\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

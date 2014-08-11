@@ -60,6 +60,15 @@ namespace VolleyRain.Controllers
                     //new NavigationLink { Controller = "Attendance", Action = "Types", DisplayText = "Anwesenheits-Typen", Role = "Team-Administrator" },
                 }
             },
+            new NavigationGroup 
+            { 
+                DisplayText = "Administration", 
+                HideIfOnlyOneLink = false, 
+                Links = new List<NavigationLink> 
+                {
+                    new NavigationLink { Controller = "Log", Action = "Index", DisplayText = "Log", Role = "Administrator" },
+                }
+            },
         };
 
         public ActionResult Render()

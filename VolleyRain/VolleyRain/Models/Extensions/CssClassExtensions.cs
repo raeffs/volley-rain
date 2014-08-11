@@ -26,5 +26,10 @@ namespace VolleyRain.Models
         {
             return string.Format("event-type-{0}", value.TypeID);
         }
+
+        public static string GetCssClass(this LogSummary value)
+        {
+            return string.Format("log-level-{0}", value.Level.ToLower());
+        }
     }
 }

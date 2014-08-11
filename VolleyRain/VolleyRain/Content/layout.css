@@ -143,6 +143,31 @@ a:focus {
     color: inherit;
 }
 
+.log-level-error {
+    color: #FF4444;
+}
+.log-level-fatal {
+    color: #FF4444;
+    font-weight: 700;
+}
+.log-level-warn {
+    color: #FF8800;
+}
+.log-level-info {
+    color: #669900;
+}
+.log-level-debug {
+}
+.log-level-trace {
+    color: #999999;
+}
+.table-log {
+    font-size: small;
+}
+.table-log tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;
