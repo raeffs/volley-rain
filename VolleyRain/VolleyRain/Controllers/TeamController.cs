@@ -50,15 +50,18 @@ namespace VolleyRain.Controllers
             membersToAdd.ForEach(u => team.Members.Add(u));
             Context.SaveChanges();
 
-            var adminRole = Context.Roles.Single(r => r.IsDefaultTeamAdminRole);
+            if (HttpContext.User.Identity.IsAuthenticated && HttpContext.User.IsAdministrator())
+            {
+                var adminRole = Context.Roles.Single(r => r.IsDefaultTeamAdminRole);
 
-            var futureAdmins = model.Where(u => u.IsAdminOfTeam).Select(u => u.UserID).ToList();
-            var adminsToRemove = adminRole.Users.Where(u => !futureAdmins.Contains(u.ID) && u.ID != Session.UserID).ToList();
-            adminsToRemove.ForEach(u => u.Roles.Remove(adminRole));
-            var currentAdmins = adminRole.Users.Select(u => u.ID).ToList();
-            var adminsToAdd = Context.Users.Where(u => !currentAdmins.Contains(u.ID) && futureAdmins.Contains(u.ID)).ToList();
-            adminsToAdd.ForEach(u => u.Roles.Add(adminRole));
-            Context.SaveChanges();
+                var futureAdmins = model.Where(u => u.IsAdminOfTeam).Select(u => u.UserID).ToList();
+                var adminsToRemove = adminRole.Users.Where(u => !futureAdmins.Contains(u.ID) && u.ID != Session.UserID).ToList();
+                adminsToRemove.ForEach(u => u.Roles.Remove(adminRole));
+                var currentAdmins = adminRole.Users.Select(u => u.ID).ToList();
+                var adminsToAdd = Context.Users.Where(u => !currentAdmins.Contains(u.ID) && futureAdmins.Contains(u.ID)).ToList();
+                adminsToAdd.ForEach(u => u.Roles.Add(adminRole));
+                Context.SaveChanges();
+            }
 
             return Members(teamID);
         }
