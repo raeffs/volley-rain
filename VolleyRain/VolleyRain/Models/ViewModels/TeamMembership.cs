@@ -16,6 +16,9 @@ namespace VolleyRain.Models
         [Display(Name = "Nachname")]
         public string Surname { get; set; }
 
+        [Display(Name = "E-Mail")]
+        public string Email { get; set; }
+
         [Display(Name = "Mitglied?")]
         public bool IsMemberOfTeam { get; set; }
 

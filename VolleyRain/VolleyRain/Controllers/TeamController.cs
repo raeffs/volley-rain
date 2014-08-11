@@ -22,6 +22,7 @@ namespace VolleyRain.Controllers
                 {
                     UserID = u.ID,
                     Name = u.Name,
+                    Email = u.Email,
                     Surname = u.Surname,
                     IsAdminOfTeam = u.Roles.Any(r => r.IsDefaultTeamAdminRole)
                 })
