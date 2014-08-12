@@ -384,6 +384,7 @@
     <Content Include="Views\Event\Delete.cshtml" />
     <Content Include="Views\Document\Delete.cshtml" />
     <Content Include="Views\Log\Index.cshtml" />
+    <Content Include="Views\Log\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

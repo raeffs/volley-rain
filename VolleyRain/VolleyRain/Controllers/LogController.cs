@@ -34,5 +34,15 @@ namespace VolleyRain.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Details(int logID)
+        {
+            if (Context.Log.None(l => l.ID == logID)) return HttpNotFound();
+
+            var model = Context.Log.Single(l => l.ID == logID);
+            return View(model);
+        }
     }
 }

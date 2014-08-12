@@ -20,6 +20,12 @@ namespace VolleyRain
             //);
 
             routes.MapRoute(
+                name: "LogDetails",
+                url: "Log/Details/{logID}",
+                defaults: new { controller = "Log", action = "Details" }
+            );
+
+            routes.MapRoute(
                 name: "Log",
                 url: "Log/{fixedID}/{page}",
                 defaults: new { controller = "Log", action = "Index", fixedID = UrlParameter.Optional, page = UrlParameter.Optional }
