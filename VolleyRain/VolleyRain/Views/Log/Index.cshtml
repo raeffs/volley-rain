@@ -10,16 +10,15 @@
 <table class="table table-condensed table-log">
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(model => model.ID)</th>
             <th>@Html.DisplayNameFor(model => model.TimeStamp)</th>
             <th>@Html.DisplayNameFor(model => model.Logger)</th>
             <th>@Html.DisplayNameFor(model => model.Message)</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model) { 
             <tr class="@item.GetCssClass()">
-                <td>@Html.DisplayFor(modelItem => item.ID)</td>
                 <td>@Html.DisplayFor(modelItem => item.TimeStamp)</td>
                 <td>@Html.DisplayFor(modelItem => item.ShortLogger)</td>
                 @if (item.HasException)
@@ -30,6 +29,10 @@
                 { 
                     <td>@Html.DisplayFor(modelItem => item.Message)</td>
                 }
+                <td>
+                    <a class="btn btn-success btn-xs" href="@Url.Action("Details", new { logID = item.ID })">Details</a>
+                    <a class="btn btn-primary btn-xs" href="@Url.Action("Index", new { fixedID = item.ID })">Fix</a>
+                </td>
             </tr>
         }
     </tbody>

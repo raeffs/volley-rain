@@ -37,7 +37,7 @@
             liBuilder.AddCssClass("active");
         }
         var aBuilder = new TagBuilder("a");
-        aBuilder.MergeAttribute("href", Url.Action(link.Action, link.Controller));
+        aBuilder.MergeAttribute("href", Url.Action(link.Action, link.Controller, link.RouteValues));
         aBuilder.SetInnerText(link.DisplayText);
         liBuilder.InnerHtml = aBuilder.ToString();
                 
@@ -66,7 +66,7 @@
         {
             var innerLiBuilder = new TagBuilder("li");
             var innerABuilder = new TagBuilder("a");
-            innerABuilder.MergeAttribute("href", Url.Action(link.Action, link.Controller));
+            innerABuilder.MergeAttribute("href", Url.Action(link.Action, link.Controller, link.RouteValues));
             innerABuilder.SetInnerText(link.DisplayText);
             innerLiBuilder.InnerHtml = innerABuilder.ToString();
             ulBuilder.InnerHtml += innerLiBuilder.ToString();

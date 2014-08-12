@@ -20,6 +20,12 @@ namespace VolleyRain
             //);
 
             routes.MapRoute(
+                name: "Log",
+                url: "Log/{fixedID}/{page}",
+                defaults: new { controller = "Log", action = "Index", fixedID = UrlParameter.Optional, page = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "CalendarDetails",
                 url: "Calendar/{year}/{month}/{day}",
                 defaults: new { controller = "Calendar", action = "Details" }
