@@ -18,5 +18,7 @@ namespace VolleyRain.Models
         public bool IsActive { get; set; }
 
         public object RouteValues { get; set; }
+
+        public bool Hide { get; set; }
     }
 }

@@ -28,11 +28,11 @@
 
 @helper RenderGroup(NavigationGroup group)
 {
-    if (group.Links.Count == 1 && group.HideIfOnlyOneLink)
+    if (group.Links.Count(l => !l.Hide) == 1 && group.HideIfOnlyOneLink)
     {
-        var link = group.Links.Single();
+        var link = group.Links.Single(l => !l.Hide);
         var liBuilder = new TagBuilder("li");
-        if (link.IsActive)
+        if (link.IsActive || group.IsActive)
         {
             liBuilder.AddCssClass("active");
         }
@@ -62,7 +62,7 @@
         var ulBuilder = new TagBuilder("ul");
         ulBuilder.AddCssClass("dropdown-menu");
 
-        foreach (var link in group.Links)
+        foreach (var link in group.Links.Where(l => !l.Hide))
         {
             var innerLiBuilder = new TagBuilder("li");
             var innerABuilder = new TagBuilder("a");

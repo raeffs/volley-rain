@@ -48,14 +48,6 @@
 
 /* Bootstrap customization */
 
-/* Responsive Calendar customization */
-
-.responsive-calendar {
-    max-width: 750px;
-}
-
-/* Responsive Calendar customization */
-
 body {
     font-family: 'ubunturegular';
 }
@@ -166,6 +158,9 @@ a:focus {
 }
 .table-log tbody tr:hover {
     background-color: #f9f9f9;
+}
+.table-log td {
+    overflow: hidden;
 }
 
 /* styles for validation helpers */
