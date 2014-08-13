@@ -155,12 +155,13 @@ a:focus {
 }
 .table-log {
     font-size: small;
+    -table-layout: fixed;
 }
 .table-log tbody tr:hover {
     background-color: #f9f9f9;
 }
-.table-log td {
-    overflow: hidden;
+.table-log td:last-child {
+    text-align: right;
 }
 
 /* styles for validation helpers */

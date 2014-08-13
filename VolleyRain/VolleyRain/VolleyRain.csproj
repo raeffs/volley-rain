@@ -113,6 +113,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap-extensions.css" />
     <Content Include="Content\fonts\fonts.css" />
     <Content Include="Content\fonts\ubuntu-b-webfont.svg" />
     <Content Include="Content\fonts\ubuntu-bi-webfont.svg" />

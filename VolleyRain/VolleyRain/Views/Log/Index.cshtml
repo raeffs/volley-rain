@@ -7,11 +7,20 @@
 
 <h2>Log</h2>
 
+<div class="pager">
+    @Html.PreviousPageButton(pagination, "Zurück")
+    @Html.NextPageButton(pagination, "Weiter")
+    <div class="btn-group btn-group-responsive">
+        <a href="#" class="btn btn-success">Suchen</a>
+        <a href="@Url.Action("Index", new { fixedID = "", page = "" })" class="btn btn-warning">Fixierung aufheben</a>
+    </div>
+</div>
+
 <table class="table table-condensed table-log">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.TimeStamp)</th>
-            <th>@Html.DisplayNameFor(model => model.Logger)</th>
+            <th class="hidden-xs">@Html.DisplayNameFor(model => model.Logger)</th>
             <th>@Html.DisplayNameFor(model => model.Message)</th>
             <th></th>
         </tr>
@@ -20,7 +29,7 @@
         @foreach (var item in Model) { 
             <tr class="@item.GetCssClass()">
                 <td>@Html.DisplayFor(modelItem => item.TimeStamp)</td>
-                <td>@Html.DisplayFor(modelItem => item.ShortLogger)</td>
+                <td class="hidden-xs">@Html.DisplayFor(modelItem => item.ShortLogger)</td>
                 @if (item.HasException)
                 {
                     <td><a href="@Url.Action("Details", new { logID = item.ID })">@Html.DisplayFor(modelItem => item.Message)</a></td>
@@ -30,8 +39,18 @@
                     <td>@Html.DisplayFor(modelItem => item.Message)</td>
                 }
                 <td>
-                    <a class="btn btn-success btn-xs" href="@Url.Action("Details", new { logID = item.ID })">Details</a>
-                    <a class="btn btn-primary btn-xs" href="@Url.Action("Index", new { fixedID = item.ID })">Fix</a>
+                    <div class="btn-group btn-group-xs">
+                        <a class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="@Url.Action("Details", new { logID = item.ID })">Details</a></li>
+                            <li class="divider"></li>
+                            <li><a href="@Url.Action("Index", new { fixedID = item.ID, page = 1 })">Fixieren</a></li>
+                            <li><a href="#">Session filtern</a></li>
+                            <li><a href="#">Fixieren & filtern</a></li>
+                        </ul>
+                    </div>
                 </td>
             </tr>
         }
@@ -42,9 +61,3 @@
     @Html.PreviousPageButton(pagination, "Zurück")
     @Html.NextPageButton(pagination, "Weiter")
 </div>
-
-<script>
-    $(function () {
-        $('.with-tooltip').tooltip();
-    });
-</script>
