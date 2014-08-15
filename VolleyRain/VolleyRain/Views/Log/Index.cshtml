@@ -10,10 +10,10 @@
 <div class="pager">
     @Html.PreviousPageButton(pagination, "Zurück")
     @Html.NextPageButton(pagination, "Weiter")
-    <div class="btn-group btn-group-responsive">
+    @*<div class="btn-group btn-group-responsive">
         <a href="#" class="btn btn-success">Suchen</a>
         <a href="@Url.Action("Index", new { fixedID = "", page = "" })" class="btn btn-warning">Fixierung aufheben</a>
-    </div>
+    </div>*@
 </div>
 
 <table class="table table-condensed table-log">
@@ -47,8 +47,8 @@
                             <li><a href="@Url.Action("Details", new { logID = item.ID })">Details</a></li>
                             <li class="divider"></li>
                             <li><a href="@Url.Action("Index", new { fixedID = item.ID, page = 1 })">Fixieren</a></li>
-                            <li><a href="#">Session filtern</a></li>
-                            <li><a href="#">Fixieren & filtern</a></li>
+                            <li><a href="@Url.Action("Index", new { filterSession = item.SessionID, page = 1 })">Session filtern</a></li>
+                            <li><a href="@Url.Action("Index", new { fixedID = item.ID, filterSession = item.SessionID, page = 1 })">Fixieren & filtern</a></li>
                         </ul>
                     </div>
                 </td>

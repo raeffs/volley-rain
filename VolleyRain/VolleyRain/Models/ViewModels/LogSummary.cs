@@ -20,5 +20,7 @@ namespace VolleyRain.Models
         public string Message { get; set; }
 
         public bool HasException { get; set; }
+
+        public string SessionID { get; set; }
     }
 }

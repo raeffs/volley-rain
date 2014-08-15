@@ -27,8 +27,8 @@ namespace VolleyRain
 
             routes.MapRoute(
                 name: "Log",
-                url: "Log/{fixedID}/{page}",
-                defaults: new { controller = "Log", action = "Index", fixedID = UrlParameter.Optional, page = UrlParameter.Optional }
+                url: "Log/{page}/{fixedID}/{filterSession}",
+                defaults: new { controller = "Log", action = "Index", page = UrlParameter.Optional, fixedID = UrlParameter.Optional, filterSession = UrlParameter.Optional }
             );
 
             routes.MapRoute(
