@@ -9,8 +9,10 @@
 @using (Html.BeginForm())
 {
     <div class="pager">
-        <input type="submit" value="Speichern" class="btn btn-default btn-success" />
-        <a href="@Url.Action("Index")" class="btn btn-default btn-warning">Zurück</a>
+        <div class="btn-group">
+            <input type="submit" value="Speichern" class="btn btn-default btn-success" />
+            <a href="@Url.Action("Index")" class="btn btn-default btn-warning">Zurück</a>
+        </div>
     </div>
     
     <table class="table table-condensed">
