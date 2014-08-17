@@ -24,15 +24,19 @@
                 if (Model.IsVisibleOnMobile(item))
                 {
                     <th class="@item.GetCssClass()">
-                        <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
-                        <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
+                        <span class="with-comment" data-toggle="tooltip" title="@Html.DisplayFor(model => item.Name)">
+                            <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
+                            <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
+                        </span>
                     </th>
                 }
                 else
                 { 
                     <th class="@item.GetCssClass() hidden-xs">
-                        <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
-                        <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
+                        <span class="with-comment" data-toggle="tooltip" title="@Html.DisplayFor(model => item.Name)">
+                            <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
+                            <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
+                        </span>
                     </th>
                 }
             }

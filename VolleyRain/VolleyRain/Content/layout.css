@@ -72,7 +72,8 @@ table .form-control {
 }
 
 .with-comment {
-    font-style: italic;
+    font-weight: 700;
+    display: block;
 }
 
 .footer {
