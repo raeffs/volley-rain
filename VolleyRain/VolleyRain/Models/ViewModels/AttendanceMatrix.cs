@@ -31,5 +31,10 @@ namespace VolleyRain.Models
         {
             return _attendances.Count(a => a.EventID == @event.ID && a.RepresentsAttendance);
         }
+
+        public bool IsVisibleOnMobile(EventSummary @event)
+        {
+            return _events.IndexOf(@event) < 5;
+        }
     }
 }

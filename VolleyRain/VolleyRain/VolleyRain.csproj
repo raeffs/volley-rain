@@ -229,6 +229,7 @@
     <Compile Include="DataAccess\DatabaseContext.cs" />
     <Compile Include="DataAccess\DatabaseInitializer.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\RouteValueDictionaryExtensions.cs" />
     <Compile Include="Filter\ActionLoggingAttribute.cs" />
     <Compile Include="Filter\ConditionalFilterProvider.cs" />
     <Compile Include="Filter\ExceptionLoggingAttribute.cs" />

@@ -8,9 +8,11 @@
 <h2>Anwesenheitskontrolle <small>Team SVKT Rain</small></h2>
 
 <div class="pager">
-    @Html.PreviousPageButton(pagination, "Zurück")
-    @Html.NextPageButton(pagination, "Weiter")
-    <a href="@Url.Action("Edit")" class="btn btn-success">Bearbeiten</a>
+    @Html.PreviousPageButton(pagination, "Zurück", "hidden-xs")
+    @Html.PreviousPageButton(pagination, "Zurück", "visible-xs", new { pageSize = 5 })
+    @Html.NextPageButton(pagination, "Weiter", "hidden-xs")
+    @Html.NextPageButton(pagination, "Weiter", "visible-xs", new { pageSize = 5 })
+    <a href="@Url.Action("Edit")" class="btn btn-success btn-responsive">Bearbeiten</a>
 </div>
 
 <table class="table table-condensed">
@@ -18,10 +20,21 @@
         <tr>
             <th></th>
 
-            @foreach (var item in Model.Events) { 
-            
-                <th class="@item.GetCssClass()">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</th>
-                
+            @foreach (var item in Model.Events) {
+                if (Model.IsVisibleOnMobile(item))
+                {
+                    <th class="@item.GetCssClass()">
+                        <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
+                        <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
+                    </th>
+                }
+                else
+                { 
+                    <th class="@item.GetCssClass() hidden-xs">
+                        <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
+                        <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
+                    </th>
+                }
             }
 
         </tr>
@@ -31,23 +44,33 @@
     
         <tr>
 
-            <td>@Html.DisplayFor(model => user.DisplayName)</td>
+            <td>@Html.DisplayFor(model => user.Name) <span class="hidden-xs">@Html.DisplayFor(model => user.Surname)</span></td>
 
             @foreach (var item in Model.Events) {
 
                 var attendance = Model.GetAttendanceFor(user, item);
                 var tdBuilder = new TagBuilder("td");
+                if (!Model.IsVisibleOnMobile(item))
+                {
+                    tdBuilder.AddCssClass("hidden-xs");
+                }
                 if (attendance != null)
                 {
-                    tdBuilder.MergeAttribute("class", attendance.GetCssClass());
+                    tdBuilder.AddCssClass(attendance.GetCssClass());
                     var divBuilder = new TagBuilder("div");
                     if (attendance.HasComment)
                     {
-                        divBuilder.MergeAttribute("class", "with-comment");
+                        divBuilder.AddCssClass("with-comment");
                         divBuilder.MergeAttribute("data-toggle", "tooltip");
                         divBuilder.MergeAttribute("title", attendance.Comment);
                     }
-                    divBuilder.SetInnerText(attendance.TypeName);
+                    var normalSpanBuilder = new TagBuilder("span");
+                    normalSpanBuilder.AddCssClass("hidden-xs");
+                    normalSpanBuilder.SetInnerText(attendance.TypeName);
+                    var mobileSpanBuilder = new TagBuilder("span");
+                    mobileSpanBuilder.AddCssClass("visible-xs");
+                    mobileSpanBuilder.SetInnerText(attendance.TypeShortName);
+                    divBuilder.InnerHtml = normalSpanBuilder.ToString() + mobileSpanBuilder.ToString();
                     tdBuilder.InnerHtml = divBuilder.ToString();
                 }
                 @Html.Raw(tdBuilder.ToString());
@@ -61,10 +84,15 @@
         <tr>
             <th></th>
 
-            @foreach (var item in Model.Events) { 
-            
-                <th>@Model.GetAttendeesFor(item)</th>
-                
+            @foreach (var item in Model.Events) {
+                if (Model.IsVisibleOnMobile(item))
+                {
+                    <th>@Model.GetAttendeesFor(item)</th>
+                }
+                else
+                { 
+                    <th class="hidden-xs">@Model.GetAttendeesFor(item)</th>
+                }
             }
 
         </tr>

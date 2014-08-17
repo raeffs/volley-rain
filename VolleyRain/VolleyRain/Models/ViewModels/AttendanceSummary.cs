@@ -11,6 +11,7 @@ namespace VolleyRain.Models
         public int UserID { get; set; }
         public int TypeID { get; set; }
         public string TypeName { get; set; }
+        public string TypeShortName { get; set; }
         public bool RepresentsAttendance { get; set; }
         public string Comment { get; set; }
         public bool HasComment { get { return !string.IsNullOrWhiteSpace(Comment); } }

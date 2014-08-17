@@ -12,7 +12,7 @@ namespace VolleyRain.Controllers
     public class AttendanceController : BaseController
     {
         [Authorize(Roles = "User")]
-        public ActionResult Index(int? teamID, int? page)
+        public ActionResult Index(int? teamID, int? page, int? pageSize)
         {
             ViewBag.AttendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList());
             ViewBag.EventTypes = Cache.GetEventTypes(() => Context.EventTypes.ToList());
@@ -22,7 +22,7 @@ namespace VolleyRain.Controllers
 
             if (teamIDs.Count == 0) return RedirectToAction("NoTeam");
 
-            var pagination = new Pagination(10, Context.Events.Count(e => teamIDs.Contains(e.Team.ID)), page);
+            var pagination = new Pagination(pageSize ?? 10, Context.Events.Count(e => teamIDs.Contains(e.Team.ID)), page);
             if (!page.HasValue) pagination.JumpToItem(Context.Events.Count(e => teamIDs.Contains(e.Team.ID) && e.Start < DateTime.Today) + 1);
             ViewBag.Pagination = pagination;
 
@@ -38,7 +38,7 @@ namespace VolleyRain.Controllers
                 .SelectMany(t => t.Members)
                 .Distinct()
                 .OrderBy(u => u.Name)
-                .Select(u => new UserSummary { ID = u.ID, DisplayName = u.Name + " " + u.Surname })
+                .Select(u => new UserSummary { ID = u.ID, Name = u.Name, Surname = u.Surname })
                 .ToList();
 
             var eventIDs = events.Select(e => e.ID).ToList();
@@ -52,6 +52,7 @@ namespace VolleyRain.Controllers
                     UserID = a.User.ID,
                     TypeID = a.Type.ID,
                     TypeName = a.Type.Name,
+                    TypeShortName = a.Type.ShortName,
                     RepresentsAttendance = a.Type.RepresentsAttendance,
                     Comment = a.Comment,
                 })
