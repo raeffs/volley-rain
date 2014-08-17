@@ -165,6 +165,10 @@ a:focus {
     text-align: right;
 }
 
+.pre-line {
+    white-space: pre-line;
+}
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;

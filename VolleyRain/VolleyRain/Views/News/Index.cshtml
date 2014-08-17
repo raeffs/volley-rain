@@ -12,12 +12,12 @@
         <div class="jumbotron">
             @if (HttpContext.Current.User.IsAdministrator()) { 
                 <div class="btn-group-vertical pull-right">
-                    <a href="@Url.Action("Edit", "News", new { id = item.ID })" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
-                    <a href="@Url.Action("Delete", "News", new { id = item.ID })" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
+                    <a href="@Url.Action("Edit", "News", new { newsID = item.ID })" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+                    @*<a href="@Url.Action("Delete", "News", new { newsID = item.ID })" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>*@
                 </div>
             }
             <h1>@Html.DisplayFor(modelItem => item.Title)</h1>
-            <p>@Html.DisplayFor(modelItem => item.Content)</p>
+            <p class="pre-line">@Html.DisplayFor(modelItem => item.Content)</p>
         </div>
     }
 

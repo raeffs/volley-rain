@@ -18,6 +18,7 @@ namespace VolleyRain.Controllers
                 Links = new List<NavigationLink> 
                 {
                     new NavigationLink { Controller = "News", Action = "Index", DisplayText = "News", Role = string.Empty },
+                    new NavigationLink { Controller = "News", Action = "Create", DisplayText = "Veröffentlichen", Role = "Team-Administrator" },
                 }
             },
             new NavigationGroup 

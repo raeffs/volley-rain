@@ -8,14 +8,13 @@ using System.Web;
 using System.Web.Mvc;
 using VolleyRain.Models;
 using VolleyRain.DataAccess;
-using NLog;
 
 namespace VolleyRain.Controllers
 {
     public class NewsController : BaseController
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult Index(int? page)
         {
             var pagination = new Pagination(5, Context.NewsArticles.Count(), page);
@@ -30,98 +29,61 @@ namespace VolleyRain.Controllers
             return View(model);
         }
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NewsArticle newsarticle = Context.NewsArticles.Find(id);
-            if (newsarticle == null)
-            {
-                return HttpNotFound();
-            }
-            return View(newsarticle);
-        }
-
-        [Authorize(Roles = "Administrator")]
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
         public ActionResult Create()
         {
             return View();
         }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Administrator")]
         [HttpPost]
+        [Authorize(Roles = "Team-Administrator")]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Title,Content,PublishDate")] NewsArticle newsarticle)
+        public ActionResult Create(NewsCreation model)
         {
             if (ModelState.IsValid)
             {
-                Context.NewsArticles.Add(newsarticle);
+                var entity = new NewsArticle
+                {
+                    Title = model.Title,
+                    Content = model.Content,
+                    PublishDate = DateTime.Now,
+                };
+                Context.NewsArticles.Add(entity);
                 Context.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
-            return View(newsarticle);
+            return View(model);
         }
 
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Edit(int? id)
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult Edit(int newsID)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            NewsArticle newsarticle = Context.NewsArticles.Find(id);
-            if (newsarticle == null)
-            {
-                return HttpNotFound();
-            }
-            return View(newsarticle);
+            if (Context.NewsArticles.None(n => n.ID == newsID)) return HttpNotFound();
+
+            var model = Context.NewsArticles.Single(n => n.ID == newsID);
+            return View(model);
         }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "Administrator")]
         [HttpPost]
+        [Authorize(Roles = "Team-Administrator")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Title,Content,PublishDate")] NewsArticle newsarticle)
+        public ActionResult Edit(NewsArticle model)
         {
             if (ModelState.IsValid)
             {
-                Context.Entry(newsarticle).State = EntityState.Modified;
+                var entity = Context.NewsArticles.Single(n => n.ID == model.ID);
+                entity.Title = model.Title;
+                entity.Content = model.Content;
                 Context.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(newsarticle);
-        }
 
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                TempData["successMessage"] = "Änderungen wurden gespeichert.";
             }
-            NewsArticle newsarticle = Context.NewsArticles.Find(id);
-            if (newsarticle == null)
-            {
-                return HttpNotFound();
-            }
-            return View(newsarticle);
-        }
 
-        [Authorize(Roles = "Administrator")]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            NewsArticle newsarticle = Context.NewsArticles.Find(id);
-            Context.NewsArticles.Remove(newsarticle);
-            Context.SaveChanges();
-            return RedirectToAction("Index");
+            return View(model);
         }
     }
 }
