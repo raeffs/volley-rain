@@ -37,6 +37,7 @@ namespace VolleyRain.Controllers
                 .Where(t => teamIDs.Contains(t.ID))
                 .SelectMany(t => t.Members)
                 .Distinct()
+                .OrderBy(u => u.Name)
                 .Select(u => new UserSummary { ID = u.ID, DisplayName = u.Name + " " + u.Surname })
                 .ToList();
 

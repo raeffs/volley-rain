@@ -18,6 +18,7 @@ namespace VolleyRain.Controllers
             var members = team.Members.Select(t => t.ID).ToList();
             var model = Context.Users
                 .Include(u => u.Roles)
+                .OrderBy(u => u.Name)
                 .Select(u => new TeamMembership
                 {
                     UserID = u.ID,
