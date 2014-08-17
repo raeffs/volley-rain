@@ -7,10 +7,10 @@
 <h2>@Html.DisplayFor(model => model.Date)</h2>
 
 <div class="pager">
-    <a href="@Url.Action("Index", new { year = Model.PreviousMonth.Year, month = Model.PreviousMonth.Month })" class="btn btn-primary pull-left">
+    <a href="@Url.Action("Index", new { year = Model.PreviousMonth.Year, month = Model.PreviousMonth.Month })" class="btn btn-primary pull-left btn-responsive">
         <span class="glyphicon glyphicon-chevron-left"></span> @Html.DisplayFor(model => model.PreviousMonth)
     </a>
-    <a href="@Url.Action("Index", new { year = Model.NextMonth.Year, month = Model.NextMonth.Month })" class="btn btn-primary pull-right">
+    <a href="@Url.Action("Index", new { year = Model.NextMonth.Year, month = Model.NextMonth.Month })" class="btn btn-primary pull-right btn-responsive">
         @Html.DisplayFor(model => model.NextMonth) <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
 </div>
