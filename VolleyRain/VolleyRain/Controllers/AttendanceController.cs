@@ -38,6 +38,7 @@ namespace VolleyRain.Controllers
                 .SelectMany(t => t.Members)
                 .Distinct()
                 .OrderBy(u => u.Name)
+                .ThenBy(u => u.Surname)
                 .Select(u => new UserSummary { ID = u.ID, Name = u.Name, Surname = u.Surname })
                 .ToList();
 

@@ -19,6 +19,7 @@ namespace VolleyRain.Controllers
             var model = Context.Users
                 .Include(u => u.Roles)
                 .OrderBy(u => u.Name)
+                .ThenBy(u => u.Surname)
                 .Select(u => new TeamMembership
                 {
                     UserID = u.ID,
