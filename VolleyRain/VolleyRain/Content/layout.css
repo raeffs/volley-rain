@@ -171,7 +171,7 @@ a:focus {
 
 /* table-attendances start */
 #table-attendances {
-    margin-left: auto;
+    margin-left: 0;
     margin-right: auto;
 }
 #table-attendances.contains-10,
@@ -257,6 +257,25 @@ a:focus {
     #table-attendances > tbody > tr > td:first-child {
         /* 100% / 12 * 2 */
         width: 16.666667%;
+    }
+}
+@media (max-width: 767px) {
+    #table-attendances > thead > tr > th.event-5,
+    #table-attendances > tbody > tr > td.event-5,
+    #table-attendances > tfoot > tr > th.event-5,
+    #table-attendances > thead > tr > th.event-6,
+    #table-attendances > tbody > tr > td.event-6,
+    #table-attendances > tfoot > tr > th.event-6,
+    #table-attendances > thead > tr > th.event-7,
+    #table-attendances > tbody > tr > td.event-7,
+    #table-attendances > tfoot > tr > th.event-7,
+    #table-attendances > thead > tr > th.event-8,
+    #table-attendances > tbody > tr > td.event-8,
+    #table-attendances > tfoot > tr > th.event-8,
+    #table-attendances > thead > tr > th.event-9,
+    #table-attendances > tbody > tr > td.event-9,
+    #table-attendances > tfoot > tr > th.event-9 {
+        display: none !important;
     }
 }
 /* table-attendances end */

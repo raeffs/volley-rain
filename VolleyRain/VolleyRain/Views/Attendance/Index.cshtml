@@ -21,24 +21,12 @@
             <th></th>
 
             @foreach (var item in Model.Events) {
-                if (Model.IsVisibleOnMobile(item))
-                {
-                    <th class="@item.GetCssClass()">
-                        <span class="with-comment" data-toggle="tooltip" title="@Html.DisplayFor(model => item.Name)">
-                            <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
-                            <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
-                        </span>
-                    </th>
-                }
-                else
-                { 
-                    <th class="@item.GetCssClass() hidden-xs">
-                        <span class="with-comment" data-toggle="tooltip" title="@Html.DisplayFor(model => item.Name)">
-                            <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
-                            <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
-                        </span>
-                    </th>
-                }
+                <th class="@item.GetCssClass() event-@Model.IndexOf(item)">
+                    <span class="with-comment" data-toggle="tooltip" title="@Html.DisplayFor(model => item.Name)">
+                        <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
+                        <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
+                    </span>
+                </th>
             }
 
         </tr>
@@ -54,10 +42,7 @@
 
                 var attendance = Model.GetAttendanceFor(user, item);
                 var tdBuilder = new TagBuilder("td");
-                if (!Model.IsVisibleOnMobile(item))
-                {
-                    tdBuilder.AddCssClass("hidden-xs");
-                }
+                tdBuilder.AddCssClass(string.Format("event-{0}", Model.IndexOf(item)));
                 if (attendance != null)
                 {
                     tdBuilder.AddCssClass(attendance.GetCssClass());
@@ -89,14 +74,7 @@
             <th></th>
 
             @foreach (var item in Model.Events) {
-                if (Model.IsVisibleOnMobile(item))
-                {
-                    <th>@Model.GetAttendeesFor(item)</th>
-                }
-                else
-                { 
-                    <th class="hidden-xs">@Model.GetAttendeesFor(item)</th>
-                }
+                <th class="event-@Model.IndexOf(item)">@Model.GetAttendeesFor(item)</th>
             }
 
         </tr>
