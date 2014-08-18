@@ -200,5 +200,47 @@ namespace VolleyRain.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Index()
+        {
+            var model = Context.Users
+                .OrderBy(u => u.ID)
+                .Select(u => new AccountSummary
+                {
+                    ID = u.ID,
+                    Name = u.Name,
+                    Surname = u.Surname,
+                    Email = u.Email,
+                    IsSelf = u.ID == Session.UserID
+                })
+                .ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public ActionResult Delete(int accountID)
+        {
+            if (accountID == Session.UserID || Context.Users.None(u => u.ID == accountID)) return HttpNotFound();
+
+            var model = Context.Users.Single(u => u.ID == accountID);
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Administrator")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int accountID)
+        {
+            if (accountID == Session.UserID || Context.Users.None(u => u.ID == accountID)) return HttpNotFound();
+
+            var model = Context.Users.Single(u => u.ID == accountID);
+            Context.Users.Remove(model);
+            Context.SaveChanges();
+            TempData["successMessage"] = "Der Benutzer wurde gelöscht.";
+            return RedirectToAction("Index");
+        }
     }
 }

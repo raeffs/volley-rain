@@ -244,6 +244,7 @@
       <DependentUpon>201408101033072_InitialVersion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ViewModels\AccountSummary.cs" />
     <Compile Include="Models\Entities\Document.cs" />
     <Compile Include="Models\ViewModels\NewsCreation.cs" />
     <Compile Include="Models\ViewModels\LogSummary.cs" />
@@ -386,6 +387,8 @@
     <Content Include="Views\Log\Index.cshtml" />
     <Content Include="Views\Log\Details.cshtml" />
     <Content Include="Views\News\Edit.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

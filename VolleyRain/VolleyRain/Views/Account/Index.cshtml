@@ -1,0 +1,40 @@
+﻿@model IEnumerable<AccountSummary>
+
+@{
+    ViewBag.Title = "Benutzer";
+}
+
+<h2>Benutzer</h2>
+
+<table class="table table-condensed with-actions">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.ID)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Surname)</th>
+            <th>@Html.DisplayNameFor(model => model.Email)</th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model) { 
+        <tr>
+            <td>@Html.DisplayFor(model => item.ID)</td>
+            <td>@Html.DisplayFor(model => item.Name)</td>
+            <td>@Html.DisplayFor(model => item.Surname)</td>
+            <td>@Html.DisplayFor(model => item.Email)</td>
+            <td>
+                @if (!item.IsSelf)
+                {
+                    <div class="btn-group btn-group-xs">
+                        <a class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="@Url.Action("Delete", new { accountID = item.ID })">Löschen</a></li>
+                        </ul>
+                    </div> 
+                }
+            </td>
+        </tr>
+    }
+</table>

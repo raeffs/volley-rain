@@ -158,12 +158,6 @@ a:focus {
     font-size: small;
     -table-layout: fixed;
 }
-.table-log tbody tr:hover {
-    background-color: #f9f9f9;
-}
-.table-log td:last-child {
-    text-align: right;
-}
 
 .pre-line {
     white-space: pre-line;
@@ -279,6 +273,15 @@ a:focus {
     }
 }
 /* table-attendances end */
+
+/* with-actions start */
+table.with-actions > tbody > tr:hover {
+    background-color: #f9f9f9;
+}
+table.with-actions > tbody > tr > td:last-child {
+    text-align: right;
+}
+/* with-actions start */
 
 /* styles for validation helpers */
 .field-validation-error {

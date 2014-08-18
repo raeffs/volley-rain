@@ -67,6 +67,7 @@ namespace VolleyRain.Controllers
                 HideIfOnlyOneLink = false, 
                 Links = new List<NavigationLink> 
                 {
+                    new NavigationLink { Controller = "Account", Action = "Index", DisplayText = "Benutzer", Role = "Administrator" },
                     new NavigationLink { Controller = "Log", Action = "Index", DisplayText = "Log", Role = "Administrator", RouteValues = new { fixedID = "", page = "" } },
                 }
             },
