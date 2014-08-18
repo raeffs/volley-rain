@@ -169,6 +169,98 @@ a:focus {
     white-space: pre-line;
 }
 
+/* table-attendances start */
+#table-attendances {
+    margin-left: auto;
+    margin-right: auto;
+}
+#table-attendances.contains-10,
+#table-attendances.contains-9,
+#table-attendances.contains-8,
+#table-attendances.contains-7,
+#table-attendances.contains-6,
+#table-attendances.contains-5 {
+    width: 100%;
+}
+#table-attendances.contains-4 {
+    /* 100% - (100% / 7 * 1) */
+    width: 85.714286%;
+}
+#table-attendances.contains-3 {
+    /* 100% - (100% / 7 * 2) */
+    width: 71.428571%;
+}
+#table-attendances.contains-2 {
+    /* 100% - (100% / 7 * 3) */
+    width: 57.142857%;
+}
+#table-attendances.contains-1 {
+    /* 100% - (100% / 7 * 4) */
+    width: 42.857143%;
+}
+#table-attendances > thead > tr > th,
+#table-attendances > tbody > tr > td {
+    /* 100% / 7 */
+    width: 14.285714%; 
+}
+#table-attendances > thead > tr > th:first-child,
+#table-attendances > tbody > tr > td:first-child {
+    /* 100% / 7 * 2 */
+    width: 28.571429%;
+}
+@media (min-width: 768px) {
+    #table-attendances.contains-10 {
+        width: 100%;
+    }
+    #table-attendances.contains-9 {
+        /* 100% - (100% / 12 * 1) */
+        width: 91.666667%
+    }
+    #table-attendances.contains-8 {
+        /* 100% - (100% / 12 * 2) */
+        width: 83.333333%;
+    }
+    #table-attendances.contains-7 {
+        /* 100% - (100% / 12 * 3) */
+        width: 75%;
+    }
+    #table-attendances.contains-6 {
+        /* 100% - (100% / 12 * 4) */
+        width: 66.666667%
+    }
+    #table-attendances.contains-5 {
+        /* 100% - (100% / 12 * 5) */
+        width: 58.333333%
+    }
+    #table-attendances.contains-4 {
+        /* 100% - (100% / 12 * 6) */
+        width: 50%;
+    }
+    #table-attendances.contains-3 {
+        /* 100% - (100% / 12 * 7) */
+        width: 41.666667%;
+    }
+    #table-attendances.contains-2 {
+        /* 100% - (100% / 12 * 8) */
+        width: 33.333333%;
+    }
+    #table-attendances.contains-1 {
+        /* 100% - (100% / 12 * 9) */
+        width: 25%;
+    }
+    #table-attendances > thead > tr > th,
+    #table-attendances > tbody > tr > td {
+        /* 100% / 12 */
+        width: 8.333333%;
+    }
+    #table-attendances > thead > tr > th:first-child,
+    #table-attendances > tbody > tr > td:first-child {
+        /* 100% / 12 * 2 */
+        width: 16.666667%;
+    }
+}
+/* table-attendances end */
+
 /* styles for validation helpers */
 .field-validation-error {
     color: #b94a48;
