@@ -10,11 +10,14 @@ using System.Data.Entity;
 using VolleyRain.DataAccess;
 using VolleyRain.Mailers;
 using VolleyRain.Models;
+using NLog;
 
 namespace VolleyRain.Controllers
 {
     public class AccountController : BaseController
     {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private UserMailer mailer = new UserMailer();
 
         [HttpGet]
@@ -34,7 +37,35 @@ namespace VolleyRain.Controllers
             {
                 if (Membership.ValidateUser(model.Email, model.Password))
                 {
-                    FormsAuthentication.RedirectFromLoginPage(model.Email, model.RememberMe);
+                    var ticket = new FormsAuthenticationTicket(
+                        2,
+                        model.Email,
+                        DateTime.Now,
+                        DateTime.Now.Add(FormsAuthentication.Timeout),
+                        model.RememberMe,
+                        string.Empty,
+                        FormsAuthentication.FormsCookiePath);
+                    var encryptedTicket = FormsAuthentication.Encrypt(ticket);
+                    var authenticationCookie = new HttpCookie(
+                        FormsAuthentication.FormsCookieName,
+                        encryptedTicket);
+                    if (model.RememberMe)
+                    {
+                        authenticationCookie.Expires = ticket.Expiration;
+                    }
+                    authenticationCookie.Path = FormsAuthentication.FormsCookiePath;
+                    Response.Cookies.Add(authenticationCookie);
+
+                    if (model.RememberMe)
+                    {
+                        Logger.Info("Persistent authentication cookie for user [{0}] was created. Cookie will expire at [{1:dd.MM.yyyy HH:mm}].", model.Email, ticket.Expiration);
+                    }
+                    else
+                    {
+                        Logger.Info("Non-peristent authentication cookie for user [{0}] was created.", model.Email);
+                    }
+
+                    return Redirect(FormsAuthentication.GetRedirectUrl(model.Email, model.RememberMe));
                 }
 
                 ModelState.AddModelError("", "Falsche E-Mail-Adresse und / oder Passwort.");
