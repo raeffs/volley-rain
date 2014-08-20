@@ -13,7 +13,7 @@
             @if (HttpContext.Current.User.IsTeamAdministrator()) { 
                 <div class="btn-group-vertical pull-right">
                     <a href="@Url.Action("Edit", "News", new { newsID = item.ID })" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
-                    @*<a href="@Url.Action("Delete", "News", new { newsID = item.ID })" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>*@
+                    <a href="@Url.Action("Delete", "News", new { newsID = item.ID })" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span></a>
                 </div>
             }
             <h1>@Html.DisplayFor(modelItem => item.Title)</h1>

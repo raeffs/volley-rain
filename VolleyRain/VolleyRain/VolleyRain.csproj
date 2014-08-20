@@ -393,6 +393,7 @@
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Calendar\Export.cshtml" />
     <Content Include="Views\Calendar\Export.ics.cshtml" />
+    <Content Include="Views\News\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

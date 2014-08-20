@@ -85,5 +85,29 @@ namespace VolleyRain.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult Delete(int newsID)
+        {
+            if (Context.NewsArticles.None(n => n.ID == newsID)) return HttpNotFound();
+
+            var model = Context.NewsArticles.Single(n => n.ID == newsID);
+            return View(model);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Team-Administrator")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int newsID)
+        {
+            if (Context.NewsArticles.None(n => n.ID == newsID)) return HttpNotFound();
+
+            var model = Context.NewsArticles.Single(n => n.ID == newsID);
+            Context.NewsArticles.Remove(model);
+            Context.SaveChanges();
+            TempData["SuccessMessage"] = "Die News wurden gelöscht.";
+            return RedirectToAction("Index");
+        }
     }
 }
