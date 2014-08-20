@@ -234,7 +234,7 @@
     <Compile Include="Filter\ConditionalFilterProvider.cs" />
     <Compile Include="Filter\ExceptionLoggingAttribute.cs" />
     <Compile Include="Filter\SessionDataFilterAttribute.cs" />
-    <Compile Include="Filter\TestFilterAttribute.cs" />
+    <Compile Include="Filter\ConvertViewToFileAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -245,6 +245,7 @@
       <DependentUpon>201408101033072_InitialVersion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ViewModels\CalendarExportOptions.cs" />
     <Compile Include="Models\ViewModels\AccountSummary.cs" />
     <Compile Include="Models\Entities\Document.cs" />
     <Compile Include="Models\ViewModels\NewsCreation.cs" />
@@ -391,6 +392,7 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Calendar\Export.cshtml" />
+    <Content Include="Views\Calendar\Export.ics.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

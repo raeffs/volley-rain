@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Event>
+
+BEGIN:VCALENDAR
+VERSION:2.0
+@foreach (var item in Model)
+{
+@:BEGIN:VEVENT
+@:DTSTART:@Html.FormatValue(item.Start.ToUniversalTime(), "{0:yyyyMMddTHHmmssZ}")
+@:DTEND:@Html.FormatValue(item.End.ToUniversalTime(), "{0:yyyyMMddTHHmmssZ}")
+@:SUMMARY:@item.Name
+if (!string.IsNullOrWhiteSpace(item.Description))
+{
+@:DESCRIPTION:@item.Description
+}
+if (!string.IsNullOrWhiteSpace(item.Location))
+{ 
+@:LOCATION:@item.Location
+}
+@:URL:@Url.Abs(Url.Action("Details", "Event", new { eventID = item.ID }))
+@:END:VEVENT
+}
+END:VCALENDAR

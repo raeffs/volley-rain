@@ -11,6 +11,8 @@ namespace VolleyRain.Controllers
 {
     public class CalendarController : BaseController
     {
+        [HttpGet]
+        [Authorize]
         public ActionResult Index(int? year, int? month)
         {
             if (!year.HasValue || year < DateTime.MinValue.Year || year > DateTime.MaxValue.Year)
@@ -42,6 +44,8 @@ namespace VolleyRain.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Authorize]
         public ActionResult Details(int year, int month, int day)
         {
             var model = new Day(year, month, day);
@@ -50,10 +54,38 @@ namespace VolleyRain.Controllers
             return View();
         }
 
-        [TestFilter]
+        [HttpGet]
+        [Authorize]
         public ActionResult Export()
         {
-            return View();
+            var model = Context.EventTypes
+                .Select(t => new CalendarExportOption
+                {
+                    ID = t.ID,
+                    EventType = t,
+                    Export = true
+                })
+                .ToList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [ConvertViewToFile("text/calendar", "Calendar.ics")]
+        public ActionResult Export(IList<CalendarExportOption> model)
+        {
+            var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
+            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID && Session.Teams.Contains(t.ID)).Select(t => t.ID).ToList();
+            var typeIDs = model.Where(m => m.Export).Select(m => m.ID);
+
+            var events = Context.Events
+                .Where(e => teamIDs.Contains(e.Team.ID) && typeIDs.Contains(e.Type.ID))
+                .OrderBy(e => e.Start)
+                .ToList();
+
+            return PartialView("Export.ics", events);
         }
     }
 }

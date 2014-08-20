@@ -13,6 +13,8 @@
     <a href="@Url.Action("Index", new { year = Model.NextMonth.Year, month = Model.NextMonth.Month })" class="btn btn-primary pull-right btn-responsive">
         @Html.DisplayFor(model => model.NextMonth) <span class="glyphicon glyphicon-chevron-right"></span>
     </a>
+    
+    <a href="@Url.Action("Export")" class="btn btn-success btn-responsive">Exportieren</a>
 </div>
 
 <table class="table table-condensed table-calendar">
