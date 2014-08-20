@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VolleyRain.DataAccess;
+using VolleyRain.Filter;
 using VolleyRain.Models;
 
 namespace VolleyRain.Controllers
@@ -46,6 +47,12 @@ namespace VolleyRain.Controllers
             var model = new Day(year, month, day);
             if (Context.Events.None(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End)) return RedirectToAction("Create", "Event");
 
+            return View();
+        }
+
+        [TestFilter]
+        public ActionResult Export()
+        {
             return View();
         }
     }
