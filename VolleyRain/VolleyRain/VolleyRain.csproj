@@ -234,6 +234,7 @@
     <Compile Include="Filter\ConditionalFilterProvider.cs" />
     <Compile Include="Filter\ExceptionLoggingAttribute.cs" />
     <Compile Include="Filter\SessionDataFilterAttribute.cs" />
+    <Compile Include="Filter\TestFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -389,6 +390,7 @@
     <Content Include="Views\News\Edit.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Calendar\Export.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

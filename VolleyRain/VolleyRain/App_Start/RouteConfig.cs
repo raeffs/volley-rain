@@ -32,6 +32,12 @@ namespace VolleyRain
             );
 
             routes.MapRoute(
+                name: "CalendarExport",
+                url: "Calendar/Export",
+                defaults: new { controller = "Calendar", action = "Export" }
+            );
+
+            routes.MapRoute(
                 name: "CalendarDetails",
                 url: "Calendar/{year}/{month}/{day}",
                 defaults: new { controller = "Calendar", action = "Details" }
