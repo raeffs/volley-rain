@@ -35,11 +35,12 @@ namespace VolleyRain.Controllers
                 .ToList();
             var users = Context.Teams
                 .Where(t => teamIDs.Contains(t.ID))
-                .SelectMany(t => t.Members)
+                .SelectMany(t => t.Members.Select(m => m.User))
                 .Distinct()
-                .OrderBy(u => u.Name)
+                .Select(u => new UserSummary { ID = u.ID, Name = u.Name, Surname = u.Surname, IsCoach = u.Teams.Any(t => t.IsCoach) })
+                .OrderByDescending(u => u.IsCoach)
+                .ThenBy(u => u.Name)
                 .ThenBy(u => u.Surname)
-                .Select(u => new UserSummary { ID = u.ID, Name = u.Name, Surname = u.Surname })
                 .ToList();
 
             var eventIDs = events.Select(e => e.ID).ToList();

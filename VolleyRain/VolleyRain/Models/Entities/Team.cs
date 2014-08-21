@@ -22,11 +22,11 @@ namespace VolleyRain.Models
         [Required]
         public virtual Season Season { get; set; }
 
-        public ICollection<User> Members { get; set; }
+        public ICollection<TeamMembership> Members { get; set; }
 
         public Team()
         {
-            Members = new List<User>();
+            Members = new List<TeamMembership>();
         }
     }
 }

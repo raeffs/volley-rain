@@ -15,12 +15,13 @@ namespace VolleyRain.Controllers
         {
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
             var team = Context.Teams.Include(t => t.Members).Single(t => t.Season.ID == season.ID);
-            var members = team.Members.Select(t => t.ID).ToList();
+            var members = team.Members.Select(m => m.UserID).ToList();
+            var coaches = team.Members.Where(m => m.IsCoach).Select(m => m.UserID).ToList();
             var model = Context.Users
                 .Include(u => u.Roles)
                 .OrderBy(u => u.Name)
                 .ThenBy(u => u.Surname)
-                .Select(u => new TeamMembership
+                .Select(u => new TeamMembershipSelection
                 {
                     UserID = u.ID,
                     Name = u.Name,
@@ -33,6 +34,7 @@ namespace VolleyRain.Controllers
             foreach (var user in model)
             {
                 user.IsMemberOfTeam = members.Contains(user.UserID);
+                user.IsCoachOfTeam = coaches.Contains(user.UserID);
                 user.IsSelf = user.UserID == Session.UserID;
             }
 
@@ -41,16 +43,32 @@ namespace VolleyRain.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Team-Administrator")]
-        public ActionResult Members(int? teamID, IList<TeamMembership> model)
+        public ActionResult Members(int? teamID, IList<TeamMembershipSelection> model)
         {
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
             var team = Context.Teams.Include(t => t.Members).Single(t => t.Season.ID == season.ID);
             var futureMembers = model.Where(u => u.IsMemberOfTeam).Select(u => u.UserID).ToList();
-            var membersToRemove = team.Members.Where(u => !futureMembers.Contains(u.ID) && u.ID != Session.UserID).ToList();
-            membersToRemove.ForEach(u => team.Members.Remove(u));
-            var currentMembers = team.Members.Select(u => u.ID).ToList();
+            var membersToRemove = team.Members.Where(m => !futureMembers.Contains(m.UserID) && m.UserID != Session.UserID).ToList();
+            membersToRemove.ForEach(m => team.Members.Remove(m));
+            var currentMembers = team.Members.Select(m => m.UserID).ToList();
             var membersToAdd = Context.Users.Where(u => !currentMembers.Contains(u.ID) && futureMembers.Contains(u.ID)).ToList();
-            membersToAdd.ForEach(u => team.Members.Add(u));
+            membersToAdd.ForEach(u =>
+            {
+                team.Members.Add(new TeamMembership
+                {
+                    Team = team,
+                    User = u
+                });
+            });
+            Context.SaveChanges();
+
+            foreach (var member in team.Members)
+            {
+                var item = model.SingleOrDefault(i => i.UserID == member.UserID);
+                if (item == null) continue;
+
+                member.IsCoach = item.IsCoachOfTeam;
+            }
             Context.SaveChanges();
 
             if (HttpContext.User.Identity.IsAuthenticated && HttpContext.User.IsAdministrator())

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace VolleyRain.Models
 {
-    public class TeamMembership
+    public class TeamMembershipSelection
     {
         public int UserID { get; set; }
 
@@ -19,10 +19,13 @@ namespace VolleyRain.Models
         [Display(Name = "E-Mail")]
         public string Email { get; set; }
 
-        [Display(Name = "Mitglied?")]
+        [Display(Name = "Mitglied?", ShortName = "M?")]
         public bool IsMemberOfTeam { get; set; }
 
-        [Display(Name = "Administrator?")]
+        [Display(Name = "Trainer?", ShortName = "T?")]
+        public bool IsCoachOfTeam { get; set; }
+
+        [Display(Name = "Administrator?", ShortName = "A?")]
         public bool IsAdminOfTeam { get; set; }
 
         public bool IsSelf { get; set; }

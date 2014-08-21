@@ -33,12 +33,12 @@ namespace VolleyRain.Models
 
         public virtual ICollection<Role> Roles { get; set; }
 
-        public virtual ICollection<Team> Teams { get; set; }
+        public virtual ICollection<TeamMembership> Teams { get; set; }
 
         public User()
         {
             Roles = new List<Role>();
-            Teams = new List<Team>();
+            Teams = new List<TeamMembership>();
         }
     }
 }

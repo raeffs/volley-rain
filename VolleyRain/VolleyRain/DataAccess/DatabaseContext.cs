@@ -37,6 +37,8 @@ namespace VolleyRain.DataAccess
 
         public DbSet<Season> Seasons { get; set; }
 
+        public DbSet<TeamMembership> TeamMemberships { get; set; }
+
         public DbSet<Team> Teams { get; set; }
 
         public DbSet<User> Users { get; set; }
@@ -57,13 +59,16 @@ namespace VolleyRain.DataAccess
                     m.ToTable("UserRole");
                 });
 
-            modelBuilder.Entity<Team>()
-                .HasMany(t => t.Members)
-                .WithMany(m => m.Teams)
-                .Map(m =>
-                {
-                    m.ToTable("TeamMembership");
-                });
+            //modelBuilder.Entity<Team>()
+            //    .HasMany(t => t.Members)
+            //    .WithMany(m => m.Teams)
+            //    .Map(m =>
+            //    {
+            //        m.ToTable("TeamMembership");
+            //    });
+
+            modelBuilder.Entity<TeamMembership>()
+                .HasKey(m => new { m.TeamID, m.UserID });
         }
     }
 }
