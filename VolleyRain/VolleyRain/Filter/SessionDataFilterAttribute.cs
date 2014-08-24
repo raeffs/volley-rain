@@ -15,7 +15,7 @@ namespace VolleyRain.Filter
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            Logger.Debug("Going to check whether session data is initialized...");
+            Logger.Trace("Going to check whether session data is initialized...");
 
             var session = new SessionDecorator(filterContext.HttpContext.Session);
 

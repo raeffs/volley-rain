@@ -24,6 +24,7 @@ namespace VolleyRain
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            FilterConfig.RegisterFilterProviders(FilterProviders.Providers);
         }
 
         protected void Application_End()

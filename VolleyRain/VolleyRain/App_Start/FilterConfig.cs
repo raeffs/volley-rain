@@ -13,8 +13,16 @@ namespace VolleyRain
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new SessionDataFilterAttribute());
-            filters.Add(new ActionLoggingAttribute());
             filters.Add(new ExceptionLoggingAttribute());
+        }
+
+        public static void RegisterFilterProviders(FilterProviderCollection providers)
+        {
+            var conditions = new Func<ControllerContext, ActionDescriptor, object>[] 
+            {
+                (c, a) => c.Controller.GetType() != typeof(NavigationController) && c.Controller.GetType() != typeof(StyleController) ? new ActionLoggingAttribute() : null,
+            };
+            providers.Add(new ConditionalFilterProvider(conditions));
         }
     }
 }
