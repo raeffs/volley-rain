@@ -11,16 +11,19 @@ namespace VolleyRain.Models
         private readonly List<UserSummary> _users;
         private readonly List<AttendanceSummary> _attendances;
 
-        public AttendanceMatrix(List<EventSummary> events, List<UserSummary> users, List<AttendanceSummary> attendances)
+        public AttendanceMatrix(List<EventSummary> events, List<UserSummary> users, List<AttendanceSummary> attendances, bool isReverse = false)
         {
             _events = events;
             _users = users;
             _attendances = attendances;
+            IsReverse = isReverse;
         }
 
         public List<EventSummary> Events { get { return _events; } }
 
         public List<UserSummary> Users { get { return _users; } }
+
+        public bool IsReverse { get; private set; }
 
         public AttendanceSummary GetAttendanceFor(UserSummary user, EventSummary @event)
         {
@@ -34,7 +37,14 @@ namespace VolleyRain.Models
 
         public int IndexOf(EventSummary @event)
         {
-            return _events.IndexOf(@event);
+            if (IsReverse)
+            {
+                return _events.Count - _events.IndexOf(@event);
+            }
+            else
+            {
+                return _events.IndexOf(@event);
+            }
         }
     }
 }

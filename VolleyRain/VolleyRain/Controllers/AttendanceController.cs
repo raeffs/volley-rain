@@ -14,6 +14,8 @@ namespace VolleyRain.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Index(int? teamID, int? page, int? pageSize)
         {
+            if (page.HasValue && page.Value == 0) return RedirectToAction("Archive");
+
             ViewBag.AttendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList());
             ViewBag.EventTypes = Cache.GetEventTypes(() => Context.EventTypes.ToList());
 
@@ -22,12 +24,11 @@ namespace VolleyRain.Controllers
 
             if (teamIDs.Count == 0) return RedirectToAction("NoTeam");
 
-            var pagination = new Pagination(pageSize ?? 10, Context.Events.Count(e => teamIDs.Contains(e.Team.ID)), page);
-            if (!page.HasValue) pagination.JumpToItem(Context.Events.Count(e => teamIDs.Contains(e.Team.ID) && e.Start < DateTime.Today) + 1);
+            var pagination = new Pagination(pageSize ?? 10, Context.Events.Count(e => teamIDs.Contains(e.Team.ID) && e.Start >= DateTime.Today), page, true);
             ViewBag.Pagination = pagination;
 
             var events = Context.Events
-                .Where(e => teamIDs.Contains(e.Team.ID))
+                .Where(e => teamIDs.Contains(e.Team.ID) && e.Start >= DateTime.Today)
                 .OrderBy(e => e.Start)
                 .Skip(pagination.ItemsToSkip)
                 .Take(pagination.PageSize)
@@ -63,6 +64,62 @@ namespace VolleyRain.Controllers
             var model = new AttendanceMatrix(events, users, attendances);
 
             return View(model);
+        }
+
+        [Authorize(Roles = "User")]
+        public ActionResult Archive(int? teamID, int? page, int? pageSize)
+        {
+            if (page.HasValue && page.Value == 0) return RedirectToAction("Index");
+
+            ViewBag.AttendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList());
+            ViewBag.EventTypes = Cache.GetEventTypes(() => Context.EventTypes.ToList());
+
+            var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
+            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID && Session.Teams.Contains(t.ID)).Select(t => t.ID).ToList();
+
+            if (teamIDs.Count == 0) return RedirectToAction("NoTeam");
+
+            var pagination = new ReversePagination(pageSize ?? 10, Context.Events.Count(e => teamIDs.Contains(e.Team.ID) && e.Start < DateTime.Today), page, true);
+            ViewBag.Pagination = pagination;
+
+            var events = Context.Events
+                .Where(e => teamIDs.Contains(e.Team.ID) && e.Start < DateTime.Today)
+                .OrderByDescending(e => e.Start)
+                .Skip(pagination.ItemsToSkip)
+                .Take(pagination.PageSize)
+                .OrderBy(e => e.Start)
+                .Select(e => new EventSummary { ID = e.ID, Start = e.Start, TypeID = e.Type.ID, Name = e.Name })
+                .ToList();
+            var users = Context.Teams
+                .Where(t => teamIDs.Contains(t.ID))
+                .SelectMany(t => t.Members.Select(m => m.User))
+                .Distinct()
+                .Select(u => new UserSummary { ID = u.ID, Name = u.Name, Surname = u.Surname, IsCoach = u.Teams.Any(t => t.IsCoach) })
+                .OrderByDescending(u => u.IsCoach)
+                .ThenBy(u => u.Name)
+                .ThenBy(u => u.Surname)
+                .ToList();
+
+            var eventIDs = events.Select(e => e.ID).ToList();
+            var userIDs = users.Select(u => u.ID).ToList();
+
+            var attendances = Context.Attendances
+                .Where(a => eventIDs.Contains(a.Event.ID) && userIDs.Contains(a.User.ID))
+                .Select(a => new AttendanceSummary
+                {
+                    EventID = a.Event.ID,
+                    UserID = a.User.ID,
+                    TypeID = a.Type.ID,
+                    TypeName = a.Type.Name,
+                    TypeShortName = a.Type.ShortName,
+                    RepresentsAttendance = a.Type.RepresentsAttendance,
+                    Comment = a.Comment,
+                })
+                .ToList();
+
+            var model = new AttendanceMatrix(events, users, attendances);
+
+            return View("Index", model);
         }
 
         [Authorize(Roles = "User")]

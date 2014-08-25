@@ -7,12 +7,15 @@ namespace VolleyRain.Models
 {
     public class Pagination
     {
-        public Pagination(int pageSize, int totalItemCount, int? currentPage)
+        private readonly bool allowZero;
+
+        public Pagination(int pageSize, int totalItemCount, int? currentPage, bool allowZero = false)
         {
             PageSize = pageSize;
             TotalItemCount = totalItemCount;
             PageCount = (int)Math.Ceiling(TotalItemCount / (double)PageSize);
             CurrentPage = currentPage.HasValue && currentPage.Value >= 1 && currentPage.Value <= PageCount ? currentPage.Value : 1;
+            this.allowZero = allowZero;
         }
 
         public int PageSize { get; private set; }
@@ -23,19 +26,30 @@ namespace VolleyRain.Models
 
         public int CurrentPage { get; private set; }
 
-        public bool HasPreviousPage { get { return CurrentPage > 1; } }
+        public virtual bool HasPreviousPage { get { return CurrentPage > 1 || allowZero; } }
 
-        public int PreviousPage { get { return CurrentPage - 1; } }
+        public virtual int PreviousPage { get { return CurrentPage - 1; } }
 
-        public bool HasNextPage { get { return CurrentPage < PageCount; } }
+        public virtual bool HasNextPage { get { return CurrentPage < PageCount; } }
 
-        public int NextPage { get { return CurrentPage + 1; } }
+        public virtual int NextPage { get { return CurrentPage + 1; } }
 
         public int ItemsToSkip { get { return (CurrentPage - 1) * PageSize; } }
+    }
 
-        public void JumpToItem(int index)
+    public class ReversePagination : Pagination
+    {
+        public ReversePagination(int pageSize, int totalItemCount, int? currentPage, bool allowZero = false)
+            : base(pageSize, totalItemCount, currentPage, allowZero)
         {
-            CurrentPage = (int)Math.Ceiling(index / (double)PageSize);
         }
+
+        public override bool HasPreviousPage { get { return base.HasNextPage; } }
+
+        public override int PreviousPage { get { return base.NextPage; } }
+
+        public override bool HasNextPage { get { return base.HasPreviousPage; } }
+
+        public override int NextPage { get { return base.PreviousPage; } }
     }
 }
