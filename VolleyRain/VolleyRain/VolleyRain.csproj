@@ -228,6 +228,7 @@
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="DataAccess\DatabaseContext.cs" />
     <Compile Include="DataAccess\DatabaseInitializer.cs" />
+    <Compile Include="Extensions\CustomAttributeProviderExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\RouteValueDictionaryExtensions.cs" />
     <Compile Include="Filter\ActionLoggingAttribute.cs" />
@@ -235,6 +236,7 @@
     <Compile Include="Filter\ExceptionLoggingAttribute.cs" />
     <Compile Include="Filter\SessionDataFilterAttribute.cs" />
     <Compile Include="Filter\ConvertViewToFileAttribute.cs" />
+    <Compile Include="Filter\TeamSelectionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,6 +252,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\TeamMembership.cs" />
+    <Compile Include="Models\TeamIdentifierAttribute.cs" />
     <Compile Include="Models\ViewModels\CalendarExportOptions.cs" />
     <Compile Include="Models\ViewModels\AccountSummary.cs" />
     <Compile Include="Models\Entities\Document.cs" />
@@ -380,7 +383,7 @@
     <Content Include="Views\Account\Create.cshtml" />
     <Content Include="Views\Navigation\Render.cshtml" />
     <Content Include="Views\Attendance\Types.cshtml" />
-    <Content Include="Views\Attendance\NoTeam.cshtml" />
+    <Content Include="Views\Team\NoTeam.cshtml" />
     <Content Include="Views\UserMailer\Welcome.cshtml" />
     <Content Include="Views\UserMailer\_Layout.cshtml" />
     <Content Include="Views\Account\LostPassword.cshtml" />

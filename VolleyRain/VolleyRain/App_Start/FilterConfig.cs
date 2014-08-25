@@ -13,6 +13,7 @@ namespace VolleyRain
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new SessionDataFilterAttribute());
+            filters.Add(new TeamSelectionFilter());
             filters.Add(new ExceptionLoggingAttribute());
         }
 

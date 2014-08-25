@@ -86,5 +86,10 @@ namespace VolleyRain.Controllers
 
             return Members(teamID);
         }
+
+        public ActionResult NoTeam()
+        {
+            return View();
+        }
     }
 }
