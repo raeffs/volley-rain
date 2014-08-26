@@ -38,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CodeKicker.BBCode">
+      <HintPath>..\packages\CodeKicker.BBCode.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -114,6 +117,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap-extensions.css" />
+    <Content Include="Content\famfamfam.png" />
     <Content Include="Content\fonts\fonts.css" />
     <Content Include="Content\fonts\ubuntu-b-webfont.svg" />
     <Content Include="Content\fonts\ubuntu-bi-webfont.svg" />
@@ -124,8 +128,10 @@
     <Content Include="Content\fonts\ubuntu-mi-webfont.svg" />
     <Content Include="Content\fonts\ubuntu-r-webfont.svg" />
     <Content Include="Content\fonts\ubuntu-ri-webfont.svg" />
+    <Content Include="Content\jquery.sceditor.default.min.css" />
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\layout.css" />
+    <Content Include="Content\square.min.css" />
     <Content Include="Content\themes\custom-theme\images\ui-bg_flat_0_999999_40x100.png" />
     <Content Include="Content\themes\custom-theme\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\custom-theme\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -192,6 +198,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
+    <Content Include="Scripts\jquery.sceditor.bbcode.min.js" />
     <Content Include="Scripts\jquery.timepicker.js" />
     <Content Include="Scripts\jquery.timepicker.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -240,6 +247,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\BBCodeHelper.cs" />
     <Compile Include="Helper\PaginationHelper.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
     <Compile Include="Migrations\201408101033072_InitialVersion.cs" />

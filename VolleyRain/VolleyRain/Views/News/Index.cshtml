@@ -17,7 +17,8 @@
                 </div>
             }
             <h1>@Html.DisplayFor(modelItem => item.Title)</h1>
-            <p class="pre-line">@Html.DisplayFor(modelItem => item.Content)</p>
+            @*<p class="pre-line">@Html.DisplayFor(modelItem => item.Content)</p>*@
+            <p class="pre-line">@Html.ParseBBCode(item.Content)</p>
         </div>
     }
 

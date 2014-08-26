@@ -48,6 +48,14 @@
 
 /* Bootstrap customization */
 
+/* bbcode editor */
+.sceditor-group,
+.sceditor-button
+{
+    box-sizing: content-box;
+}
+/* bbcode editor */
+
 body {
     font-family: 'ubunturegular';
 }
