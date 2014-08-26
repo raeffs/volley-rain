@@ -36,7 +36,10 @@
     
         <tr>
 
-            <td>@Html.DisplayFor(model => user.Name) <span class="hidden-xs">@Html.DisplayFor(model => user.Surname)</span></td>
+            <td>
+                <span class="hidden-xs">@Html.DisplayFor(model => user.Name) @Html.DisplayFor(model => user.Surname)</span>
+                <span class="visible-xs">@Html.DisplayFor(model => user.Name) @Html.FormatValue(user.Surname.Substring(0,1), "{0}.")</span>
+            </td>
 
             @foreach (var item in Model.Events) {
 

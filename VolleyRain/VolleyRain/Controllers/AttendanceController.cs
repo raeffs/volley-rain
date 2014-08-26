@@ -126,10 +126,11 @@ namespace VolleyRain.Controllers
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
             var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID && Session.Teams.Contains(t.ID)).Select(t => t.ID).ToList();
 
-            if (teamIDs.Count == 0) return RedirectToAction("NoTeam");
+            if (teamIDs.Count == 0) return RedirectToAction("NoTeam", "Team");
 
+            var tomorrow = DateTime.Today.AddDays(1);
             var model = Context.Events
-                .Where(e => teamIDs.Contains(e.Team.ID))
+                .Where(e => teamIDs.Contains(e.Team.ID) && e.Start >= tomorrow)
                 .OrderBy(e => e.Start)
                 .Select(e => new AttendanceSelection
                 {
@@ -164,8 +165,9 @@ namespace VolleyRain.Controllers
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
             var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();
 
+            var tomorrow = DateTime.Today.AddDays(1);
             var eventIDs = Context.Events
-                .Where(e => teamIDs.Contains(e.Team.ID))
+                .Where(e => teamIDs.Contains(e.Team.ID) && e.Start >= tomorrow)
                 .Select(m => m.ID)
                 .ToList();
             var attendances = Context.Attendances.Include(a => a.User).Where(a => a.User.ID == Session.UserID && eventIDs.Contains(a.Event.ID)).ToList();

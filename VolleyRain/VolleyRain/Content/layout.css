@@ -173,6 +173,9 @@ a:focus {
     margin-left: 0;
     margin-right: auto;
 }
+#table-attendances > thead {
+    font-size: small;
+}
 #table-attendances.contains-10,
 #table-attendances.contains-9,
 #table-attendances.contains-8,

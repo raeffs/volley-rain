@@ -22,7 +22,7 @@ namespace VolleyRain.Filter
             var session = new SessionDecorator(filterContext.HttpContext.Session);
             var value = filterContext.ActionParameters[teamParameter.Name] as int?;
 
-            if (actionMethod.HasCustomAttributes<AllowAnonymousAttribute>())
+            if (actionMethod.HasCustomAttributes<AllowAnonymousAttribute>() || filterContext.HttpContext.User.IsAdministrator())
             {
                 if (!value.HasValue || !TeamExists(value.Value))
                 {
