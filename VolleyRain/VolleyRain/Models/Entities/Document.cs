@@ -15,5 +15,11 @@ namespace VolleyRain.Models
 
         [Required]
         public string FileName { get; set; }
+
+        [Required(AllowEmptyStrings = true)]
+        public string Description { get; set; }
+
+        [Required]
+        public DateTime Timestamp { get; set; }
     }
 }

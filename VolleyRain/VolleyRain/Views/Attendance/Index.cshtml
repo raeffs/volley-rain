@@ -57,12 +57,12 @@
                         divBuilder.MergeAttribute("title", attendance.Comment);
                     }
                     var normalSpanBuilder = new TagBuilder("span");
-                    normalSpanBuilder.AddCssClass("hidden-xs");
-                    normalSpanBuilder.SetInnerText(attendance.TypeName);
-                    var mobileSpanBuilder = new TagBuilder("span");
-                    mobileSpanBuilder.AddCssClass("visible-xs");
-                    mobileSpanBuilder.SetInnerText(attendance.TypeShortName);
-                    divBuilder.InnerHtml = normalSpanBuilder.ToString() + mobileSpanBuilder.ToString();
+                    //normalSpanBuilder.AddCssClass("hidden-xs");
+                    normalSpanBuilder.SetInnerText(attendance.TypeShortName);
+                    //var mobileSpanBuilder = new TagBuilder("span");
+                    //mobileSpanBuilder.AddCssClass("visible-xs");
+                    //mobileSpanBuilder.SetInnerText(attendance.TypeShortName);
+                    divBuilder.InnerHtml = normalSpanBuilder.ToString(); // +mobileSpanBuilder.ToString();
                     tdBuilder.InnerHtml = divBuilder.ToString();
                 }
                 @Html.Raw(tdBuilder.ToString());

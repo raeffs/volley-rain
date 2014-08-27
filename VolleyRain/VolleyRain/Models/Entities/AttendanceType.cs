@@ -23,5 +23,8 @@ namespace VolleyRain.Models
 
         [Required]
         public string ColorCode { get; set; }
+
+        [Required]
+        public bool IsUserSelectable { get; set; }
     }
 }

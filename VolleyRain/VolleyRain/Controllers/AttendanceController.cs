@@ -119,7 +119,7 @@ namespace VolleyRain.Controllers
         public ActionResult Edit()
         {
             var noSelection = new AttendanceType { ID = 0, Name = string.Empty };
-            var attendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList()).ToList();
+            var attendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList()).Where(t => t.IsUserSelectable).ToList();
             attendanceTypes.Add(noSelection);
             ViewBag.AttendanceTypes = attendanceTypes.OrderBy(t => t.ID).ToList();
 
@@ -160,7 +160,7 @@ namespace VolleyRain.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Edit(IList<AttendanceSelection> model)
         {
-            var attendanceTypes = Context.AttendanceTypes.ToList();
+            var attendanceTypes = Context.AttendanceTypes.Where(t => t.IsUserSelectable).ToList();
 
             var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
             var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();
