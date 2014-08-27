@@ -284,7 +284,7 @@
         var editor = '<div class="bbcode-editor"><ul class="bbcode-toolbar"><li class="bbcode-bold" title="Bold"><b>B</b></li><li class="bbcode-italic" title="Italic"><i>I</i></li><li class="bbcode-underline" title="Underline"><u>U</u></li><li class="bbcode-strikethrough" title="Strikethrough"><s>S</s></li><li class="bbcode-center" title="Center">-C-</li><li class="bbcode-image" title="Image">Img</li><li class="bbcode-link" title="Link">Url</li><li class="bbcode-spoiler" title="Spoiler">Spoiler</li><li class="bbcode-quote" title="Quote">"Quote"</li></ul><textarea></textarea><div class="bbcode-preview"></div></div>';
         */
 
-        var editor = '<div class="bbcode-editor"><ul class="bbcode-toolbar"><li class="bbcode-bold" title="Fett"><b>B</b></li></ul><textarea></textarea><div class="bbcode-preview"></div></div>'
+        var editor = '<div class="bbcode-editor"><ul class="bbcode-toolbar"><li class="bbcode-bold" title="Fett"><b>B</b></li><li class="bbcode-italic" title="Kursiv"><i>I</i></ul><textarea></textarea><div class="bbcode-preview"></div></div>'
 
         return this.each(function () {
             var $this = $(this);
@@ -343,7 +343,11 @@
                     var url = prompt('Enter a valid url', 'http://www.google.com/');
                     if (!url) { return; }
 
-                    $cloned_textarea.replaceSelectedText('[url]' + url + '[/url]', 0, true);
+                    var text = $cloned_textarea.extractSelectedText();
+                    if (text.length <= 0) text = prompt('Enter a text', url);
+                    if (!text || text.length <= 0) text = url;
+
+                    $cloned_textarea.replaceSelectedText('[url href=' + url + ']' + text + '[/url]', 0, true);
                     $cloned_textarea.focus()
                 });
 
