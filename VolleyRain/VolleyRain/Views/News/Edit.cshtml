@@ -42,14 +42,9 @@
     </div>
 }
 
-<script src="~/Scripts/jquery.sceditor.bbcode.min.js"></script>
+<script src="~/Scripts/jquery.bbcode.js"></script>
 <script>
     $(function () {
-        $("textarea").sceditor({
-            plugins: "bbcode",
-            style: "Content/jquery.sceditor.default.min.css",
-            height: "200px",
-            toolbar: "bold",
-        });
+        $('textarea').bbcode();
     });
 </script>

@@ -128,10 +128,9 @@
     <Content Include="Content\fonts\ubuntu-mi-webfont.svg" />
     <Content Include="Content\fonts\ubuntu-r-webfont.svg" />
     <Content Include="Content\fonts\ubuntu-ri-webfont.svg" />
-    <Content Include="Content\jquery.sceditor.default.min.css" />
+    <Content Include="Content\jquery.bbcode.css" />
     <Content Include="Content\jquery.timepicker.css" />
     <Content Include="Content\layout.css" />
-    <Content Include="Content\square.min.css" />
     <Content Include="Content\themes\custom-theme\images\ui-bg_flat_0_999999_40x100.png" />
     <Content Include="Content\themes\custom-theme\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\custom-theme\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -198,7 +197,6 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.js" />
     <Content Include="Scripts\jquery-ui-1.10.4.min.js" />
-    <Content Include="Scripts\jquery.sceditor.bbcode.min.js" />
     <Content Include="Scripts\jquery.timepicker.js" />
     <Content Include="Scripts\jquery.timepicker.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -213,6 +211,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="usefull.txt" />
+    <Content Include="Scripts\jquery.bbcode.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
