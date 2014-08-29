@@ -14,7 +14,7 @@
                 return '<a href="mailto:' +
                 b + '">' + b + "</a>"
             }
-        }; a.emailcustom = { re: /\[email=(.*?)\]([\s\S]*?)\[\/email\]/ig, sub: function (a, b, c) { return '<a href="mailto:' + b + '">' + c + "</a>" } }; a.url = { re: /\[url\]([\s\S]*?)\[\/url\]/ig, sub: function (a, b) { return '<a href="' + b + '">' + b + "</a>" } }; a.urlcustom = { re: /\[url=(.*?)\]([\s\S]*?)\[\/url\]/ig, sub: function (a, b, c) { return '<a href="' + b + '">' + c + "</a>" } }; a.img = { re: /\[img\]([\s\S]*?)\[\/img\]/ig, sub: function (a, b) { return '<img src="' + b + '"/>' } }; a.lists = {
+        }; a.emailcustom = { re: /\[email=(.*?)\]([\s\S]*?)\[\/email\]/ig, sub: function (a, b, c) { return '<a href="mailto:' + b + '">' + c + "</a>" } }; a.url = { re: /\[url\]([\s\S]*?)\[\/url\]/ig, sub: function (a, b) { return '<a href="' + b + '">' + b + "</a>" } }; a.urlcustom = { re: /\[url href=(.*?)\]([\s\S]*?)\[\/url\]/ig, sub: function (a, b, c) { return '<a href="' + b + '">' + c + "</a>" } }; a.img = { re: /\[img\]([\s\S]*?)\[\/img\]/ig, sub: function (a, b) { return '<img src="' + b + '"/>' } }; a.lists = {
             re: /\[list\]([\s\S]*?)\[\/list\]/ig, sub: function (a, b) {
                 b = b.replace(/\[\*\]([^\[\*\]]*)/ig,
                 function (b, a) { return "<li>" + a.replace(/[\n\r?]/, "") + "</li>" }); return "<ul>" + b.replace(/[\n\r?]/, "") + "</ul>"
@@ -284,7 +284,7 @@
         var editor = '<div class="bbcode-editor"><ul class="bbcode-toolbar"><li class="bbcode-bold" title="Bold"><b>B</b></li><li class="bbcode-italic" title="Italic"><i>I</i></li><li class="bbcode-underline" title="Underline"><u>U</u></li><li class="bbcode-strikethrough" title="Strikethrough"><s>S</s></li><li class="bbcode-center" title="Center">-C-</li><li class="bbcode-image" title="Image">Img</li><li class="bbcode-link" title="Link">Url</li><li class="bbcode-spoiler" title="Spoiler">Spoiler</li><li class="bbcode-quote" title="Quote">"Quote"</li></ul><textarea></textarea><div class="bbcode-preview"></div></div>';
         */
 
-        var editor = '<div class="bbcode-editor"><ul class="bbcode-toolbar"><li class="bbcode-bold" title="Fett"><b>B</b></li><li class="bbcode-italic" title="Kursiv"><i>I</i></ul><textarea></textarea><div class="bbcode-preview"></div></div>'
+        var editor = '<div class="bbcode-editor"><ul class="bbcode-toolbar"><li class="bbcode-bold" title="Fett"><b>B</b></li><li class="bbcode-italic" title="Kursiv"><i>I</i><li class="bbcode-link" title="Link">Link</li></ul><textarea></textarea><div class="bbcode-preview"></div></div>'
 
         return this.each(function () {
             var $this = $(this);
@@ -340,11 +340,11 @@
                 });
 
                 $editor.find('.bbcode-link').bind('click', function () {
-                    var url = prompt('Enter a valid url', 'http://www.google.com/');
+                    var url = prompt('Link', 'http://www.google.com/');
                     if (!url) { return; }
 
                     var text = $cloned_textarea.extractSelectedText();
-                    if (text.length <= 0) text = prompt('Enter a text', url);
+                    if (text.length <= 0) text = prompt('Bezeichnung', url);
                     if (!text || text.length <= 0) text = url;
 
                     $cloned_textarea.replaceSelectedText('[url href=' + url + ']' + text + '[/url]', 0, true);
