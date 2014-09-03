@@ -12,19 +12,37 @@
 
 @if (Model.Any())
 {
-    <ul>
-        @foreach (var document in Model)
-        {
-            if (HttpContext.Current.User.IsTeamAdministrator())
-            {
-                <li>@Html.ActionLink(document.Name, "View", new { documentID = document.ID })  - @Html.ActionLink("löschen", "Delete", new { documentID = document.ID })</li>
-            }
-            else
-            { 
-                <li>@Html.ActionLink(document.Name, "View", new { documentID = document.ID })</li>
-            }
-        }
-    </ul>
+    <table class="table table-condensed with-actions">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Name)</th>
+                <th class="hidden-xs">@Html.DisplayNameFor(model => model.Description)</th>
+                <th>@Html.DisplayNameFor(model => model.Timestamp)</th>
+                <th></th>
+            </tr>
+        </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.ActionLink(item.Name, "View", new { documentID = item.ID })</td>
+            <td class="hidden-xs">@Html.DisplayFor(model => item.Description)</td>
+            <td>@Html.DisplayFor(model => item.Timestamp)</td>
+            <td>
+                @if (HttpContext.Current.User.IsTeamAdministrator())
+                {
+                    <div class="btn-group btn-group-xs">
+                        <a class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="@Url.Action("Delete", new { documentID = item.ID })">Löschen</a></li>
+                        </ul>
+                    </div> 
+                }
+            </td>
+        </tr>
+    }
+    </table>
 }
 else
 { 

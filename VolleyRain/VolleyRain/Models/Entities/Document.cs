@@ -11,15 +11,19 @@ namespace VolleyRain.Models
         public int ID { get; set; }
 
         [Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Required]
         public string FileName { get; set; }
 
         [Required(AllowEmptyStrings = true)]
+        [Display(Name = "Beschreibung")]
         public string Description { get; set; }
 
         [Required]
+        [Display(Name = "Aktualisiert")]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
         public DateTime Timestamp { get; set; }
     }
 }

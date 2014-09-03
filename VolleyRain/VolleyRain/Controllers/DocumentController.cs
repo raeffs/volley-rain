@@ -51,6 +51,8 @@ namespace VolleyRain.Controllers
                         ? model.Document.FileName
                         : Path.ChangeExtension(model.Name, Path.GetExtension(fileName)),
                     FileName = fileName,
+                    Description = model.Description ?? string.Empty,
+                    Timestamp = DateTime.Now,
                 });
                 Context.SaveChanges();
 

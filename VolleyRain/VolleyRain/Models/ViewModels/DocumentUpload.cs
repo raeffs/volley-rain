@@ -12,6 +12,9 @@ namespace VolleyRain.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
+        [Display(Name = "Beschreibung")]
+        public string Description { get; set; }
+
         [Required]
         [Display(Name = "Dokument")]
         [FileSize(10)]
