@@ -24,5 +24,44 @@ namespace VolleyRain.Models
 
         [Required]
         public string Hall { get; set; }
+
+        [Required]
+        public bool IsCommited { get; set; }
+
+        [Required]
+        public int SetsWonHome { get; set; }
+
+        [Required]
+        public int SetsWonGuest { get; set; }
+
+        [Required]
+        public int Set1PointsHome { get; set; }
+
+        [Required]
+        public int Set1PointsGuest { get; set; }
+
+        [Required]
+        public int Set2PointsHome { get; set; }
+
+        [Required]
+        public int Set2PointsGuest { get; set; }
+
+        [Required]
+        public int Set3PointsHome { get; set; }
+
+        [Required]
+        public int Set3PointsGuest { get; set; }
+
+        [Required]
+        public int Set4PointsHome { get; set; }
+
+        [Required]
+        public int Set4PointsGuest { get; set; }
+
+        [Required]
+        public int Set5PointsHome { get; set; }
+
+        [Required]
+        public int Set5PointsGuest { get; set; }
     }
 }

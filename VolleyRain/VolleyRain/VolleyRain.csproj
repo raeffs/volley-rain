@@ -261,6 +261,10 @@
     <Compile Include="Migrations\201408271131381_Version-1.7.Designer.cs">
       <DependentUpon>201408271131381_Version-1.7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201409031549326_Version-1.8.cs" />
+    <Compile Include="Migrations\201409031549326_Version-1.8.Designer.cs">
+      <DependentUpon>201409031549326_Version-1.8.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\TeamMembership.cs" />
     <Compile Include="Models\TeamIdentifierAttribute.cs" />
@@ -438,6 +442,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408271131381_Version-1.7.resx">
       <DependentUpon>201408271131381_Version-1.7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201409031549326_Version-1.8.resx">
+      <DependentUpon>201409031549326_Version-1.8.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
