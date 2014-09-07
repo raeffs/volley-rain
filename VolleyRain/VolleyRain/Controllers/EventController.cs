@@ -157,7 +157,7 @@ namespace VolleyRain.Controllers
             if (Context.Events.None(e => e.ID == eventID)) return HttpNotFound();
 
             var noSelection = new AttendanceType { ID = 0, Name = string.Empty };
-            var attendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList()).Where(t => t.IsUserSelectable).ToList();
+            var attendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList()).ToList();
             attendanceTypes.Add(noSelection);
             ViewBag.AttendanceTypes = attendanceTypes.OrderBy(t => t.ID).ToList();
 
