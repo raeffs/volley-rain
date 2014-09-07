@@ -11,5 +11,7 @@ namespace VolleyRain.Models
         public string Name { get; set; }
         public string Surname { get; set; }
         public bool IsCoach { get; set; }
+        public int NumberOfAttendings { get; set; }
+        public int PossibleAttendings { get; set; }
     }
 }

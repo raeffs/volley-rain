@@ -34,14 +34,21 @@ namespace VolleyRain.Controllers
                 .Where(t => t.ID == teamID)
                 .SelectMany(t => t.Members.Select(m => m.User))
                 .Distinct()
-                .Select(u => new UserSummary { ID = u.ID, Name = u.Name, Surname = u.Surname, IsCoach = u.Teams.Any(t => t.IsCoach) })
+                .Select(u => new UserSummary
+                {
+                    ID = u.ID,
+                    Name = u.Name,
+                    Surname = u.Surname,
+                    IsCoach = u.Teams.Any(t => t.IsCoach),
+                    NumberOfAttendings = Context.Attendances.Count(a => a.User.ID == u.ID && a.Event.Team.ID == teamID.Value && a.Event.Start < DateTime.Today && a.Type.RepresentsAttendance),
+                    PossibleAttendings = Context.Events.Count(e => e.Start < DateTime.Today && e.Team.ID == teamID.Value),
+                })
                 .OrderByDescending(u => u.IsCoach)
                 .ThenBy(u => u.Name)
                 .ThenBy(u => u.Surname)
                 .ToList();
-
-            var eventIDs = events.Select(e => e.ID).ToList();
             var userIDs = users.Select(u => u.ID).ToList();
+            var eventIDs = events.Select(e => e.ID).ToList();
 
             var attendances = Context.Attendances
                 .Where(a => eventIDs.Contains(a.Event.ID) && userIDs.Contains(a.User.ID))
@@ -86,7 +93,15 @@ namespace VolleyRain.Controllers
                 .Where(t => t.ID == teamID)
                 .SelectMany(t => t.Members.Select(m => m.User))
                 .Distinct()
-                .Select(u => new UserSummary { ID = u.ID, Name = u.Name, Surname = u.Surname, IsCoach = u.Teams.Any(t => t.IsCoach) })
+                .Select(u => new UserSummary
+                {
+                    ID = u.ID,
+                    Name = u.Name,
+                    Surname = u.Surname,
+                    IsCoach = u.Teams.Any(t => t.IsCoach),
+                    NumberOfAttendings = Context.Attendances.Count(a => a.User.ID == u.ID && a.Event.Team.ID == teamID.Value && a.Event.Start < DateTime.Today && a.Type.RepresentsAttendance),
+                    PossibleAttendings = Context.Events.Count(e => e.Start < DateTime.Today && e.Team.ID == teamID.Value),
+                })
                 .OrderByDescending(u => u.IsCoach)
                 .ThenBy(u => u.Name)
                 .ThenBy(u => u.Surname)
