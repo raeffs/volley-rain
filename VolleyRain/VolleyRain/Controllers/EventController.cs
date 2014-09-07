@@ -152,6 +152,8 @@ namespace VolleyRain.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
         public ActionResult Attendance(int eventID)
         {
             if (Context.Events.None(e => e.ID == eventID)) return HttpNotFound();
@@ -164,6 +166,9 @@ namespace VolleyRain.Controllers
             var teamID = Context.Events.Single(e => e.ID == eventID).Team.ID;
 
             var model = Context.Users
+                .OrderByDescending(u => u.Teams.Any(t => t.IsCoach))
+                .ThenBy(u => u.Name)
+                .ThenBy(u => u.Surname)
                 .Where(u => u.Teams.Any(t => t.TeamID == teamID))
                 .Select(u => new EffectiveAttendanceSelection
                 {
@@ -185,6 +190,55 @@ namespace VolleyRain.Controllers
             }
 
             return PartialView(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Team-Administrator")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Attendance(int eventID, IList<EffectiveAttendanceSelection> model)
+        {
+            if (Context.Events.None(e => e.ID == eventID)) return HttpNotFound();
+
+            var attendanceTypes = Context.AttendanceTypes.ToList();
+            var teamID = Context.Events.Single(e => e.ID == eventID).Team.ID;
+            var users = Context.Users.Where(u => u.Teams.Any(t => t.TeamID == teamID)).ToList();
+            var attendances = Context.Attendances.Where(a => a.Event.ID == eventID).ToList();
+            var toRemove = new List<Attendance>();
+
+            foreach (var item in model)
+            {
+                var type = attendanceTypes.SingleOrDefault(t => t.ID == item.AttendanceType.ID);
+                if (attendances.Any(a => a.User.ID == item.UserID))
+                {
+                    if (type == null)
+                    {
+                        toRemove.Add(attendances.Single(a => a.User.ID == item.UserID));
+                    }
+                    else
+                    {
+                        var attendance = attendances.Single(a => a.User.ID == item.UserID);
+                        attendance.Type = type;
+                        attendance.Comment = item.Comment;
+                    }
+                }
+                else
+                {
+                    if (type == null) continue;
+
+                    Context.Attendances.Add(new Attendance
+                    {
+                        User = Context.Users.Single(u => u.ID == item.UserID),
+                        Event = Context.Events.Single(e => e.ID == eventID),
+                        Type = type,
+                        Comment = item.Comment,
+                    });
+                }
+            }
+            Context.Attendances.RemoveRange(toRemove);
+            Context.SaveChanges();
+
+            TempData["SuccessMessage"] = "Daten wurden gespeichert.";
+            return RedirectToAction("Details", new { eventID = eventID });
         }
     }
 }

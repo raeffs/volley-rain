@@ -2,12 +2,13 @@
 
 <h3>Anwesenheiten</h3>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Attendance", "Event", new { eventID = ViewContext.HttpContext.Request.RequestContext.RouteData.Values["eventID"] }))
 {
+    @Html.AntiForgeryToken();
+    
     <div class="pager">
         <div class="btn-group btn-group-responsive">
             <input type="submit" value="Speichern" class="btn btn-default btn-success" />
-            <a href="@Url.Action("Index")" class="btn btn-default btn-warning">Zurück</a>
         </div>
     </div>
     
@@ -20,15 +21,24 @@
                 <th>@Html.DisplayNameFor(model => Model[0].Comment)</th>
             </tr>
         </thead>
-        @for (int i = 0; i < Model.Count(); i++) { 
+        @for (int i = 0; i < Model.Count(); i++)
+        { 
             <tr>
                 <td class="hidden">@Html.HiddenFor(model => Model[i].UserID)</td>
                 <td>
                     <span class="hidden-xs">@Html.DisplayFor(model => Model[i].UserName) @Html.DisplayFor(model => Model[i].UserSurname)</span>
-                    <span class="visible-xs">@Html.DisplayFor(model => Model[i].UserName) @Html.FormatValue(Model[i].UserSurname.Substring(0,1), "{0}.")</span>
+                    <span class="visible-xs">@Html.DisplayFor(model => Model[i].UserName) @Html.FormatValue(Model[i].UserSurname.Substring(0, 1), "{0}.")</span>
                 </td>
-                <td>@Html.DropDownListFor(model => Model[i].AttendanceType.ID, new SelectList(ViewBag.AttendanceTypes, "ID", "Name", Model[i].AttendanceType.ID), new { @class = "form-control" })</td>
-                <td>@Html.TextBoxFor(model => Model[i].Comment, new { @class = "form-control" })</td>
+                @if (ViewContext.HttpContext.User.IsTeamAdministrator())
+                {
+                    <td>@Html.DropDownListFor(model => Model[i].AttendanceType.ID, new SelectList(ViewBag.AttendanceTypes, "ID", "Name", Model[i].AttendanceType.ID), new { @class = "form-control" })</td>
+                    <td>@Html.TextBoxFor(model => Model[i].Comment, new { @class = "form-control" })</td>
+                }
+                else
+                { 
+                    <td class="@Model[i].AttendanceType.GetCssClass()">@Html.DisplayFor(model => Model[i].AttendanceType.Name)</td>
+                    <td>@Html.DisplayFor(model => Model[i].Comment)</td>
+                }
             </tr>
         }
     </table>
