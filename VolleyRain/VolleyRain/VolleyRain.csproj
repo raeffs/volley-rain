@@ -266,7 +266,9 @@
       <DependentUpon>201409031549326_Version-1.8.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ViewModels\EffectiveAttendanceSelection.cs" />
     <Compile Include="Models\Entities\TeamMembership.cs" />
+    <Compile Include="Models\ViewModels\EventDetails.cs" />
     <Compile Include="Models\TeamIdentifierAttribute.cs" />
     <Compile Include="Models\ViewModels\CalendarExportOptions.cs" />
     <Compile Include="Models\ViewModels\AccountSummary.cs" />
@@ -417,6 +419,8 @@
     <Content Include="Views\Calendar\Export.cshtml" />
     <Content Include="Views\Calendar\Export.ics.cshtml" />
     <Content Include="Views\News\Delete.cshtml" />
+    <Content Include="Views\Event\Details.cshtml" />
+    <Content Include="Views\Event\Attendance.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

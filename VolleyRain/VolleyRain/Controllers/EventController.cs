@@ -130,5 +130,61 @@ namespace VolleyRain.Controllers
             TempData["SuccessMessage"] = "Der Termin wurde gelöscht.";
             return RedirectToAction("Index", "Calendar");
         }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Details(int eventID)
+        {
+            if (Context.Events.None(e => e.ID == eventID)) return HttpNotFound();
+
+            var model = Context.Events
+                .Select(e => new EventDetails
+                {
+                    ID = e.ID,
+                    Name = e.Name,
+                    Description = e.Description,
+                    Location = e.Location,
+                    TypeName = e.Type.Name,
+                    Start = e.Start,
+                    End = e.End
+                })
+                .Single(e => e.ID == eventID);
+            return View(model);
+        }
+
+        public ActionResult Attendance(int eventID)
+        {
+            if (Context.Events.None(e => e.ID == eventID)) return HttpNotFound();
+
+            var noSelection = new AttendanceType { ID = 0, Name = string.Empty };
+            var attendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList()).Where(t => t.IsUserSelectable).ToList();
+            attendanceTypes.Add(noSelection);
+            ViewBag.AttendanceTypes = attendanceTypes.OrderBy(t => t.ID).ToList();
+
+            var teamID = Context.Events.Single(e => e.ID == eventID).Team.ID;
+
+            var model = Context.Users
+                .Where(u => u.Teams.Any(t => t.TeamID == teamID))
+                .Select(u => new EffectiveAttendanceSelection
+                {
+                    UserID = u.ID,
+                    UserName = u.Name,
+                    UserSurname = u.Surname,
+                })
+                .ToList();
+
+            foreach (var attendance in Context.Attendances.Include(a => a.User).Include(a => a.Type).Where(a => a.Event.ID == eventID))
+            {
+                var m = model.Single(u => u.UserID == attendance.User.ID);
+                m.AttendanceType = attendance.Type;
+                m.Comment = attendance.Comment;
+            }
+            foreach (var m in model)
+            {
+                if (m.AttendanceType == null) m.AttendanceType = noSelection;
+            }
+
+            return PartialView(model);
+        }
     }
 }
