@@ -13,5 +13,6 @@ namespace VolleyRain.Models
         public bool IsCoach { get; set; }
         public int NumberOfAttendings { get; set; }
         public int PossibleAttendings { get; set; }
+        public int AttendanceInPercentage { get { return (int)Math.Round((double)NumberOfAttendings / (double)PossibleAttendings * 100); } }
     }
 }

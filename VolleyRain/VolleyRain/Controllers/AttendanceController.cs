@@ -15,7 +15,7 @@ namespace VolleyRain.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Index([TeamIdentifier] int? teamID, int? page, int? pageSize)
         {
-            if (page.HasValue && page.Value == 0) return RedirectToAction("Archive");
+            if (page.HasValue && page.Value == 0) return RedirectToAction("Archive", new { pageSize = pageSize });
 
             ViewBag.AttendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList());
             ViewBag.EventTypes = Cache.GetEventTypes(() => Context.EventTypes.ToList());
@@ -73,7 +73,7 @@ namespace VolleyRain.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Archive([TeamIdentifier] int? teamID, int? page, int? pageSize)
         {
-            if (page.HasValue && page.Value == 0) return RedirectToAction("Index");
+            if (page.HasValue && page.Value == 0) return RedirectToAction("Index", new { pageSize = pageSize });
 
             ViewBag.AttendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList());
             ViewBag.EventTypes = Cache.GetEventTypes(() => Context.EventTypes.ToList());
