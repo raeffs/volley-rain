@@ -22,22 +22,12 @@
 
             @foreach (var item in Model.Events) {
                 <th class="@item.GetCssClass() event-@Model.IndexOf(item)">
-                    @if ((ViewContext.HttpContext.Request.RequestContext.RouteData.Values["action"] as string ?? "Index") == "Archive")
-                    {
-                        <a href="@Url.Action("Details", "Event", new { eventID = item.ID })">
-                            <span class="with-comment" data-toggle="tooltip" title="@Html.DisplayFor(model => item.Name)">
-                                <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
-                                <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
-                            </span>
-                        </a>
-                    }
-                    else
-                    { 
+                    <a href="@Url.Action("Details", "Event", new { eventID = item.ID })">
                         <span class="with-comment" data-toggle="tooltip" title="@Html.DisplayFor(model => item.Name)">
                             <span class="hidden-xs">@Html.FormatValue(item.Start, "{0:ddd, dd.MM. HH:mm}")</span>
                             <span class="visible-xs">@Html.FormatValue(item.Start, "{0:dd.MM.}")</span>
                         </span>
-                    }
+                    </a>
                 </th>
             }
 

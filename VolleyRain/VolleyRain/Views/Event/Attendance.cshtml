@@ -6,11 +6,14 @@
 {
     @Html.AntiForgeryToken();
     
-    <div class="pager">
-        <div class="btn-group btn-group-responsive">
-            <input type="submit" value="Speichern" class="btn btn-default btn-success" />
+    if (ViewContext.HttpContext.User.IsTeamAdministrator())
+    { 
+        <div class="pager">
+            <div class="btn-group btn-group-responsive">
+                <input type="submit" value="Speichern" class="btn btn-default btn-success" />
+            </div>
         </div>
-    </div>
+    }
     
     <table class="table table-condensed">
         <thead>

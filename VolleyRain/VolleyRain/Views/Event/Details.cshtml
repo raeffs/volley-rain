@@ -64,7 +64,4 @@
 
 </div>
 
-@if (Model.Start < DateTime.Today)
-{
-    @Html.Action("Attendance", "Event", new { eventID = Model.ID }) 
-}
+@Html.Action("Attendance", "Event", new { eventID = Model.ID }) 

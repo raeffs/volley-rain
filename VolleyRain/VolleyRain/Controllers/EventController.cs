@@ -153,7 +153,7 @@ namespace VolleyRain.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Team-Administrator")]
+        [Authorize]
         public ActionResult Attendance(int eventID)
         {
             if (Context.Events.None(e => e.ID == eventID)) return HttpNotFound();
