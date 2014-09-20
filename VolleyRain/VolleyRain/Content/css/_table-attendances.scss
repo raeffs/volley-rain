@@ -1,0 +1,96 @@
+﻿
+$screen-xs-max: 767px !default;
+$screen-sm-min: 768px !default;
+$site-max-width: 1200px !default;
+
+$table-max-width: $screen-sm-min;
+$table-max-width-desktop: $site-max-width;
+$column-first-width: 100px;
+$column-first-width-desktop: 150px;
+$column-last-width: 0px;
+$column-last-width-desktop: 100px;
+$column-max-width: ($table-max-width - $column-first-width - $column-last-width) / 5;
+$column-max-width-desktop: ($table-max-width-desktop - $column-first-width-desktop - $column-last-width-desktop) / 10;
+
+@mixin calc-width-for-columns($count) {
+    width: $table-max-width - (5 - $count) * $column-max-width;
+}
+@mixin calc-width-for-columns-desktop($count) {
+    width: $table-max-width-desktop - (10 - $count) * $column-max-width-desktop;
+}
+
+#table-attendances {
+    margin-left: 0;
+    margin-right: auto;
+    font-size: small;
+}
+
+#table-attendances > thead > tr > th:first-child,
+#table-attendances > tbody > tr > td:first-child,
+#table-attendances > tfoot > tr > th:first-child {
+    width: $column-first-width;
+}
+#table-attendances > thead > tr > th:last-child,
+#table-attendances > tbody > tr > td:last-child,
+#table-attendances > tfoot > tr > th:last-child {
+    width: $column-last-width;
+    text-align: right;
+}
+
+#table-attendances.contains-10,
+#table-attendances.contains-9,
+#table-attendances.contains-8,
+#table-attendances.contains-7,
+#table-attendances.contains-6,
+#table-attendances.contains-5 { @include calc-width-for-columns(5) }
+#table-attendances.contains-4 { @include calc-width-for-columns(4) }
+#table-attendances.contains-3 { @include calc-width-for-columns(3) }
+#table-attendances.contains-2 { @include calc-width-for-columns(2) }
+#table-attendances.contains-1 { @include calc-width-for-columns(1) }
+
+@media (min-width: $screen-sm-min) {
+    #table-attendances > thead > tr > th:first-child,
+    #table-attendances > tbody > tr > td:first-child,
+    #table-attendances > tfoot > tr > th:first-child {
+        width: $column-first-width-desktop;
+    }
+    #table-attendances > thead > tr > th:last-child,
+    #table-attendances > tbody > tr > td:last-child,
+    #table-attendances > tfoot > tr > th:last-child {
+        width: $column-last-width-desktop;
+    }
+
+    #table-attendances.contains-10 { @include calc-width-for-columns-desktop(10) }
+    #table-attendances.contains-9 { @include calc-width-for-columns-desktop(9) }
+    #table-attendances.contains-8 { @include calc-width-for-columns-desktop(8) }
+    #table-attendances.contains-7 { @include calc-width-for-columns-desktop(7) }
+    #table-attendances.contains-6 { @include calc-width-for-columns-desktop(6) }
+    #table-attendances.contains-5 { @include calc-width-for-columns-desktop(5) }
+    #table-attendances.contains-4 { @include calc-width-for-columns-desktop(4) }
+    #table-attendances.contains-3 { @include calc-width-for-columns-desktop(3) }
+    #table-attendances.contains-2 { @include calc-width-for-columns-desktop(2) }
+    #table-attendances.contains-1 { @include calc-width-for-columns-desktop(1) }
+}
+
+@media (max-width: $screen-xs-max) {
+    #table-attendances > thead > tr > th.event-5,
+    #table-attendances > tbody > tr > td.event-5,
+    #table-attendances > tfoot > tr > th.event-5,
+    #table-attendances > thead > tr > th.event-6,
+    #table-attendances > tbody > tr > td.event-6,
+    #table-attendances > tfoot > tr > th.event-6,
+    #table-attendances > thead > tr > th.event-7,
+    #table-attendances > tbody > tr > td.event-7,
+    #table-attendances > tfoot > tr > th.event-7,
+    #table-attendances > thead > tr > th.event-8,
+    #table-attendances > tbody > tr > td.event-8,
+    #table-attendances > tfoot > tr > th.event-8,
+    #table-attendances > thead > tr > th.event-9,
+    #table-attendances > tbody > tr > td.event-9,
+    #table-attendances > tfoot > tr > th.event-9,
+    #table-attendances > thead > tr > th:last-child,
+    #table-attendances > tbody > tr > td:last-child,
+    #table-attendances > tfoot > tr > th:last-child {
+        display: none !important;
+    }
+}

@@ -205,6 +205,12 @@
     <Content Include="Content\css\_font-ubuntu.min.css">
       <DependentUpon>_font-ubuntu.scss</DependentUpon>
     </Content>
+    <Content Include="Content\css\_table-attendances.css">
+      <DependentUpon>_table-attendances.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\css\_table-attendances.min.css">
+      <DependentUpon>_table-attendances.scss</DependentUpon>
+    </Content>
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.woff" />
@@ -238,7 +244,7 @@
     <Content Include="Content\fonts\ubuntu\ubuntu-ri-webfont.ttf" />
     <Content Include="Content\fonts\ubuntu\ubuntu-ri-webfont.woff" />
     <Content Include="Content\css\_font-ubuntu.scss">
-      <Compile>True</Compile>
+      <Compile>False</Compile>
       <Minify>True</Minify>
       <IgnoreWarnings>False</IgnoreWarnings>
       <IgnoreErrors>False</IgnoreErrors>
@@ -248,6 +254,14 @@
     <Content Include="Content\css\jquery\theme\_jquery-ui-1.10.3.theme.scss" />
     <Content Include="Content\css\jquery\theme\_jquery-ui-1.10.3.custom.scss" />
     <Content Include="Content\css\jquery\theme\jquery-ui.theme.scss" />
+    <Content Include="Content\css\_table-attendances.scss">
+      <Compile>True</Compile>
+      <Minify>True</Minify>
+      <IgnoreWarnings>False</IgnoreWarnings>
+      <IgnoreErrors>False</IgnoreErrors>
+      <CompileStyle>Nested</CompileStyle>
+      <DebugInfo>False</DebugInfo>
+    </Content>
     <None Include="todo.txt" />
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\ubuntu\ubuntu-b-webfont.svg" />

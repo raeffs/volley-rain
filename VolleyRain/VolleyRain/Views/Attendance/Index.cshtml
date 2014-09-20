@@ -31,7 +31,7 @@
                 </th>
             }
 
-            @*<th class="hidden-xs"></th>*@
+            <th></th>
         </tr>
     </thead>
 
@@ -71,7 +71,7 @@
                 @Html.Raw(tdBuilder.ToString());
             }
 
-            @*<td class="hidden-xs">@Html.FormatValue(user.AttendanceInPercentage, "{0}%") (@user.NumberOfAttendings / @user.PossibleAttendings)</td>*@
+            <td>@Html.FormatValue(user.AttendanceInPercentage, "{0}%") (@user.NumberOfAttendings / @user.PossibleAttendings)</td>
         </tr>
         
     }
@@ -84,7 +84,7 @@
                 <th class="event-@Model.IndexOf(item)">@Model.GetAttendeesFor(item)</th>
             }
 
-            @*<th class="hidden-xs"></th>*@
+            <th></th>
         </tr>
     </tfoot>
 
