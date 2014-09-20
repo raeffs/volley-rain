@@ -1,0 +1,159 @@
+
+$site-max-width: 1200px;
+$site-min-width: 350px;
+
+// bootstrap variables
+$icon-font-path: "/Content/fonts/bootstrap/";
+
+@import 'bootstrap/bootstrap';
+@import 'bootstrap-extensions';
+
+@import 'font-ubuntu';
+
+body {
+    font-family: 'ubuntu';
+}
+
+.logo { 
+    width: 258px;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+
+    @media (min-width: $screen-sm-min) {
+        width: 500px;
+    }
+}
+
+table .form-control {
+    height: 28px;
+    padding: 4px;
+}
+
+.with-comment {
+    font-weight: 700;
+    display: block;
+}
+
+.footer {
+    clear: both;
+    margin-bottom: 20px;
+    background-color: black;
+    padding: 15px 30px;
+    color: white;
+    font-size: 11px;
+    text-align: center;
+}
+
+.table-calendar {
+    table-layout: fixed;
+}
+
+.table-calendar > thead > tr > th {
+    text-align: center;
+}
+
+.table-calendar .head > td {
+    font-weight: 700;
+    padding: 0;
+}
+
+.table-calendar .head > td span {
+    display: block;
+    padding: 5px;
+}
+
+.table-calendar .head > td span:hover {
+    background-color: #f9f9f9;
+}
+
+.table-calendar .body > td {
+    height: 80px;
+    border: none;
+    vertical-align: top;
+}
+
+.table-calendar .label {
+    display: block;
+    padding: 0.7em 0.3em;
+    margin: 0.3em -0.3em;
+    overflow: hidden;
+}
+
+.fadeout {
+    color: #ddd;
+}
+
+a {
+    color: inherit;
+}
+
+a:hover,
+a:active, 
+a:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
+.log-level-error {
+    color: #FF4444;
+}
+.log-level-fatal {
+    color: #FF4444;
+    font-weight: 700;
+}
+.log-level-warn {
+    color: #FF8800;
+}
+.log-level-info {
+    color: #669900;
+}
+.log-level-debug {
+}
+.log-level-trace {
+    color: #999999;
+}
+.table-log {
+    font-size: small;
+}
+
+.pre-line {
+    white-space: pre-line;
+}
+
+.not-too-wide {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sceditor-group,
+.sceditor-button
+{
+    box-sizing: content-box;
+}
+
+table.with-actions > tbody > tr:hover {
+    background-color: #f9f9f9;
+}
+table.with-actions > tbody > tr > td:last-child {
+    text-align: right;
+}
+
+.field-validation-error {
+    color: #b94a48;
+}
+.field-validation-valid {
+    display: none;
+}
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+.validation-summary-errors {
+    color: #b94a48;
+}
+.validation-summary-valid {
+    display: none;
+}

@@ -1,0 +1,101 @@
+﻿
+$ubuntu-font-path: '/Content/fonts/ubuntu/';
+
+@font-face {
+    font-family: 'ubuntu';
+    src: url('#{$ubuntu-font-path}ubuntu-r-webfont.eot');
+    src: url('#{$ubuntu-font-path}ubuntu-r-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$ubuntu-font-path}ubuntu-r-webfont.woff') format('woff'),
+         url('#{$ubuntu-font-path}ubuntu-r-webfont.ttf') format('truetype'),
+         url('#{$ubuntu-font-path}ubuntu-r-webfont.svg#ubunturegular') format('svg');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntu';
+    src: url('#{$ubuntu-font-path}ubuntu-b-webfont.eot');
+    src: url('#{$ubuntu-font-path}ubuntu-b-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$ubuntu-font-path}ubuntu-b-webfont.woff') format('woff'),
+         url('#{$ubuntu-font-path}ubuntu-b-webfont.ttf') format('truetype'),
+         url('#{$ubuntu-font-path}ubuntu-b-webfont.svg#ubuntubold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntu';
+    src: url('#{$ubuntu-font-path}ubuntu-ri-webfont.eot');
+    src: url('#{$ubuntu-font-path}ubuntu-ri-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$ubuntu-font-path}ubuntu-ri-webfont.woff') format('woff'),
+         url('#{$ubuntu-font-path}ubuntu-ri-webfont.ttf') format('truetype'),
+         url('#{$ubuntu-font-path}ubuntu-ri-webfont.svg#ubuntuitalic') format('svg');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'ubuntu';
+    src: url('#{$ubuntu-font-path}ubuntu-bi-webfont.eot');
+    src: url('#{$ubuntu-font-path}ubuntu-bi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$ubuntu-font-path}ubuntu-bi-webfont.woff') format('woff'),
+         url('#{$ubuntu-font-path}ubuntu-bi-webfont.ttf') format('truetype'),
+         url('#{$ubuntu-font-path}ubuntu-bi-webfont.svg#ubuntubold_italic') format('svg');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'ubuntumedium_italic';
+    src: url('#{$ubuntu-font-path}ubuntu-mi-webfont.eot');
+    src: url('#{$ubuntu-font-path}ubuntu-mi-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$ubuntu-font-path}ubuntu-mi-webfont.woff') format('woff'),
+         url('#{$ubuntu-font-path}ubuntu-mi-webfont.ttf') format('truetype'),
+         url('#{$ubuntu-font-path}ubuntu-mi-webfont.svg#ubuntumedium_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntulight_italic';
+    src: url('#{$ubuntu-font-path}ubuntu-li-webfont.eot');
+    src: url('#{$ubuntu-font-path}ubuntu-li-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$ubuntu-font-path}ubuntu-li-webfont.woff') format('woff'),
+         url('#{$ubuntu-font-path}ubuntu-li-webfont.ttf') format('truetype'),
+         url('#{$ubuntu-font-path}ubuntu-li-webfont.svg#ubuntulight_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntumedium';
+    src: url('#{$ubuntu-font-path}ubuntu-m-webfont.eot');
+    src: url('#{$ubuntu-font-path}ubuntu-m-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$ubuntu-font-path}ubuntu-m-webfont.woff') format('woff'),
+         url('#{$ubuntu-font-path}ubuntu-m-webfont.ttf') format('truetype'),
+         url('#{$ubuntu-font-path}ubuntu-m-webfont.svg#ubuntumedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntu_condensedregular';
+    src: url('#{$ubuntu-font-path}ubuntu-c-webfont.eot');
+    src: url('#{$ubuntu-font-path}ubuntu-c-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$ubuntu-font-path}ubuntu-c-webfont.woff') format('woff'),
+         url('#{$ubuntu-font-path}ubuntu-c-webfont.ttf') format('truetype'),
+         url('#{$ubuntu-font-path}ubuntu-c-webfont.svg#ubuntu_condensedregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntulight';
+    src: url('#{$ubuntu-font-path}ubuntu-l-webfont.eot');
+    src: url('#{$ubuntu-font-path}ubuntu-l-webfont.eot?#iefix') format('embedded-opentype'),
+         url('#{$ubuntu-font-path}ubuntu-l-webfont.woff') format('woff'),
+         url('#{$ubuntu-font-path}ubuntu-l-webfont.ttf') format('truetype'),
+         url('#{$ubuntu-font-path}ubuntu-l-webfont.svg#ubuntulight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
