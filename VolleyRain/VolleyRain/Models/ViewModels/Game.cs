@@ -26,5 +26,11 @@ namespace VolleyRain.Models
 
         [Display(Name = "Halle")]
         public string Hall { get; set; }
+
+        public bool IsCommited { get; set; }
+
+        public int SetsWonHome { get; set; }
+
+        public int SetsWonGuest { get; set; }
     }
 }

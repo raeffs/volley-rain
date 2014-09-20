@@ -14,7 +14,7 @@
             <th>@Html.DisplayNameFor(model => model.HomeTeam)</th>
             <th></th>
             <th>@Html.DisplayNameFor(model => model.GuestTeam)</th>
-            <th>@Html.DisplayNameFor(model => model.Hall)</th>
+            <th class="hidden-xs">@Html.DisplayNameFor(model => model.Hall)</th>
         </tr>
     </thead>
     @foreach (var item in Model) { 
@@ -22,9 +22,16 @@
             <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
             <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
             <td>@Html.DisplayFor(modelItem => item.HomeTeam)</td>
-            <td>-</td>
+            @if (item.IsCommited)
+            { 
+                <td style="text-align:center">@item.SetsWonHome&nbsp;:&nbsp;@item.SetsWonGuest</td> 
+            }
+            else
+            {
+                <td style="text-align:center">:</td> 
+            }
             <td>@Html.DisplayFor(modelItem => item.GuestTeam)</td>
-            <td>@Html.DisplayFor(modelItem => item.Hall)</td>
+            <td class="hidden-xs">@Html.DisplayFor(modelItem => item.Hall)</td>
         </tr>
     }
 </table>
