@@ -13,10 +13,10 @@ $column-max-width: ($table-max-width - $column-first-width - $column-last-width)
 $column-max-width-desktop: ($table-max-width-desktop - $column-first-width-desktop - $column-last-width-desktop) / 10;
 
 @mixin calc-width-for-columns($count) {
-    width: $table-max-width - (5 - $count) * $column-max-width;
+    max-width: $table-max-width - (5 - $count) * $column-max-width;
 }
 @mixin calc-width-for-columns-desktop($count) {
-    width: $table-max-width-desktop - (10 - $count) * $column-max-width-desktop;
+    max-width: $table-max-width-desktop - (10 - $count) * $column-max-width-desktop;
 }
 
 #table-attendances {

@@ -20,19 +20,19 @@
 #table-attendances.contains-7,
 #table-attendances.contains-6,
 #table-attendances.contains-5 {
-  width: 768px; }
+  max-width: 768px; }
 
 #table-attendances.contains-4 {
-  width: 634.4px; }
+  max-width: 634.4px; }
 
 #table-attendances.contains-3 {
-  width: 500.8px; }
+  max-width: 500.8px; }
 
 #table-attendances.contains-2 {
-  width: 367.2px; }
+  max-width: 367.2px; }
 
 #table-attendances.contains-1 {
-  width: 233.6px; }
+  max-width: 233.6px; }
 
 @media (min-width: 768px) {
   #table-attendances > thead > tr > th:first-child,
@@ -46,34 +46,34 @@
     width: 100px; }
 
   #table-attendances.contains-10 {
-    width: 1200px; }
+    max-width: 1200px; }
 
   #table-attendances.contains-9 {
-    width: 1105px; }
+    max-width: 1105px; }
 
   #table-attendances.contains-8 {
-    width: 1010px; }
+    max-width: 1010px; }
 
   #table-attendances.contains-7 {
-    width: 915px; }
+    max-width: 915px; }
 
   #table-attendances.contains-6 {
-    width: 820px; }
+    max-width: 820px; }
 
   #table-attendances.contains-5 {
-    width: 725px; }
+    max-width: 725px; }
 
   #table-attendances.contains-4 {
-    width: 630px; }
+    max-width: 630px; }
 
   #table-attendances.contains-3 {
-    width: 535px; }
+    max-width: 535px; }
 
   #table-attendances.contains-2 {
-    width: 440px; }
+    max-width: 440px; }
 
   #table-attendances.contains-1 {
-    width: 345px; } }
+    max-width: 345px; } }
 @media (max-width: 767px) {
   #table-attendances > thead > tr > th.event-5,
   #table-attendances > tbody > tr > td.event-5,
