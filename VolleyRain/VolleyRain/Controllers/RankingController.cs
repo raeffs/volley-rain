@@ -14,7 +14,7 @@ namespace VolleyRain.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return View(Context.Rankings.ToList());
+            return View(Context.Rankings.OrderBy(r => r.Rank).ToList());
         }
 
         public void Update(int? teamID)
