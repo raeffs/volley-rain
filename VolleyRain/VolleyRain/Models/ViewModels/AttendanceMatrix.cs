@@ -32,7 +32,7 @@ namespace VolleyRain.Models
 
         public int GetAttendeesFor(EventSummary @event)
         {
-            return _attendances.Count(a => a.EventID == @event.ID && a.RepresentsAttendance);
+            return _attendances.Count(a => a.EventID == @event.ID && a.RepresentsAttendance && !Users.Single(u => u.ID == a.UserID).IsCoach);
         }
 
         public int IndexOf(EventSummary @event)
