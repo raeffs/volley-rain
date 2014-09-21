@@ -25,8 +25,10 @@ namespace VolleyRain.Controllers
             }
 
             var model = new Month(year.Value, month.Value);
+            var showAll = HttpContext.User.IsAdministrator();
             var events = Context.Events
-                .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End && (e.Team == null || Session.Teams.Contains(e.Team.ID)))
+                .Where(e => e.End >= model.CalendarViewPeriod.Start && e.Start <= model.CalendarViewPeriod.End &&
+                    (e.Team == null || (showAll || Session.Teams.Contains(e.Team.ID))))
                 .Select(e => new EventSummary
                 {
                     ID = e.ID,
