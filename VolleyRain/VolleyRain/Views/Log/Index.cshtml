@@ -10,6 +10,16 @@
 <div class="pager">
     @Html.PreviousPageButton(pagination, "Zurück")
     @Html.NextPageButton(pagination, "Weiter")
+    
+    <div class="btn-group btn-group-responsive">
+        @RenderToggleButton(NLog.LogLevel.Fatal)
+        @RenderToggleButton(NLog.LogLevel.Error)
+        @RenderToggleButton(NLog.LogLevel.Warn)
+        @RenderToggleButton(NLog.LogLevel.Info)
+        @RenderToggleButton(NLog.LogLevel.Debug)
+        @RenderToggleButton(NLog.LogLevel.Trace)
+    </div>
+
     @*<div class="btn-group btn-group-responsive">
         <a href="#" class="btn btn-success">Suchen</a>
         <a href="@Url.Action("Index", new { fixedID = "", page = "" })" class="btn btn-warning">Fixierung aufheben</a>
@@ -61,3 +71,78 @@
     @Html.PreviousPageButton(pagination, "Zurück")
     @Html.NextPageButton(pagination, "Weiter")
 </div>
+
+@helper RenderToggleButton(NLog.LogLevel logLevel)
+{
+    var session = new SessionDecorator(Session);
+    
+    var builder = new TagBuilder("a");
+    builder.AddCssClass("btn");
+    builder.MergeAttribute("href", Url.Action("ToggleLevel", new { level = logLevel.Name }));
+    builder.SetInnerText(logLevel.Name);
+    switch (logLevel.Name)
+    {
+        case "Fatal":
+            if (session.ShowLogLevelFatal)
+            {
+                builder.AddCssClass("btn-primary");
+            }
+            else
+            {
+                builder.AddCssClass("btn-default"); 
+            }
+            break;
+        case "Error":
+            if (session.ShowLogLevelError)
+            {
+                builder.AddCssClass("btn-primary");
+            }
+            else
+            {
+                builder.AddCssClass("btn-default");
+            }
+            break;
+        case "Warn":
+            if (session.ShowLogLevelWarn)
+            {
+                builder.AddCssClass("btn-primary");
+            }
+            else
+            {
+                builder.AddCssClass("btn-default");
+            }
+            break;
+        case "Info":
+            if (session.ShowLogLevelInfo)
+            {
+                builder.AddCssClass("btn-primary");
+            }
+            else
+            {
+                builder.AddCssClass("btn-default");
+            }
+            break;
+        case "Debug":
+            if (session.ShowLogLevelDebug)
+            {
+                builder.AddCssClass("btn-primary");
+            }
+            else
+            {
+                builder.AddCssClass("btn-default");
+            }
+            break;
+        case "Trace":
+            if (session.ShowLogLevelTrace)
+            {
+                builder.AddCssClass("btn-primary");
+            }
+            else
+            {
+                builder.AddCssClass("btn-default");
+            }
+            break;
+    }
+    
+    @Html.Raw(builder.ToString())
+}

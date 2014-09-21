@@ -5468,15 +5468,27 @@ a:focus {
 .log-level-error {
   color: #FF4444; }
 
+.btn-log-level-error {
+  background-color: #FF4444; }
+
 .log-level-fatal {
   color: #FF4444;
   font-weight: 700; }
 
+.btn-log-level-fatal {
+  background-color: #FF4444; }
+
 .log-level-warn {
   color: #FF8800; }
 
+.btn-log-level-warn {
+  background-color: #FF8800; }
+
 .log-level-info {
   color: #669900; }
+
+.btn-log-level-info {
+  background-color: #669900; }
 
 .log-level-trace {
   color: #999999; }

@@ -40,6 +40,42 @@ namespace VolleyRain.Models
             set { SetValue(() => Teams, value); }
         }
 
+        public bool ShowLogLevelFatal
+        {
+            get { return GetValue(() => ShowLogLevelFatal, true); }
+            set { SetValue(() => ShowLogLevelFatal, value); }
+        }
+
+        public bool ShowLogLevelError
+        {
+            get { return GetValue(() => ShowLogLevelError, true); }
+            set { SetValue(() => ShowLogLevelError, value); }
+        }
+
+        public bool ShowLogLevelWarn
+        {
+            get { return GetValue(() => ShowLogLevelWarn, true); }
+            set { SetValue(() => ShowLogLevelWarn, value); }
+        }
+
+        public bool ShowLogLevelInfo
+        {
+            get { return GetValue(() => ShowLogLevelInfo, true); }
+            set { SetValue(() => ShowLogLevelInfo, value); }
+        }
+
+        public bool ShowLogLevelDebug
+        {
+            get { return GetValue(() => ShowLogLevelDebug, false); }
+            set { SetValue(() => ShowLogLevelDebug, value); }
+        }
+
+        public bool ShowLogLevelTrace
+        {
+            get { return GetValue(() => ShowLogLevelTrace, false); }
+            set { SetValue(() => ShowLogLevelTrace, value); }
+        }
+
         public void Clear()
         {
             _context.Clear();

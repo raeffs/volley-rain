@@ -20,6 +20,12 @@ namespace VolleyRain
             //);
 
             routes.MapRoute(
+                name: "LogToggleLevel",
+                url: "Log/ToggleLevel/{level}",
+                defaults: new { controller = "Log", action = "ToggleLevel" }
+            );
+
+            routes.MapRoute(
                 name: "LogDetails",
                 url: "Log/Details/{logID}",
                 defaults: new { controller = "Log", action = "Details" }
