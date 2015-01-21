@@ -79,6 +79,18 @@ table .form-control {
     overflow: hidden;
 }
 
+.table-calendar .head > td.today,
+.table-calendar .body > td.today {
+    background-color: #EAEAEA;
+    border: 1px solid #666;
+}
+.table-calendar .head > td.today {
+    border-bottom: none;
+}
+.table-calendar .body > td.today {
+    border-top: none;
+}
+
 .fadeout {
     color: #ddd;
 }

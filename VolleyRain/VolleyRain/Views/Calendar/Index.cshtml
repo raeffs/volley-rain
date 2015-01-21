@@ -52,6 +52,10 @@
             {
                 tdBuilder.AddCssClass("fadeout"); 
             }
+            if (day.IsToday)
+            {
+                tdBuilder.AddCssClass("today");
+            }
             var aBuilder = new TagBuilder("a");
             if (HttpContext.Current.User.IsTeamAdministrator())
             {
@@ -78,6 +82,10 @@
             if (!day.IsInsideMonth)
             {
                 tdBuilder.AddCssClass("fadeout");
+            }
+            if (day.IsToday)
+            {
+                tdBuilder.AddCssClass("today");
             }
             foreach (var @event in day.Events)
             {

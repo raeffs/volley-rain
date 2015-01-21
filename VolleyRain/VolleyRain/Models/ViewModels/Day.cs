@@ -17,6 +17,8 @@ namespace VolleyRain.Models
 
         public List<EventSummary> Events { get; set; }
 
+        public bool IsToday { get { return CalendarViewPeriod.HasInside(DateTime.Now); } }
+
         public Day(int year, int month, int day)
         {
             var dayBase = new Itenso.TimePeriod.Day(year, month, day);
