@@ -21,13 +21,16 @@ namespace VolleyRain.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Team-Administrator")]
-        public ActionResult Create()
+        public ActionResult Create(string dateHint)
         {
+            var temp = default(DateTime);
+            var date = DateTime.TryParse(dateHint, out temp) ? temp.Date : DateTime.Now.Date;
+
             var model = new EventCreation
             {
                 FullTime = true,
-                StartDate = DateTime.Now.Date,
-                EndDate = DateTime.Now.Date,
+                StartDate = date,
+                EndDate = date,
             };
 
             return View(model);

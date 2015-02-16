@@ -59,7 +59,7 @@
             var aBuilder = new TagBuilder("a");
             if (HttpContext.Current.User.IsTeamAdministrator())
             {
-                aBuilder.MergeAttribute("href", Url.Action("Create", "Event"));
+                aBuilder.MergeAttribute("href", Url.Action("Create", "Event", new { dateHint = day.Date.ToString("yyyy-MM-dd") }));
             }
             else
             {
