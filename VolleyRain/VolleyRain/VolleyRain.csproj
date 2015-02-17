@@ -521,6 +521,7 @@
     <Content Include="Views\News\Delete.cshtml" />
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Attendance.cshtml" />
+    <Content Include="Views\Event\Types.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

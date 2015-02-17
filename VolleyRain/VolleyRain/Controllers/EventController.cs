@@ -243,5 +243,29 @@ namespace VolleyRain.Controllers
             TempData["SuccessMessage"] = "Daten wurden gespeichert.";
             return RedirectToAction("Details", new { eventID = eventID });
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult Types()
+        {
+            return View(Cache.GetEventTypes(() => Context.EventTypes.ToList()));
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult Types(IList<EventType> model)
+        {
+            var eventTypes = Context.EventTypes.ToList();
+            foreach (var item in model.Where(t => eventTypes.Select(i => i.ID).Contains(t.ID)))
+            {
+                var type = eventTypes.Single(t => t.ID == item.ID);
+                type.ColorCode = item.ColorCode;
+            }
+            Context.SaveChanges();
+
+            Cache.GetEventTypes(() => Context.EventTypes.ToList(), true);
+
+            return RedirectToAction("Types");
+        }
     }
 }

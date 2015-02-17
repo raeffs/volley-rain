@@ -19,6 +19,7 @@ namespace VolleyRain.Models
         public string ShortName { get; set; }
 
         //[Required]
+        [Display(Name = "Farbe")]
         public string ColorCode { get; set; }
     }
 }

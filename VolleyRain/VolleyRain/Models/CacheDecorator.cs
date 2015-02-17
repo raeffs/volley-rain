@@ -25,9 +25,9 @@ namespace VolleyRain.Models
             return GetValue("AttendanceTypes", initializer, forceUpdate);
         }
 
-        public ICollection<EventType> GetEventTypes(Func<ICollection<EventType>> initializer)
+        public ICollection<EventType> GetEventTypes(Func<ICollection<EventType>> initializer, bool forceUpdate = false)
         {
-            return GetValue("EventTypes", initializer);
+            return GetValue("EventTypes", initializer, forceUpdate);
         }
 
         private T GetValue<T>(string key, Func<T> initializer, bool forceUpdate = false)
