@@ -18,7 +18,8 @@
                 <th class="hidden"></th>
                 <th>@Html.DisplayNameFor(model => Model[0].ShortName)</th>
                 <th>@Html.DisplayNameFor(model => Model[0].Name)</th>
-                <th>@Html.DisplayNameFor(model => Model[0].RepresentsAttendance)</th>
+                <th class="hidden-xs">@Html.DisplayNameFor(model => Model[0].RepresentsAttendance)</th>
+                <th class="hidden-xs">@Html.DisplayNameFor(model => Model[0].IsUserSelectable)</th>
                 <th>@Html.DisplayNameFor(model => Model[0].ColorCode)</th>
             </tr>
         </thead>
@@ -27,9 +28,17 @@
                 <td class="hidden">@Html.HiddenFor(model => Model[i].ID)</td>
                 <td>@Html.DisplayFor(model => Model[i].ShortName)</td>
                 <td>@Html.DisplayFor(model => Model[i].Name)</td>
-                <td>@Html.DisplayFor(model => Model[i].RepresentsAttendance)</td>
-                <td>@Html.TextBoxFor(model => Model[i].ColorCode, new { @class = "form-control" })</td>
+                <td class="hidden-xs">@Html.DisplayFor(model => Model[i].RepresentsAttendance)</td>
+                <td class="hidden-xs">@Html.DisplayFor(model => Model[i].IsUserSelectable)</td>
+                <td>@Html.ColorInputFor(model => Model[i].ColorCode, new { @class = "color-picker" })</td>
             </tr>
         }
     </table>
 }
+
+<script>
+    $(".color-picker").spectrum({
+        preferredFormat: "hex",
+        showInitial: true
+    });
+</script>

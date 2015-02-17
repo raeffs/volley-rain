@@ -234,6 +234,16 @@ namespace VolleyRain.Controllers
         [Authorize(Roles = "Team-Administrator")]
         public ActionResult Types(IList<AttendanceType> model)
         {
+            var attendanceTypes = Context.AttendanceTypes.ToList();
+            foreach (var item in model.Where(t => attendanceTypes.Select(i => i.ID).Contains(t.ID)))
+            {
+                var type = attendanceTypes.Single(t => t.ID == item.ID);
+                type.ColorCode = item.ColorCode;
+            }
+            Context.SaveChanges();
+
+            Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList(), true);
+
             return RedirectToAction("Types");
         }
     }

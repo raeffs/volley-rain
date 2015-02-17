@@ -196,6 +196,7 @@
     <Content Include="Content\css\site.min.css">
       <DependentUpon>site.scss</DependentUpon>
     </Content>
+    <Content Include="Content\css\spectrum\spectrum.css" />
     <Content Include="Content\css\_font-ubuntu.css">
       <DependentUpon>_font-ubuntu.scss</DependentUpon>
     </Content>
@@ -300,6 +301,7 @@
     <Content Include="Content\js\jquery\jquery.bbcode.js" />
     <Content Include="Content\js\jquery\jquery.timepicker.js" />
     <Content Include="Content\js\jquery\jquery.timepicker.min.js" />
+    <Content Include="Content\js\spectrum\spectrum.js" />
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Service References\SwissVolley\configuration91.svcinfo" />
@@ -344,6 +346,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\BBCodeHelper.cs" />
+    <Compile Include="Helper\CustomHtmlHelper.cs" />
     <Compile Include="Helper\PaginationHelper.cs" />
     <Compile Include="Mailers\UserMailer.cs" />
     <Compile Include="Migrations\201408101033072_InitialVersion.cs" />

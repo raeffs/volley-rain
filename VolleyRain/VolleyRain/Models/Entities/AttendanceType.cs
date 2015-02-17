@@ -22,6 +22,7 @@ namespace VolleyRain.Models
         public bool RepresentsAttendance { get; set; }
 
         [Required]
+        [Display(Name = "Farbe")]
         public string ColorCode { get; set; }
 
         [Required]

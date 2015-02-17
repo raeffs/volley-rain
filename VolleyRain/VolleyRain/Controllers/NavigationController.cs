@@ -58,7 +58,7 @@ namespace VolleyRain.Controllers
                 Links = new List<NavigationLink> 
                 {
                     new NavigationLink { Controller = "Team", Action = "Members", DisplayText = "Teammitglieder", Role = "Team-Administrator" },
-                    //new NavigationLink { Controller = "Attendance", Action = "Types", DisplayText = "Anwesenheits-Typen", Role = "Team-Administrator" },
+                    new NavigationLink { Controller = "Attendance", Action = "Types", DisplayText = "Anwesenheits-Typen", Role = "Team-Administrator" },
                 }
             },
             new NavigationGroup 
