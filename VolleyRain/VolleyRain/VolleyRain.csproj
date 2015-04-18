@@ -319,6 +319,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
@@ -329,6 +330,7 @@
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RankingController.cs" />
+    <Compile Include="Controllers\SeasonController.cs" />
     <Compile Include="Controllers\StyleController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="DataAccess\DatabaseContext.cs" />
@@ -365,7 +367,13 @@
     <Compile Include="Migrations\201409031549326_Version-1.8.Designer.cs">
       <DependentUpon>201409031549326_Version-1.8.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504061807000_Version-1.10.cs" />
+    <Compile Include="Migrations\201504061807000_Version-1.10.Designer.cs">
+      <DependentUpon>201504061807000_Version-1.10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Entities\Comment.cs" />
+    <Compile Include="Models\ViewModels\TeamEditing.cs" />
     <Compile Include="Models\ViewModels\EffectiveAttendanceSelection.cs" />
     <Compile Include="Models\Entities\TeamMembership.cs" />
     <Compile Include="Models\ViewModels\EventDetails.cs" />
@@ -383,6 +391,7 @@
     <Compile Include="Models\ViewModels\PasswordResetRequest.cs" />
     <Compile Include="Models\ViewModels\NavigationGroup.cs" />
     <Compile Include="Models\ViewModels\NavigationLink.cs" />
+    <Compile Include="Models\ViewModels\TeamCreation.cs" />
     <Compile Include="Models\ViewModels\TeamMembershipSelection.cs" />
     <Compile Include="Models\ViewModels\AttendanceSummary.cs" />
     <Compile Include="Models\Entities\Attendance.cs" />
@@ -435,7 +444,7 @@
     <Content Include="Views\News\Create.cshtml" />
     <Content Include="Views\News\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Ranking\Index.cshtml" />
+    <Content Include="Views\Ranking\Show.cshtml" />
     <Content Include="Views\Calendar\Index.cshtml" />
     <Content Include="Views\Calendar\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Bootstrap3Pagination.cshtml" />
@@ -522,6 +531,15 @@
     <Content Include="Views\Event\Details.cshtml" />
     <Content Include="Views\Event\Attendance.cshtml" />
     <Content Include="Views\Event\Types.cshtml" />
+    <Content Include="Views\Event\Upcoming.cshtml" />
+    <Content Include="Views\Season\Index.cshtml" />
+    <Content Include="Views\Team\Index.cshtml" />
+    <Content Include="Views\Team\Create.cshtml" />
+    <Content Include="Views\Team\Edit.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\RankingCollection.cshtml" />
+    <Content Include="Views\Ranking\Index.cshtml" />
+    <Content Include="Views\Team\Select.cshtml" />
+    <Content Include="Views\Admin\Reset.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -550,6 +568,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201409031549326_Version-1.8.resx">
       <DependentUpon>201409031549326_Version-1.8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504061807000_Version-1.10.resx">
+      <DependentUpon>201504061807000_Version-1.10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

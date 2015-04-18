@@ -267,5 +267,27 @@ namespace VolleyRain.Controllers
 
             return RedirectToAction("Types");
         }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Upcoming()
+        {
+            var showAll = HttpContext.User.IsAdministrator();
+            var model = Context.Events
+                .Where(e => (e.Team == null || (showAll || Session.Teams.Contains(e.Team.ID)))
+                    && e.Start >= DateTime.Today)
+                .OrderBy(e => e.Start)
+                .Take(10)
+                .Select(e => new EventSummary
+                {
+                    ID = e.ID,
+                    Name = e.Name,
+                    Start = e.Start,
+                    End = e.End,
+                    TypeID = e.Type.ID
+                })
+                .ToList();
+            return View(model);
+        }
     }
 }

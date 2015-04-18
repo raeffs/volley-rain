@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using VolleyRain.DataAccess;
 using VolleyRain.Models;
+using System.Data.Entity;
 
 namespace VolleyRain.Controllers
 {
@@ -14,7 +15,22 @@ namespace VolleyRain.Controllers
         [AllowAnonymous]
         public ActionResult Index()
         {
-            return View(Context.Rankings.OrderBy(r => r.Rank).ToList());
+            var model = Context.Seasons
+                .Include(s => s.Teams)
+                .Include(s => s.Teams.Select(t => t.Rankings))
+                .ToList();
+            return View(model);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult Show([TeamIdentifier] int? teamID)
+        {
+            var model = Context.Teams
+                .Include(t => t.Season)
+                .Include(t => t.Rankings)
+                .Single(t => t.ID == teamID);
+            return View(model);
         }
 
         public void Update(int? teamID)
@@ -31,8 +47,10 @@ namespace VolleyRain.Controllers
 
         private void UpdateRankings(Team team)
         {
+            if (!team.ExternalID.HasValue || !team.ExternalGroupID.HasValue) return;
+
             var rank = 0;
-            var rankings = new SwissVolley.SwissVolleyPortTypeClient().getTable(team.ExternalGroupID);
+            var rankings = new SwissVolley.SwissVolleyPortTypeClient().getTable(team.ExternalGroupID.Value);
             foreach (var ranking in rankings)
             {
                 if (IsRank(ranking.Rank)) rank++;

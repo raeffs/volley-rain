@@ -44,7 +44,9 @@ namespace VolleyRain.Controllers
 
         private void UpdateGames(Team team)
         {
-            var games = new SwissVolley.SwissVolleyPortTypeClient().getGamesTeam(team.ExternalID);
+            if (!team.ExternalID.HasValue) return;
+
+            var games = new SwissVolley.SwissVolleyPortTypeClient().getGamesTeam(team.ExternalID.Value);
             foreach (var game in games)
             {
                 if (Context.GameDetails.Any(g => g.ExternalID == game.ID_game && g.Event.Team.ID == team.ID))

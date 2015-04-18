@@ -1,0 +1,37 @@
+﻿@model IEnumerable<EventSummary>
+
+@{
+    ViewBag.Title = "Meine nächsten Termine";
+}
+
+@if (Model.Any()) 
+{ 
+    <h2>Meine nächsten Termine</h2>
+
+    foreach (var item in Model) { 
+        <div class="event">
+            <div class="head @item.GetCssClass()">@Html.DisplayFor(modelItem => item.Start) - @Html.DisplayFor(modelItem => item.Name)</div>
+            
+            @if (Model.ElementAt(2) != item)
+            { 
+                <div class="jumbotron">
+                    <h1>Test</h1>
+                    <p>Dies ist ein Kommentar</p>
+                    @if (Model.ElementAt(1) == item)
+                    {
+                    <h1>Test</h1>
+                    <p>Dies ist ein weiterer Kommentar</p>
+                    }
+                </div>
+            }
+        </div>
+    }
+}
+else
+{
+    <div class="jumbotron">
+        <h1>Es wurden noch keine News veröffentlicht</h1>
+        <p>Schau später wieder vorbei ;)</p>
+    </div>
+}
+

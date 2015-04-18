@@ -13,12 +13,12 @@ namespace VolleyRain.Controllers
         {
             new NavigationGroup 
             { 
-                DisplayText = "News", 
+                DisplayText = "Home", 
                 HideIfOnlyOneLink = true, 
                 Links = new List<NavigationLink> 
                 {
                     new NavigationLink { Controller = "News", Action = "Index", DisplayText = "News", Role = string.Empty },
-                    new NavigationLink { Controller = "News", Action = "Create", DisplayText = "Veröffentlichen", Role = "Team-Administrator" },
+                    //new NavigationLink { Controller = "Event", Action = "Upcoming" , DisplayText = "Meine Termine", Role = "User" },
                 }
             },
             new NavigationGroup 
@@ -57,9 +57,12 @@ namespace VolleyRain.Controllers
                 HideIfOnlyOneLink = false, 
                 Links = new List<NavigationLink> 
                 {
+                    new NavigationLink { Controller = "News", Action = "Create", DisplayText = "News Veröffentlichen", Role = "Team-Administrator" },
                     new NavigationLink { Controller = "Team", Action = "Members", DisplayText = "Teammitglieder", Role = "Team-Administrator" },
                     new NavigationLink { Controller = "Attendance", Action = "Types", DisplayText = "Anwesenheits-Typen", Role = "Team-Administrator" },
                     new NavigationLink { Controller = "Event", Action = "Types", DisplayText = "Event-Typen", Role = "Team-Administrator" },
+                    new NavigationLink { Controller = "Season", Action = "Index", DisplayText = "Saisons", Role = "Team-Administrator" },
+                    new NavigationLink { Controller = "Team", Action = "Index", DisplayText = "Teams", Role = "Team-Administrator" },
                 }
             },
             new NavigationGroup 
@@ -70,6 +73,7 @@ namespace VolleyRain.Controllers
                 {
                     new NavigationLink { Controller = "Account", Action = "Index", DisplayText = "Benutzer", Role = "Administrator" },
                     new NavigationLink { Controller = "Log", Action = "Index", DisplayText = "Log", Role = "Administrator", RouteValues = new { fixedID = "", page = "" } },
+                    new NavigationLink { Controller = "Admin", Action = "Reset", DisplayText = "Zurücksetzen", Role = "Administrator" },
                 }
             },
         };

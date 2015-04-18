@@ -33,9 +33,12 @@ namespace VolleyRain.Models
 
         public virtual List<Attendance> Attendances { get; set; }
 
+        public virtual List<Comment> Comments { get; set; }
+
         public Event()
         {
             Attendances = new List<Attendance>();
+            Comments = new List<Comment>();
         }
     }
 }

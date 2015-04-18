@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Season>
+
+@{
+    ViewBag.Title = "Teamauswahl";
+}
+
+<h2>Teamauswahl</h2>
+
+@foreach (var season in Model.OrderByDescending(s => s.Start))
+{
+    if (season.Teams.Any())
+    { 
+        <h3>@Html.DisplayFor(modelItem => season.Name)</h3>
+        
+        <ul>
+            @foreach (var team in season.Teams)
+            { 
+                <li><a href="@ViewBag.ReturnUrl?teamID=@team.ID">@Html.DisplayFor(modelItem => team.Name)</a></li>
+            }
+        </ul>
+    } 
+}

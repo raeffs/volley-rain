@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Zurücksetzen";
+}
+
+<h2>Zurücksetzen</h2>
+
+<div class="form-horizontal">
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 btn-group btn-group-responsive">
+                <input type="submit" value="Zurücksetzen" class="btn btn-default btn-danger" />
+            </div>
+        </div>
+    }
+
+</div>

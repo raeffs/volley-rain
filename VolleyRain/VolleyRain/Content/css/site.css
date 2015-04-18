@@ -5525,6 +5525,13 @@ table.with-actions > tbody > tr:hover {
 table.with-actions > tbody > tr > td:last-child {
   text-align: right; }
 
+.event > .head {
+  text-align: center;
+  font-weight: bold;
+  color: #FFFFFF;
+  padding: 5px;
+  margin-top: 20px; }
+
 .field-validation-error {
   color: #b94a48; }
 

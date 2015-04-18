@@ -1,0 +1,9 @@
+﻿@model Team
+
+@{
+    ViewBag.Title = "Rangliste";
+}
+
+<h2>Rangliste <small>Team @Model.Name (@Model.Season.Name) <small>&raquo;&nbsp;@Html.ActionLink("Auswahl", "Select", "Team", new { ReturnUrl = Context.Request.Url }, null)</small></small></h2>
+
+@Html.DisplayFor(model => model.Rankings, "RankingCollection")

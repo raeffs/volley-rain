@@ -40,6 +40,12 @@ namespace VolleyRain.Models
             set { SetValue(() => Teams, value); }
         }
 
+        public int? SelectedTeamID
+        {
+            get { return GetValue(() => SelectedTeamID); }
+            set { SetValue(() => SelectedTeamID, value); }
+        }
+
         public bool ShowLogLevelFatal
         {
             get { return GetValue(() => ShowLogLevelFatal, true); }

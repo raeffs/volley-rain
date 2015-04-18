@@ -20,7 +20,9 @@ namespace VolleyRain.Filter
 
             var cache = new CacheDecorator(filterContext.HttpContext.Cache);
             var session = new SessionDecorator(filterContext.HttpContext.Session);
+
             var value = filterContext.ActionParameters[teamParameter.Name] as int?;
+            if (!value.HasValue) value = session.SelectedTeamID;
 
             if (actionMethod.HasCustomAttributes<AllowAnonymousAttribute>() || filterContext.HttpContext.User.IsAdministrator())
             {
@@ -28,8 +30,14 @@ namespace VolleyRain.Filter
                 {
                     value = GetTeamOfActualSeason(cache);
                 }
-
-                // select team
+                if (!value.HasValue)
+                {
+                    filterContext.Result = new RedirectToRouteResult(new System.Web.Routing.RouteValueDictionary { 
+                        { "Controller", "Team" }, 
+                        { "Action", "Select" } ,
+                        { "ReturnUrl", filterContext.RequestContext.HttpContext.Request.Url }
+                    });
+                }
             }
             else
             {
@@ -38,6 +46,8 @@ namespace VolleyRain.Filter
                     value = GetTeamOfActualSeason(filterContext, cache, session);
                 }
             }
+
+            if (value.HasValue) session.SelectedTeamID = value;
             filterContext.ActionParameters[teamParameter.Name] = value;
         }
 
@@ -111,6 +121,11 @@ namespace VolleyRain.Filter
             {
                 foreach (var method in controllerType.GetMethods(BindingFlags.Public | BindingFlags.Instance))
                 {
+                    if (string.Equals(method.Name, actionName, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        actionMethod = method;
+                        break;
+                    }
                 }
             }
             return actionMethod;

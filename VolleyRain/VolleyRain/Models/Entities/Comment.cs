@@ -6,7 +6,7 @@ using System.Web;
 
 namespace VolleyRain.Models
 {
-    public class NewsArticle
+    public class Comment
     {
         public int ID { get; set; }
 
@@ -17,8 +17,6 @@ namespace VolleyRain.Models
         public string Content { get; set; }
 
         [Required]
-        public DateTime PublishDate { get; set; }
-
-        public bool IsPublic { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

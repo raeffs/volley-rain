@@ -6,10 +6,8 @@ using System.Web;
 
 namespace VolleyRain.Models
 {
-    public class Team
+    public class TeamCreation
     {
-        public int ID { get; set; }
-
         [Required]
         public string Name { get; set; }
 
@@ -21,16 +19,6 @@ namespace VolleyRain.Models
 
         [Required]
         [Display(Name = "Saison")]
-        public virtual Season Season { get; set; }
-
-        public virtual ICollection<TeamMembership> Members { get; set; }
-
-        public virtual ICollection<Ranking> Rankings { get; set; }
-
-        public Team()
-        {
-            Members = new List<TeamMembership>();
-            Rankings = new List<Ranking>();
-        }
+        public int SeasonID { get; set; }
     }
 }

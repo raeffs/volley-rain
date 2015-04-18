@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Season>
+
+@{
+    ViewBag.Title = "Saisons";
+}
+
+<h2>Saisons</h2>
+
+<table class="table table-condensed with-actions">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Start)</th>
+            <th>@Html.DisplayNameFor(model => model.End)</th>
+            <th></th>
+        </tr>
+    </thead>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(model => item.Name)</td>
+        <td>@Html.DisplayFor(model => item.Start)</td>
+        <td>@Html.DisplayFor(model => item.End)</td>
+        <td>
+        </td>
+    </tr>
+}
+</table>

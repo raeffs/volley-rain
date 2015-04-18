@@ -17,10 +17,11 @@ namespace VolleyRain.Controllers
         [AllowAnonymous]
         public ActionResult Index(int? page)
         {
-            var pagination = new Pagination(5, Context.NewsArticles.Count(), page);
+            var pagination = new Pagination(5, Context.NewsArticles.Count(a => a.IsPublic), page);
             ViewBag.Pagination = pagination;
 
             var model = Context.NewsArticles
+                .Where(a => a.IsPublic)
                 .OrderByDescending(a => a.PublishDate)
                 .Skip(pagination.ItemsToSkip)
                 .Take(pagination.PageSize)

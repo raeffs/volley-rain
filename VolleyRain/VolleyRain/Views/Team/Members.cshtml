@@ -2,9 +2,10 @@
 
 @{
     ViewBag.Title = "Teammitglieder";
+    var team = ViewBag.Team as Team;
 }
 
-<h2>Teammitglieder <small>Team SVKT Rain</small></h2>
+<h2>Teammitglieder <small>Team @team.Name (@team.Season.Name) <small>&raquo;&nbsp;@Html.ActionLink("Auswahl", "Select", "Team", new { ReturnUrl = Context.Request.Url }, null)</small></small></h2>
 
 @using (Html.BeginForm())
 {
