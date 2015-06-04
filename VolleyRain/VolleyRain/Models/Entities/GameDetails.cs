@@ -22,7 +22,7 @@ namespace VolleyRain.Models
         [Required]
         public string GuestTeam { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = true)]
         public string Hall { get; set; }
 
         [Required]

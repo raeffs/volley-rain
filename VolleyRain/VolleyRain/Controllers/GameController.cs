@@ -58,7 +58,14 @@ namespace VolleyRain.Controllers
                     CreateGame(team, game);
                 }
             }
-            Context.SaveChanges();
+            try
+            {
+                Context.SaveChanges();
+            }
+            catch (Exception exception)
+            {
+
+            }
         }
 
         private void CreateGame(Team team, SwissVolley.GameEntry game)
