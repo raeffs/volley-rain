@@ -40,10 +40,12 @@ namespace VolleyRain.Controllers
                     Name = u.Name,
                     Surname = u.Surname,
                     IsCoach = u.Teams.Any(t => t.IsCoach),
+                    IsTemporary = u.Teams.Any(t => t.IsTemporary),
                     NumberOfAttendings = Context.Attendances.Count(a => a.User.ID == u.ID && a.Event.Team.ID == teamID.Value && a.Event.Start < DateTime.Today && a.Type.RepresentsAttendance),
                     PossibleAttendings = Context.Events.Count(e => e.Start < DateTime.Today && e.Team.ID == teamID.Value),
                 })
                 .OrderByDescending(u => u.IsCoach)
+                .ThenBy(u => u.IsTemporary)
                 .ThenBy(u => u.Name)
                 .ThenBy(u => u.Surname)
                 .ToList();
@@ -99,10 +101,12 @@ namespace VolleyRain.Controllers
                     Name = u.Name,
                     Surname = u.Surname,
                     IsCoach = u.Teams.Any(t => t.IsCoach),
+                    IsTemporary = u.Teams.Any(t => t.IsTemporary),
                     NumberOfAttendings = Context.Attendances.Count(a => a.User.ID == u.ID && a.Event.Team.ID == teamID.Value && a.Event.Start < DateTime.Today && a.Type.RepresentsAttendance),
                     PossibleAttendings = Context.Events.Count(e => e.Start < DateTime.Today && e.Team.ID == teamID.Value),
                 })
                 .OrderByDescending(u => u.IsCoach)
+                .ThenBy(u => u.IsTemporary)
                 .ThenBy(u => u.Name)
                 .ThenBy(u => u.Surname)
                 .ToList();

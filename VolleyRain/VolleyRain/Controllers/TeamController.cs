@@ -84,6 +84,7 @@ namespace VolleyRain.Controllers
             ViewBag.Team = team;
             var members = team.Members.Select(m => m.UserID).ToList();
             var coaches = team.Members.Where(m => m.IsCoach).Select(m => m.UserID).ToList();
+            var temporaries = team.Members.Where(m => m.IsTemporary).Select(m => m.UserID).ToList();
             var model = Context.Users
                 .Include(u => u.Roles)
                 .OrderBy(u => u.Name)
@@ -102,6 +103,7 @@ namespace VolleyRain.Controllers
             {
                 user.IsMemberOfTeam = members.Contains(user.UserID);
                 user.IsCoachOfTeam = coaches.Contains(user.UserID);
+                user.IsTemporary = temporaries.Contains(user.UserID);
                 user.IsSelf = user.UserID == Session.UserID;
             }
 
@@ -138,6 +140,7 @@ namespace VolleyRain.Controllers
                 if (item == null) continue;
 
                 member.IsCoach = item.IsCoachOfTeam;
+                member.IsTemporary = item.IsTemporary;
             }
             Context.SaveChanges();
 

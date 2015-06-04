@@ -20,6 +20,8 @@ namespace VolleyRain.Models
 
         public bool IsCoach { get; set; }
 
+        public bool IsTemporary { get; set; }
+
         public bool IsAdmin { get; set; }
     }
 }

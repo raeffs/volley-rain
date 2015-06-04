@@ -25,7 +25,10 @@ namespace VolleyRain.Models
         [Display(Name = "Trainer?", ShortName = "T?")]
         public bool IsCoachOfTeam { get; set; }
 
-        [Display(Name = "Administrator?", ShortName = "A?")]
+        [Display(Name = "Aushilfe?", ShortName = "A?")]
+        public bool IsTemporary { get; set; }
+
+        [Display(Name = "Administrator?", ShortName = "Admin?")]
         public bool IsAdminOfTeam { get; set; }
 
         public bool IsSelf { get; set; }

@@ -29,8 +29,12 @@
                     <span class="visible-xs">T?</span>
                 </th>
                 <th>
-                    <span class="hidden-xs">@Html.DisplayNameFor(model => Model[0].IsAdminOfTeam)</span>
+                    <span class="hidden-xs">@Html.DisplayNameFor(model => Model[0].IsTemporary)</span>
                     <span class="visible-xs">A?</span>
+                </th>
+                <th>
+                    <span class="hidden-xs">@Html.DisplayNameFor(model => Model[0].IsAdminOfTeam)</span>
+                    <span class="visible-xs">Admin?</span>
                 </th>
             </tr>
         </thead>
@@ -45,11 +49,13 @@
                 { 
                     <td>@Html.DisplayFor(model => Model[i].IsMemberOfTeam)</td>
                     <td>@Html.DisplayFor(model => Model[i].IsCoachOfTeam)</td>
+                    <td>@Html.DisplayFor(model => Model[i].IsTemporary)</td>
                 }
                 else
                 { 
-                    <td>@Html.CheckBoxFor(model => Model[i].IsMemberOfTeam, new { id = string.Format("toggle-coach-{0}", Model[i].UserID) })</td>
+                    <td>@Html.CheckBoxFor(model => Model[i].IsMemberOfTeam, new { id = string.Format("toggle-coachandtemp-{0}", Model[i].UserID) })</td>
                     <td>@Html.CheckBoxFor(model => Model[i].IsCoachOfTeam, new { id = string.Format("coach-{0}", Model[i].UserID) })</td>
+                    <td>@Html.CheckBoxFor(model => Model[i].IsTemporary, new { id = string.Format("temp-{0}", Model[i].UserID) })</td>
                 }
                 @if (!Model[i].IsSelf && HttpContext.Current.User.IsAdministrator())
                 {
@@ -68,11 +74,13 @@
     @for (int i = 0; i < Model.Count; i++)
     {
         @:$(function () {
-            @:$('#toggle-coach-@Model[i].UserID').change(function () {
+            @:$('#toggle-coachandtemp-@Model[i].UserID').change(function () {
                 @:if ($(this).is(':checked')) {
                     @:$('#coach-@Model[i].UserID').prop("disabled", false);
+                    @:$('#temp-@Model[i].UserID').prop("disabled", false);
                 @:} else {
                     @:$('#coach-@Model[i].UserID').prop({ disabled: true, checked: false });
+                    @:$('#temp-@Model[i].UserID').prop({ disabled: true, checked: false });
                 @:}
             @:}).change();  
         @:});

@@ -6,35 +6,44 @@
 
 <h2>Event-Typen</h2>
 
-@using (Html.BeginForm())
-{
-    <div class="pager">
-        <input type="submit" value="Speichern" class="btn btn-default btn-success btn-responsive" />
-    </div>
+<div class="pager">
+    <a href="@Url.Action("CreateType")" class="btn btn-success btn-responsive">Neuen Event-Typ erstellen</a>
+</div>
     
-    <table class="table table-condensed">
-        <thead>
-            <tr>
-                <th class="hidden"></th>
-                <th>@Html.DisplayNameFor(model => Model[0].ShortName)</th>
-                <th>@Html.DisplayNameFor(model => Model[0].Name)</th>
-                <th>@Html.DisplayNameFor(model => Model[0].ColorCode)</th>
-            </tr>
-        </thead>
-        @for (int i = 0; i < Model.Count(); i++) { 
-            <tr>
-                <td class="hidden">@Html.HiddenFor(model => Model[i].ID)</td>
-                <td>@Html.DisplayFor(model => Model[i].ShortName)</td>
-                <td>@Html.DisplayFor(model => Model[i].Name)</td>
-                <td>@Html.ColorInputFor(model => Model[i].ColorCode, new { @class = "color-picker" })</td>
-            </tr>
-        }
-    </table>
-}
+<table class="table table-condensed with-actions">
+    <thead>
+        <tr>
+            <th class="hidden"></th>
+            <th>@Html.DisplayNameFor(model => Model[0].ShortName)</th>
+            <th>@Html.DisplayNameFor(model => Model[0].Name)</th>
+            <th>@Html.DisplayNameFor(model => Model[0].ColorCode)</th>
+            <th></th>
+        </tr>
+    </thead>
+    @for (int i = 0; i < Model.Count(); i++) { 
+        <tr>
+            <td class="hidden">@Html.HiddenFor(model => Model[i].ID)</td>
+            <td>@Html.DisplayFor(model => Model[i].ShortName)</td>
+            <td>@Html.DisplayFor(model => Model[i].Name)</td>
+            <td>@Html.ColorInputFor(model => Model[i].ColorCode, new { @class = "color-picker" })</td>
+            <td>
+                <div class="btn-group btn-group-xs">
+                    <a class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="@Url.Action("EditType", new { typeID = Model[i].ID })">Bearbeiten</a></li>
+                    </ul>
+                </div> 
+            </td>
+        </tr>
+    }
+</table>
 
 <script>
     $(".color-picker").spectrum({
         preferredFormat: "hex",
-        showInitial: true
+        showInitial: true,
+        disabled: true,
     });
 </script>

@@ -251,21 +251,67 @@ namespace VolleyRain.Controllers
             return View(Cache.GetEventTypes(() => Context.EventTypes.ToList()));
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult CreateType()
+        {
+            return View();
+        }
+
         [HttpPost]
         [Authorize(Roles = "Team-Administrator")]
-        public ActionResult Types(IList<EventType> model)
+        public ActionResult CreateType(EventTypeCreation model)
         {
-            var eventTypes = Context.EventTypes.ToList();
-            foreach (var item in model.Where(t => eventTypes.Select(i => i.ID).Contains(t.ID)))
+            if (ModelState.IsValid)
             {
-                var type = eventTypes.Single(t => t.ID == item.ID);
-                type.ColorCode = item.ColorCode;
+                var eventType = new EventType
+                {
+                    Name = model.Name,
+                    ShortName = model.ShortName,
+                    ColorCode = model.ColorCode,
+                };
+                Context.EventTypes.Add(eventType);
+                Context.SaveChanges();
+
+                Cache.GetEventTypes(() => Context.EventTypes.ToList(), true);
+                return RedirectToAction("Types");
             }
-            Context.SaveChanges();
 
-            Cache.GetEventTypes(() => Context.EventTypes.ToList(), true);
+            return View(model);
+        }
 
-            return RedirectToAction("Types");
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult EditType(int typeID)
+        {
+            var eventType = Cache.GetEventTypes(() => Context.EventTypes.ToList()).Single(t => t.ID == typeID);
+            var model = new EventTypeCreation
+            {
+                ID = eventType.ID,
+                Name = eventType.Name,
+                ShortName = eventType.ShortName,
+                ColorCode = eventType.ColorCode,
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult EditType(EventTypeCreation model)
+        {
+            if (ModelState.IsValid)
+            {
+                var eventType = Context.EventTypes.Single(t => t.ID == model.ID);
+                eventType.Name = model.Name;
+                eventType.ShortName = model.ShortName;
+                eventType.ColorCode = model.ColorCode;
+                Context.SaveChanges();
+
+                Cache.GetEventTypes(() => Context.EventTypes.ToList(), true);
+                return RedirectToAction("Types");
+            }
+
+            return View(model);
         }
 
         [HttpGet]

@@ -371,8 +371,13 @@
     <Compile Include="Migrations\201504061807000_Version-1.10.Designer.cs">
       <DependentUpon>201504061807000_Version-1.10.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201506041320302_Version-1.11.cs" />
+    <Compile Include="Migrations\201506041320302_Version-1.11.Designer.cs">
+      <DependentUpon>201506041320302_Version-1.11.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Comment.cs" />
+    <Compile Include="Models\ViewModels\EventTypeCreation.cs" />
     <Compile Include="Models\ViewModels\TeamEditing.cs" />
     <Compile Include="Models\ViewModels\EffectiveAttendanceSelection.cs" />
     <Compile Include="Models\Entities\TeamMembership.cs" />
@@ -540,6 +545,8 @@
     <Content Include="Views\Ranking\Index.cshtml" />
     <Content Include="Views\Team\Select.cshtml" />
     <Content Include="Views\Admin\Reset.cshtml" />
+    <Content Include="Views\Event\EditType.cshtml" />
+    <Content Include="Views\Event\CreateType.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -571,6 +578,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504061807000_Version-1.10.resx">
       <DependentUpon>201504061807000_Version-1.10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201506041320302_Version-1.11.resx">
+      <DependentUpon>201506041320302_Version-1.11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
