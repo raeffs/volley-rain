@@ -291,6 +291,7 @@
     <Content Include="Content\images\jquery\theme\ui-icons_f0ad4e_256x240.png" />
     <Content Include="Content\images\jquery\theme\ui-icons_f6cf3b_256x240.png" />
     <Content Include="Content\images\jquery\theme\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\images\location.png" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\js\bootstrap\bootstrap.js" />
     <Content Include="Content\js\bootstrap\bootstrap.min.js" />
@@ -323,6 +324,7 @@
     <Compile Include="Controllers\AttendanceController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CalendarController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\DocumentController.cs" />
     <Compile Include="Controllers\EventController.cs" />
     <Compile Include="Controllers\GameController.cs" />
@@ -547,6 +549,7 @@
     <Content Include="Views\Admin\Reset.cshtml" />
     <Content Include="Views\Event\EditType.cshtml" />
     <Content Include="Views\Event\CreateType.cshtml" />
+    <Content Include="Views\Content\Training.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

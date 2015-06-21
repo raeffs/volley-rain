@@ -17,7 +17,6 @@
                 </div>
             }
             <h1>@Html.DisplayFor(modelItem => item.Title)</h1>
-            @*<p class="pre-line">@Html.DisplayFor(modelItem => item.Content)</p>*@
             <p class="pre-line">@Html.ParseBBCode(item.Content)</p>
         </div>
     }
@@ -31,7 +30,6 @@
 else
 {
     <div class="jumbotron">
-        <h1>Es wurden noch keine News veröffentlicht</h1>
-        <p>Schau später wieder vorbei ;)</p>
+        <h1>Zur Zeit gibt es keine aktuellen News</h1>
     </div>
 }

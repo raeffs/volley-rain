@@ -23,32 +23,25 @@ namespace VolleyRain.Controllers
             },
             new NavigationGroup 
             { 
-                DisplayText = "Rangliste", 
+                DisplayText = "Infos", 
                 HideIfOnlyOneLink = true, 
                 Links = new List<NavigationLink> 
                 {
                     new NavigationLink { Controller = "Ranking", Action = "Index", DisplayText = "Rangliste", Role = string.Empty },
-                }
-            },
-            new NavigationGroup 
-            { 
-                DisplayText = "Kalender", 
-                HideIfOnlyOneLink = true, 
-                Links = new List<NavigationLink> 
-                {
-                    new NavigationLink { Controller = "Calendar", Action = "Index", DisplayText = "Übersicht", Role = "User" },
                     new NavigationLink { Controller = "Game", Action = "Index", DisplayText = "Spielplan", Role = string.Empty },
-                    new NavigationLink { Controller = "Attendance", Action = "Index", DisplayText = "Anwesenheitskontrolle", Role = "User" },
+                    new NavigationLink { Controller = "Content", Action = "Training", DisplayText = "Trainingszeiten", Role = string.Empty },
                 }
             },
             new NavigationGroup 
             { 
-                DisplayText = "Dokumente", 
+                DisplayText = "Intern", 
                 HideIfOnlyOneLink = true, 
                 Links = new List<NavigationLink> 
                 {
+                    new NavigationLink { Controller = "Calendar", Action = "Index", DisplayText = "Kalender", Role = "User" },
+                    new NavigationLink { Controller = "Attendance", Action = "Index", DisplayText = "Anwesenheitskontrolle", Role = "User" },
                     new NavigationLink { Controller = "Document", Action = "Index", DisplayText = "Dokumente", Role = "User" },
-                    new NavigationLink { Controller = "Document", Action = "Upload", DisplayText = "Dokument hochladen", Role = "User", Hide = true },
+                    //new NavigationLink { Controller = "Document", Action = "Upload", DisplayText = "Dokument hochladen", Role = "User", Hide = true },
                 }
             },
             new NavigationGroup 

@@ -49,6 +49,7 @@ namespace VolleyRain.Controllers
                     Title = model.Title,
                     Content = model.Content,
                     PublishDate = DateTime.Now,
+                    IsPublic = true,
                 };
                 Context.NewsArticles.Add(entity);
                 Context.SaveChanges();
