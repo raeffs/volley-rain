@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:typens="http://myvolley.swissvolley.ch" xmlns="http://schemas.xmlsoap.org/wsdl/" name="SwissVolley" targetNamespace="http://myvolley.swissvolley.ch" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Swiss Volley Webservices - powered by clicdesign ag</documentation>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:typens="http://myvolley.volleyball.ch" xmlns="http://schemas.xmlsoap.org/wsdl/" name="SwissVolley" targetNamespace="http://myvolley.volleyball.ch" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Swiss Volley Webservices -
+		powered by clicsoft gmbh</documentation>
   <wsdl:types>
-    <xsd:schema xmlns="" targetNamespace="http://myvolley.swissvolley.ch">
+    <xsd:schema xmlns="" targetNamespace="http://myvolley.volleyball.ch">
       <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
       <xsd:complexType name="ArrayOfLeague">
         <xsd:complexContent mixed="false">
@@ -759,22 +760,26 @@
       <wsdl:output message="typens:getRefereeDetailsResponse" />
     </wsdl:operation>
     <wsdl:operation name="getGamesOfReferee">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games for a given referee</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games for a given
+				referee</documentation>
       <wsdl:input message="typens:getGamesOfRefereeRequest" />
       <wsdl:output message="typens:getGamesOfRefereeResponse" />
     </wsdl:operation>
     <wsdl:operation name="getHallDetailed">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detail infos for a given hall</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detail infos for a given
+				hall</documentation>
       <wsdl:input message="typens:getHallDetailedRequest" />
       <wsdl:output message="typens:getHallDetailedResponse" />
     </wsdl:operation>
     <wsdl:operation name="getGamesOfHall">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games taking place in a given hall</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games taking place
+				in a given hall</documentation>
       <wsdl:input message="typens:getGamesOfHallRequest" />
       <wsdl:output message="typens:getGamesOfHallResponse" />
     </wsdl:operation>
     <wsdl:operation name="getGamesOfDate">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games for a specific date</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games for a specific
+				date</documentation>
       <wsdl:input message="typens:getGamesOfDateRequest" />
       <wsdl:output message="typens:getGamesOfDateResponse" />
     </wsdl:operation>
@@ -784,12 +789,14 @@
       <wsdl:output message="typens:getDatesResponse" />
     </wsdl:operation>
     <wsdl:operation name="getActiveTeams">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends active teams</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends active teams
+			</documentation>
       <wsdl:input message="typens:getActiveTeamsRequest" />
       <wsdl:output message="typens:getActiveTeamsResponse" />
     </wsdl:operation>
     <wsdl:operation name="getActiveClubs">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends active clubs</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends active clubs
+			</documentation>
       <wsdl:input message="typens:getActiveClubsRequest" />
       <wsdl:output message="typens:getActiveClubsResponse" />
     </wsdl:operation>
@@ -799,27 +806,32 @@
       <wsdl:output message="typens:getHallsResponse" />
     </wsdl:operation>
     <wsdl:operation name="getClubDetails">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends details of club</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends details of club
+			</documentation>
       <wsdl:input message="typens:getClubDetailsRequest" />
       <wsdl:output message="typens:getClubDetailsResponse" />
     </wsdl:operation>
     <wsdl:operation name="getGamesByClub">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends games for all teams of a given club</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends games for all teams of
+				a given club</documentation>
       <wsdl:input message="typens:getGamesByClubRequest" />
       <wsdl:output message="typens:getGamesByClubResponse" />
     </wsdl:operation>
     <wsdl:operation name="getTeamsByClub">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends all teams of a given club</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends all teams of a given
+				club</documentation>
       <wsdl:input message="typens:getTeamsByClubRequest" />
       <wsdl:output message="typens:getTeamsByClubResponse" />
     </wsdl:operation>
     <wsdl:operation name="getAddressesByClub">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends addresses regarding to club</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends addresses regarding to
+				club</documentation>
       <wsdl:input message="typens:getAddressesByClubRequest" />
       <wsdl:output message="typens:getAddressesByClubResponse" />
     </wsdl:operation>
     <wsdl:operation name="getAddressesByTeam">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends addresses for a given team</documentation>
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Sends addresses for a given
+				team</documentation>
       <wsdl:input message="typens:getAddressesByTeamRequest" />
       <wsdl:output message="typens:getAddressesByTeamResponse" />
     </wsdl:operation>
@@ -829,306 +841,320 @@
     <wsdl:operation name="getLeagues">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send existing leagues by a
 				given keyword</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getLeagues" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getLeagues" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getPhases">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send phases by a given league
 			</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getPhases" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getPhases" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGroups">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all groups of a phase
 			</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGroups" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGroups" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGroupDetailed">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed information of
 				a group</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGroupDetailed" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGroupDetailed" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getTeamDetailed">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed information of
 				a team</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getTeamDetailed" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getTeamDetailed" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGameDetailed">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send detailed informations of
 				a game</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGameDetailed" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGameDetailed" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getTable">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a table of a given group
 			</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getTable" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getTable" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getResults">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send results by a given group
 			</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getResults" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getResults" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getResultsLimited">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send a limited number of
 				results of a group</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getResultsLimited" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getResultsLimited" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGames">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a group
 			</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGames" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGames" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getPlayOffGamesView">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a group
 			</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getPlayOffGamesView" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getPlayOffGamesView" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getPhasesResults">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a group
 			</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getPhasesResults" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getPhasesResults" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGamesTeam">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games of a team
 			</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesTeam" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGamesTeam" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGamesDateSpan">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send games by a given date
 				span</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesDateSpan" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGamesDateSpan" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGamesDateSpanAllGroups">
       <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games of a all
 				groups by a given league</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesDateSpanAllGroups" />
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGamesDateSpanAllGroups" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGamesOfReferee">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games of a given referee</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesOfReferee" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games of a given
+				referee</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGamesOfReferee" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getRefereeDetails">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send details for given referee</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getRefereeDetails" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send details for given
+				referee</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getRefereeDetails" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getHallDetailed">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send details of a given hall</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getHallDetailed" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send details of a given hall
+			</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getHallDetailed" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGamesOfHall">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games taking place in a given hall</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesOfHall" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games taking place
+				in a given hall</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGamesOfHall" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGamesOfDate">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games taking place on a given date</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesOfDate" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games taking place
+				on a given date</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGamesOfDate" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getDates">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all dates on which games are taking place</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getDates" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all dates on which games
+				are taking place</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getDates" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getActiveTeams">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all active teams</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getActiveTeams" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all active teams
+			</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getActiveTeams" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getActiveClubs">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all active clubs</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getActiveClubs" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all active clubs
+			</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getActiveClubs" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getHalls">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all halls</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getHalls" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all halls
+			</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getHalls" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getClubDetails">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send details of a given club</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getClubDetails" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send details of a given club
+			</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getClubDetails" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getGamesByClub">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games involving teams of a given club</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getGamesByClub" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all games involving
+				teams of a given club</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getGamesByClub" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getTeamsByClub">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all teams of a given club</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getTeamsByClub" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send all teams of a given
+				club</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getTeamsByClub" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getAddressesByClub">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send addresses of a given club</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getAddressesByClub" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send addresses of a given
+				club</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getAddressesByClub" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="getAddressesByTeam">
-      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send addresses of a given team</documentation>
-      <soap:operation soapAction="http://myvolley.swissvolley.ch/getAddressesByTeam" />
+      <documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Send addresses of a given
+				team</documentation>
+      <soap:operation soapAction="http://myvolley.volleyball.ch/getAddressesByTeam" />
       <wsdl:input>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:input>
       <wsdl:output>
-        <soap:body use="encoded" namespace="http://myvolley.swissvolley.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+        <soap:body use="encoded" namespace="http://myvolley.volleyball.ch" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
@@ -1137,7 +1163,7 @@
 			all public information of all leagues managed by Swiss Volley
 		</documentation>
     <wsdl:port name="SwissVolleyPort" binding="typens:SwissVolleyBinding">
-      <soap:address location="http://myvolley.swissvolley.ch/svserver.php" />
+      <soap:address location="http://myvolley.volleyball.ch/svserver.php" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

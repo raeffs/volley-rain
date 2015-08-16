@@ -17,7 +17,7 @@
             <th class="hidden-xs">@Html.DisplayNameFor(model => model.Hall)</th>
         </tr>
     </thead>
-    @foreach (var item in Model) { 
+    @foreach (var item in Model.OrderBy(m => m.StartDate)) { 
         <tr>
             <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
             <td>@Html.DisplayFor(modelItem => item.StartTime)</td>

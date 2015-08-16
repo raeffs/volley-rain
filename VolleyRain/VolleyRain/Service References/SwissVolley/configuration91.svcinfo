@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="I2vzX6MfFK6co/3zedmU0+hYr3Q=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="bTKbcWjRTHG8k+1umkDI8d/YUNc=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="SwissVolleyBinding">
       <properties>
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="SwissVolleyPort" contract="SwissVolley.SwissVolleyPortType" bindingType="basicHttpBinding" address="http://myvolley.swissvolley.ch/svserver.php" bindingConfiguration="SwissVolleyBinding">
+    <endpoint name="SwissVolleyPort" contract="SwissVolley.SwissVolleyPortType" bindingType="basicHttpBinding" address="http://myvolley.volleyball.ch/svserver.php" bindingConfiguration="SwissVolleyBinding">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://myvolley.swissvolley.ch/svserver.php</serializedValue>
+          <serializedValue>http://myvolley.volleyball.ch/svserver.php</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
