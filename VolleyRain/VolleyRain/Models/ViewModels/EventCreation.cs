@@ -9,6 +9,10 @@ namespace VolleyRain.Models
     public class EventCreation
     {
         [Required]
+        [Display(Name = "Team")]
+        public TeamSummary Team { get; set; }
+
+        [Required]
         [Display(Name = "Name")]
         public string Name { get; set; }
 

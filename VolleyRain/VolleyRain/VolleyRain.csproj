@@ -19,6 +19,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -380,6 +381,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Comment.cs" />
     <Compile Include="Models\ViewModels\EventTypeCreation.cs" />
+    <Compile Include="Models\ViewModels\SeasonSummary.cs" />
     <Compile Include="Models\ViewModels\TeamEditing.cs" />
     <Compile Include="Models\ViewModels\EffectiveAttendanceSelection.cs" />
     <Compile Include="Models\Entities\TeamMembership.cs" />
@@ -404,6 +406,7 @@
     <Compile Include="Models\Entities\Attendance.cs" />
     <Compile Include="Models\ViewModels\EventSummary.cs" />
     <Compile Include="Models\Extensions\CssClassExtensions.cs" />
+    <Compile Include="Models\ViewModels\TeamSummary.cs" />
     <Compile Include="Models\ViewModels\UserCreation.cs" />
     <Compile Include="Models\ViewModels\UserSummary.cs" />
     <Compile Include="Models\ViewModels\AttendanceMatrix.cs" />

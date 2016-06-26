@@ -22,16 +22,16 @@ namespace VolleyRain.Controllers
             return View(model);
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public ActionResult Show([TeamIdentifier] int? teamID)
-        {
-            var model = Context.Teams
-                .Include(t => t.Season)
-                .Include(t => t.Rankings)
-                .Single(t => t.ID == teamID);
-            return View(model);
-        }
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public ActionResult Show([TeamIdentifier] int? teamID)
+        //{
+        //    var model = Context.Teams
+        //        .Include(t => t.Season)
+        //        .Include(t => t.Rankings)
+        //        .Single(t => t.ID == teamID);
+        //    return View(model);
+        //}
 
         public void Update(int? teamID)
         {

@@ -2,10 +2,11 @@
 
 @{
     ViewBag.Title = "Anwesenheitskontrolle";
+    var team = ViewBag.Team as Team;
     var pagination = ViewBag.Pagination as VolleyRain.Models.Pagination;
 }
 
-<h2>Anwesenheitskontrolle <small>Team SVKT Rain</small></h2>
+<h2>Anwesenheitskontrolle <small>Team @team.Name (@team.Season.Name) <small>&raquo;&nbsp;@Html.ActionLink("Auswahl", "Select", "Team", new { ReturnUrl = Context.Request.Url }, null)</small></small></h2>
 
 <div class="pager">
     @Html.PreviousPageButton(pagination, "Zurück", "hidden-xs")

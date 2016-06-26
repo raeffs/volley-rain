@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Season>
+﻿@model IEnumerable<SeasonSummary>
 
 @{
     ViewBag.Title = "Teamauswahl";
@@ -6,7 +6,7 @@
 
 <h2>Teamauswahl</h2>
 
-@foreach (var season in Model.OrderByDescending(s => s.Start))
+@foreach (var season in Model.OrderByDescending(s => s.ID))
 {
     if (season.Teams.Any())
     { 

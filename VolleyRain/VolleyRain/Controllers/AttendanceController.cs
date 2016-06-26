@@ -11,10 +11,21 @@ namespace VolleyRain.Controllers
 {
     public class AttendanceController : BaseController
     {
+        private void SetTeam(int? teamID)
+        {
+            var team = Context.Teams
+                .Include(t => t.Members)
+                .Include(t => t.Season)
+                .Single(t => t.ID == teamID);
+            ViewBag.Team = team;
+        }
+
         [HttpGet]
         [Authorize(Roles = "User")]
         public ActionResult Index([TeamIdentifier] int? teamID, int? page, int? pageSize)
         {
+            SetTeam(teamID);
+            
             if (page.HasValue && page.Value == 0) return RedirectToAction("Archive", new { pageSize = pageSize });
 
             ViewBag.AttendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList());
@@ -75,6 +86,8 @@ namespace VolleyRain.Controllers
         [Authorize(Roles = "User")]
         public ActionResult Archive([TeamIdentifier] int? teamID, int? page, int? pageSize)
         {
+            SetTeam(teamID);
+
             if (page.HasValue && page.Value == 0) return RedirectToAction("Index", new { pageSize = pageSize });
 
             ViewBag.AttendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList());

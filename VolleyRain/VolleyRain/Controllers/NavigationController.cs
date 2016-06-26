@@ -25,10 +25,11 @@ namespace VolleyRain.Controllers
             { 
                 DisplayText = "Infos", 
                 HideIfOnlyOneLink = true, 
-                Links = new List<NavigationLink> 
+                Links = new List<NavigationLink>
                 {
-                    new NavigationLink { Controller = "Ranking", Action = "Index", DisplayText = "Rangliste", Role = string.Empty },
-                    new NavigationLink { Controller = "Game", Action = "Index", DisplayText = "Spielplan", Role = string.Empty },
+                    new NavigationLink { Controller = "Ranking", Action = "Index", DisplayText = "Spielplan & Rangliste", Role = string.Empty },
+                    //new NavigationLink { Controller = "Ranking", Action = "Index", DisplayText = "Rangliste", Role = string.Empty },
+                    //new NavigationLink { Controller = "Game", Action = "Index", DisplayText = "Spielplan", Role = string.Empty },
                     new NavigationLink { Controller = "Content", Action = "Training", DisplayText = "Trainingszeiten", Role = string.Empty },
                 }
             },

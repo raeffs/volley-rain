@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Season>
 
 @{
-    ViewBag.Title = "Ranglisten";
+    ViewBag.Title = "Spielplan & Rangliste";
 }
 
-@foreach (var season in Model.OrderByDescending(s => s.Start))
+@*@foreach (var season in Model.OrderByDescending(s => s.Start))
 {
     if (season.Teams.Any())
     { 
@@ -17,4 +17,11 @@
             @Html.DisplayFor(modelItem => team.Rankings, "RankingCollection")
         }
     }
-}
+}*@
+
+<h2>Spielplan &amp; Rangliste</h2>
+
+Der Spielplan und die Rangliste sind <a style="color:#428bca;" href="http://web.turnverband.ch/volleyball/meisterschaft.php">hier</a> zu finden.
+<br />
+<br />
+<br />

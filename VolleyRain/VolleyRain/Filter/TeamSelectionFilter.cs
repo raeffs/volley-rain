@@ -64,6 +64,11 @@ namespace VolleyRain.Filter
                 else if (teams.Count > 1)
                 {
                     // select team
+                    filterContext.Result = new RedirectToRouteResult(new System.Web.Routing.RouteValueDictionary {
+                        { "Controller", "Team" },
+                        { "Action", "Select" } ,
+                        { "ReturnUrl", filterContext.RequestContext.HttpContext.Request.Url }
+                    });
                 }
                 else if (teams.Count == 0)
                 {

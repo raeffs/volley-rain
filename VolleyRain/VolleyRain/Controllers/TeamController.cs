@@ -167,8 +167,19 @@ namespace VolleyRain.Controllers
 
         public ActionResult Select(string returnUrl)
         {
+            var isAdmin = HttpContext.User.Identity.IsAuthenticated && HttpContext.User.IsAdministrator();
+
             ViewBag.ReturnUrl = new Uri(returnUrl).GetLeftPart(UriPartial.Path);
-            var model = Context.Seasons.Include(s => s.Teams).ToList();
+            var model = Context.Seasons.Select(s => new SeasonSummary
+            {
+                ID = s.ID,
+                Name = s.Name,
+                Teams = s.Teams.Where(t => isAdmin || t.Members.Any(m => m.UserID == Session.UserID)).Select(t => new TeamSummary
+                {
+                    ID = t.ID,
+                    Name = t.Name
+                }).ToList()
+            }).ToList();
             return View(model);
         }
 

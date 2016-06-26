@@ -17,6 +17,7 @@ namespace VolleyRain.Controllers
             : base()
         {
             ViewBag.EventTypes = new SelectList(Context.EventTypes, "ID", "Name");
+            ViewBag.Teams = new SelectList(Context.Teams.Select(t => new TeamSummary { ID = t.ID, Name = t.Name }), "ID", "Name");
         }
 
         [HttpGet]
@@ -41,7 +42,11 @@ namespace VolleyRain.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(EventCreation model)
         {
-            // TODO: geht bestimmt eleganter
+            var selectedTeam = Context.Teams.SingleOrDefault(t => t.ID == model.Team.ID);
+            if (selectedTeam == null)
+            {
+                ModelState.AddModelError("Team", "Das gewählte Team existiert nicht.");
+            }
             var selectedType = Context.EventTypes.SingleOrDefault(t => t.ID == model.Type.ID);
             if (selectedType == null)
             {
@@ -69,7 +74,7 @@ namespace VolleyRain.Controllers
                     Description = model.Description,
                     Location = model.Location,
                     Type = selectedType,
-                    Team = Context.Teams.Include(t => t.Members).Single(t => t.Season.ID == season.ID)
+                    Team = selectedTeam
                 };
 
                 if (model.FullTime)
