@@ -1,0 +1,74 @@
+﻿@model AttendanceType
+
+@{
+    ViewBag.Title = "Anwesenheits-Typ löschen";
+}
+
+<h2>Anwesenheits-Typ löschen</h2>
+
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShortName, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(model => model.ShortName, new { @class = "form-control", disabled = "disabled", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.ShortName)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ColorCode, new { @class = "control-label col-sm-2 hidden-xs" })
+        <div class="col-sm-10">
+            @Html.ColorInputFor(model => model.ColorCode, new { @class = "color-picker", disabled = "disabled", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.ColorCode)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(model => model.RepresentsAttendance, new { id = "toggle-fulltime", disabled = "disabled", @readonly = "readonly" }) @Html.DisplayNameFor(model => model.RepresentsAttendance)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(model => model.IsUserSelectable, new { id = "toggle-fulltime", disabled = "disabled", @readonly = "readonly" }) @Html.DisplayNameFor(model => model.IsUserSelectable)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 btn-group btn-group-responsive">
+                <input type="submit" value="Löschen" class="btn btn-default btn-danger" />
+                <a href="@Url.Action("Types")" class="btn btn-default btn-warning">Zurück</a>
+            </div>
+        </div>
+    }
+
+</div>
+
+<script>
+    $(".color-picker").spectrum({
+        preferredFormat: "hex",
+        showInitial: true,
+        disabled: true,
+    });
+</script>

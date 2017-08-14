@@ -380,6 +380,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Entities\Comment.cs" />
+    <Compile Include="Models\ViewModels\AttendanceTypeCreation.cs" />
     <Compile Include="Models\ViewModels\EventTypeCreation.cs" />
     <Compile Include="Models\ViewModels\SeasonSummary.cs" />
     <Compile Include="Models\ViewModels\TeamEditing.cs" />
@@ -551,8 +552,13 @@
     <Content Include="Views\Team\Select.cshtml" />
     <Content Include="Views\Admin\Reset.cshtml" />
     <Content Include="Views\Event\EditType.cshtml" />
-    <Content Include="Views\Event\CreateType.cshtml" />
+    <Content Include="Views\Attendance\CreateType.cshtml" />
     <Content Include="Views\Content\Training.cshtml" />
+    <Content Include="Views\Event\CreateType.cshtml" />
+    <Content Include="Views\Attendance\EditType.cshtml" />
+    <Content Include="Views\Attendance\DeleteType.cshtml" />
+    <Content Include="Views\Event\DeleteType.cshtml" />
+    <Content Include="Views\Season\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

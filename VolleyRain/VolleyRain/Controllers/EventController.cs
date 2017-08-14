@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using VolleyRain.Models;
-using VolleyRain.DataAccess;
 
 namespace VolleyRain.Controllers
 {
@@ -339,6 +336,31 @@ namespace VolleyRain.Controllers
                 })
                 .ToList();
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Team-Administrator")]
+        public ActionResult DeleteType(int typeID)
+        {
+            if (Context.EventTypes.None(t => t.ID == typeID)) return HttpNotFound();
+
+            var model = Context.EventTypes.Single(t => t.ID == typeID);
+            return View(model);
+        }
+
+        [HttpPost, ActionName("DeleteType")]
+        [Authorize(Roles = "Team-Administrator")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteTypeConfirmed(int typeID)
+        {
+            if (Context.EventTypes.None(t => t.ID == typeID)) return HttpNotFound();
+
+            var model = Context.EventTypes.Single(t => t.ID == typeID);
+            Context.EventTypes.Remove(model);
+            Context.SaveChanges();
+            Cache.GetEventTypes(() => Context.EventTypes.ToList(), true);
+            TempData["SuccessMessage"] = "Der Event-Typ wurde gelöscht.";
+            return RedirectToAction("Types");
         }
     }
 }

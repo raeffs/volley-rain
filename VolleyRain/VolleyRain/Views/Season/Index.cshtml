@@ -22,6 +22,14 @@
         <td>@Html.DisplayFor(model => item.Start)</td>
         <td>@Html.DisplayFor(model => item.End)</td>
         <td>
+            <div class="btn-group btn-group-xs">
+                <a class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a href="@Url.Action("Delete", new { seasonID = item.ID })">Löschen</a></li>
+                </ul>
+            </div>
         </td>
     </tr>
 }

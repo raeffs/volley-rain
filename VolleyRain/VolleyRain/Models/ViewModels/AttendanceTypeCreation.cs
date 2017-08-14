@@ -2,7 +2,7 @@
 
 namespace VolleyRain.Models
 {
-    public class AttendanceType
+    public class AttendanceTypeCreation
     {
         public int ID { get; set; }
 
