@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Caching;
 
 namespace VolleyRain.Models
@@ -18,6 +16,11 @@ namespace VolleyRain.Models
         public Season GetSeason(Func<Season> initializer)
         {
             return GetValue("Season", initializer);
+        }
+
+        public Season GetSeasonWithTeams(Func<Season> initializer)
+        {
+            return GetValue("SeasonWithTeams", initializer);
         }
 
         public ICollection<AttendanceType> GetAttendanceTypes(Func<ICollection<AttendanceType>> initializer, bool forceUpdate = false)

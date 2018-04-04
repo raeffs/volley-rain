@@ -146,21 +146,18 @@ namespace VolleyRain.Controllers
 
         [HttpGet]
         [Authorize(Roles = "User")]
-        public ActionResult Edit()
+        public ActionResult Edit([TeamIdentifier] int? teamID)
         {
+            SetTeam(teamID);
+
             var noSelection = new AttendanceType { ID = 0, Name = string.Empty };
             var attendanceTypes = Cache.GetAttendanceTypes(() => Context.AttendanceTypes.ToList()).Where(t => t.IsUserSelectable).ToList();
             attendanceTypes.Add(noSelection);
             ViewBag.AttendanceTypes = attendanceTypes.OrderBy(t => t.ID).ToList();
 
-            var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
-            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID && Session.Teams.Contains(t.ID)).Select(t => t.ID).ToList();
-
-            if (teamIDs.Count == 0) return RedirectToAction("NoTeam", "Team");
-
             var tomorrow = DateTime.Today.AddDays(1);
             var model = Context.Events
-                .Where(e => teamIDs.Contains(e.Team.ID) && e.Start >= tomorrow)
+                .Where(e => e.Team.ID == teamID.Value && e.Start >= tomorrow)
                 .OrderBy(e => e.Start)
                 .Select(e => new AttendanceSelection
                 {
@@ -188,16 +185,15 @@ namespace VolleyRain.Controllers
 
         [HttpPost]
         [Authorize(Roles = "User")]
-        public ActionResult Edit(IList<AttendanceSelection> model)
+        public ActionResult Edit([TeamIdentifier] int? teamID, IList<AttendanceSelection> model)
         {
-            var attendanceTypes = Context.AttendanceTypes.Where(t => t.IsUserSelectable).ToList();
+            SetTeam(teamID);
 
-            var season = Cache.GetSeason(() => Context.Seasons.GetActualSeason());
-            var teamIDs = Context.Teams.Where(t => t.Season.ID == season.ID).Select(t => t.ID).ToList();
+            var attendanceTypes = Context.AttendanceTypes.Where(t => t.IsUserSelectable).ToList();
 
             var tomorrow = DateTime.Today.AddDays(1);
             var eventIDs = Context.Events
-                .Where(e => teamIDs.Contains(e.Team.ID) && e.Start >= tomorrow)
+                .Where(e => e.Team.ID == teamID.Value && e.Start >= tomorrow)
                 .Select(m => m.ID)
                 .ToList();
             var attendances = Context.Attendances.Include(a => a.User).Where(a => a.User.ID == Session.UserID && eventIDs.Contains(a.Event.ID)).ToList();

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Mvc;
 using VolleyRain.DataAccess;
 using VolleyRain.Models;
@@ -32,8 +30,8 @@ namespace VolleyRain.Filter
                 }
                 if (!value.HasValue)
                 {
-                    filterContext.Result = new RedirectToRouteResult(new System.Web.Routing.RouteValueDictionary { 
-                        { "Controller", "Team" }, 
+                    filterContext.Result = new RedirectToRouteResult(new System.Web.Routing.RouteValueDictionary {
+                        { "Controller", "Team" },
                         { "Action", "Select" } ,
                         { "ReturnUrl", filterContext.RequestContext.HttpContext.Request.Url }
                     });
@@ -55,8 +53,8 @@ namespace VolleyRain.Filter
         {
             using (var db = new DatabaseContext())
             {
-                var season = cache.GetSeason(() => db.Seasons.GetActualSeason());
-                var teams = db.Teams.Where(t => t.Season.ID == season.ID && t.Members.Any(m => m.UserID == session.UserID)).ToList();
+                //var season = cache.GetSeason(() => db.Seasons.GetActualSeason());
+                var teams = db.Teams.Where(t => /*t.Season.ID == season.ID &&*/ t.Members.Any(m => m.UserID == session.UserID)).ToList();
                 if (teams.Count == 1)
                 {
                     return teams.Single().ID;
