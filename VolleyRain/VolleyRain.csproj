@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -261,7 +262,6 @@
       <CompileStyle>Nested</CompileStyle>
       <DebugInfo>False</DebugInfo>
     </Content>
-    <None Include="todo.txt" />
     <Content Include="Content\fonts\bootstrap\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fonts\ubuntu\ubuntu-b-webfont.svg" />
     <Content Include="Content\fonts\ubuntu\ubuntu-bi-webfont.svg" />
@@ -305,14 +305,12 @@
     <Content Include="Content\js\jquery\jquery.timepicker.min.js" />
     <Content Include="Content\js\spectrum\spectrum.js" />
     <Content Include="Global.asax" />
-    <None Include="Properties\PublishProfiles\test.pubxml" />
     <None Include="Service References\SwissVolley\configuration91.svcinfo" />
     <None Include="Service References\SwissVolley\configuration.svcinfo" />
     <None Include="Service References\SwissVolley\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="usefull.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
