@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Volley Rain</title>
+    
+    <link href="~/Content/css/site.min.css" rel="stylesheet" type="text/css" />
+    @Html.Action("Render", "Style")
+    
+    <script src="~/Content/js/jquery/jquery-2.1.1.min.js"></script>
+    @*
+    <script src="~/Scripts/modernizr-2.7.2.js"></script>
+    *@
+
+    <link href="~/Content/css/spectrum/spectrum.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/js/spectrum/spectrum.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+
+        <a href="@Url.Action("Index", "News")">
+            <img class="center-block logo" src="~/Content/images/logo.png" />
+        </a>
+
+        @Html.Action("Render", "Navigation")
+
+        @if (!string.IsNullOrWhiteSpace(TempData["SuccessMessage"] as string))
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+        
+        @if (!string.IsNullOrWhiteSpace(TempData["ErrorMessage"] as string))
+        { 
+            <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+        }
+
+        @RenderBody()
+
+        @{
+            var version = System.Reflection.Assembly.GetAssembly(typeof(MvcApplication)).GetName().Version;
+            var majorVersion = version.Major;
+            var minorVersion = version.Minor;
+            var buildDate = new DateTime(2000, 1, 1).AddDays(version.Build).AddSeconds(version.MinorRevision * 2);
+        }
+
+        <div class="footer">
+            Volley Rain &bull; @Html.Raw(string.Format("Version {0}.{1}", majorVersion, minorVersion))
+        </div>
+                
+    </div>
+    <script src="~/Content/js/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>
